@@ -130,12 +130,12 @@ class RateConverterViewController: UIViewController {
 extension RateConverterViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.currenciesWithRate.count
+        return viewModel.sortedCurrenciesWithRate.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: RateTableViewCell = tableView.dequeueReusableCell(indexPath: indexPath)
-        if let currencyPair = viewModel.currenciesWithRate[safe: indexPath.row] {
+        if let currencyPair = viewModel.sortedCurrenciesWithRate[safe: indexPath.row] {
             cell.configureCell(with: currencyPair)
         }
         return cell

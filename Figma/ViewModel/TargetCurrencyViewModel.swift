@@ -105,7 +105,7 @@ final class TargetCurrencyViewModel: BaseCurrencyViewModel {
     private func createCurrencyPair(
         with fromCurrency: Currency,
         with targetCurrency: Currency) -> CurrencyPair {
-        return CurrencyPair(fromCurrencyCode: fromCurrency.code, fromCurrencyName: fromCurrency.currency, targetCurrencyCode: targetCurrency.code, targetCurrencyName: targetCurrency.currency, conversionRate: nil)
+        return CurrencyPair(fromCurrencyCode: fromCurrency.code, fromCurrencyName: fromCurrency.currency, targetCurrencyCode: targetCurrency.code, targetCurrencyName: targetCurrency.currency, conversionRate: nil, creationDate: Date())
     }
     
     func persistOnboardingShown() {

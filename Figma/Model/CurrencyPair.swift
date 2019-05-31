@@ -7,11 +7,12 @@ struct CurrencyPair: Equatable {
     let targetCurrencyCode: String
     let targetCurrencyName: String?
     var conversionRate: Double?
+    let creationDate: Date
     
-    static func == (lhs: CurrencyPair, rhs: CurrencyPair) -> Bool {
-        return lhs.fromCurrencyCode == rhs.fromCurrencyCode &&
-        lhs.targetCurrencyCode == rhs.targetCurrencyCode
-    }
+//    static func == (lhs: CurrencyPair, rhs: CurrencyPair) -> Bool {
+//        return lhs.fromCurrencyCode == rhs.fromCurrencyCode &&
+//        lhs.targetCurrencyCode == rhs.targetCurrencyCode
+//    }
 }
 
 extension CurrencyPair {
@@ -19,18 +20,18 @@ extension CurrencyPair {
         return "\(fromCurrencyCode)\(targetCurrencyCode)"
     }
     
-    static func createCurrencyPair(key: String, value: Double?, fromCurrenyFullName: String?, targetCurrencyFullName: String?) -> CurrencyPair {
-        let fromCurrencyCode = "\(key.fromCurrencyCode())"
-        let targetCurrencyCode = "\(key.targetCurrencyCode())"
-        let conversionRate = value
-        
-        return CurrencyPair(
-            fromCurrencyCode: fromCurrencyCode,
-            fromCurrencyName: fromCurrenyFullName,
-            targetCurrencyCode: targetCurrencyCode,
-            targetCurrencyName: targetCurrencyFullName,
-            conversionRate: conversionRate)
-    }
+//    static func createCurrencyPair(key: String, value: Double?, fromCurrenyFullName: String?, targetCurrencyFullName: String?) -> CurrencyPair {
+//        let fromCurrencyCode = "\(key.fromCurrencyCode())"
+//        let targetCurrencyCode = "\(key.targetCurrencyCode())"
+//        let conversionRate = value
+//
+//        return CurrencyPair(
+//            fromCurrencyCode: fromCurrencyCode,
+//            fromCurrencyName: fromCurrenyFullName,
+//            targetCurrencyCode: targetCurrencyCode,
+//            targetCurrencyName: targetCurrencyFullName,
+//            conversionRate: conversionRate)
+//    }
     
     static func createCurrencyPair(with fromCurrency: Currency, with targetCurrency: Currency) -> CurrencyPair {
         return CurrencyPair(
@@ -38,17 +39,9 @@ extension CurrencyPair {
             fromCurrencyName: fromCurrency.currency,
             targetCurrencyCode: targetCurrency.code,
             targetCurrencyName: targetCurrency.currency,
-            conversionRate: nil)
+            conversionRate: nil,
+            creationDate: Date())
     }
-    
-//    func updateRate(of currenciesPair: inout [CurrencyPair], with key: String, value: Double?) {
-//        let fromCurrencyCode = "\(key.fromCurrencyCode())"
-//        let targetCurrencyCode = "\(key.targetCurrencyCode())"
-//        let conversionRate = value
-//
-//        currenciesPair.first(where: { $0.fromCurrencyCode == fromCurrencyCode })?.conversionRate = conversionRate
-//
-//    }
 }
 
 // MARK: - Internal Model
@@ -64,6 +57,7 @@ final class ManagedCurrencyPair: NSManagedObject {
         static let keyFromCurrencyName = "fromCurrencyName"
         static let keyTargetCurrencyCode = "targetCurrencyCode"
         static let keyTargetCurrencyName = "targetCurrencyName"
+        static let keyCreationDate = "creationDate"
     }
     
     // MARK: - Properties
@@ -77,18 +71,21 @@ final class ManagedCurrencyPair: NSManagedObject {
     @NSManaged var fromCurrencyName: String?
     @NSManaged var targetCurrencyCode: String
     @NSManaged var targetCurrencyName: String?
+    @NSManaged var creationDate: Date
     
     
     //MARK: - Fetch API
     
-    class func fetchRequest() -> NSFetchRequest<ManagedCurrencyPair> {
-        let fetchRequest = NSFetchRequest<ManagedCurrencyPair>(entityName: Constants.entityName)
-        return fetchRequest
-    }
-    
     class func fetchRequest(code: String) -> NSFetchRequest<ManagedCurrencyPair> {
         let fetchRequest = NSFetchRequest<ManagedCurrencyPair>(entityName: Constants.entityName)
         fetchRequest.predicate = NSPredicate(format: "\(Constants.keyFromCurrencyCode) == %@", code)
+        return fetchRequest
+    }
+    
+    class func fetchRequestOrdered() -> NSFetchRequest<ManagedCurrencyPair> {
+        let fetchRequest = NSFetchRequest<ManagedCurrencyPair>(entityName: Constants.entityName)
+        let byCreationDate = NSSortDescriptor(key: Constants.keyCreationDate, ascending: true)
+        fetchRequest.sortDescriptors = [byCreationDate]
         return fetchRequest
     }
 }
