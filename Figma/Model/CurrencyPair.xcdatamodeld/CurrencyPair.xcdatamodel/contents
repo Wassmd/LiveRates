@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CurrencyPair" representedClassName="CurrencyPair" syncable="YES" codeGenerationType="class">
+        <attribute name="fromCurrencyCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fromCurrencyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="targetCurrencyCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="targetCurrencyName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CurrencyPair" positionX="-63" positionY="-18" width="128" height="105"/>
+    </elements>
+</model>
