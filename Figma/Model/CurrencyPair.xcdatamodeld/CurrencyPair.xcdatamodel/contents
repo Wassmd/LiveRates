@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CurrencyPair" representedClassName=".ManagedCurrencyPair" syncable="YES">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="fromCurrencyCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fromCurrencyName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="targetCurrencyCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="targetCurrencyName" optional="YES" attributeType="String" syncable="YES"/>
+        <fetchIndex name="byCreationDate">
+            <fetchIndexElement property="creationDate" type="Binary" order="ascending"/>
+        </fetchIndex>
     </entity>
     <elements>
-        <element name="CurrencyPair" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="CurrencyPair" positionX="-63" positionY="-18" width="128" height="120"/>
     </elements>
 </model>

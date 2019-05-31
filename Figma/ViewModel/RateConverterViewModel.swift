@@ -9,8 +9,8 @@ final class RateConverterViewModel {
     private let networkService: NetworkService
     private let currencyPairService: CurrencyPairService
     private var savedCurrencyPairs = [CurrencyPair]()
-    var currenciesWithRate = [CurrencyPair]()
-    
+    var sortedCurrenciesWithRate = [CurrencyPair]()
+
     private var pairs: [String] {
         return savedCurrencyPairs.map { "\($0.fromCurrencyCode)\($0.targetCurrencyCode)" }
     }
@@ -47,24 +47,25 @@ final class RateConverterViewModel {
              guard error == nil else { return }
             
             if let dictionary = dictionary {
-                print("Wasim \(dictionary)")
-                for dict in dictionary {
-                    print("Wasim key: \(dict.key) vale:\(dict.value)")
-                    self?.createCurrenciesPairWithRates(key: dict.key, value: dict.value as? Double)
-                }
-                completion()
+                print("Wasim Thread: \(Thread.isMainThread)")
+                self?.updatePairsWithRate(from: dictionary)
             }
+             completion()
         }
     }
     
-    private func createCurrenciesPairWithRates(key: String, value: Double?) {
-        let fromCurrencyCode = "\(key.fromCurrencyCode())"
-        let targetCurrencyCode = "\(key.targetCurrencyCode())"
-        let conversionRate = value
+    private func updatePairsWithRate(from dictionary: Dictionary<String, Any>) {
+        let pairs = dictionary.compactMap { (key, value) -> CurrencyPair? in
+            let fromCurrencyCode = "\(key.fromCurrencyCode())"
+            let targetCurrencyCode = "\(key.targetCurrencyCode())"
+            let conversionRate = value as? Double
+            guard var currencyPair = savedCurrencyPairs.first(where: { $0.fromCurrencyCode == fromCurrencyCode && $0.targetCurrencyCode == targetCurrencyCode }) else { return nil}
+            currencyPair.conversionRate = conversionRate
+            return currencyPair
+        }
+        .sorted(by: { $0.creationDate > $1.creationDate })
         
-        guard var currencyPair = savedCurrencyPairs.first(where: { $0.fromCurrencyCode == fromCurrencyCode && $0.targetCurrencyCode == targetCurrencyCode }) else { return }
-        
-        currencyPair.conversionRate = conversionRate
-        currenciesWithRate.append(currencyPair)
+        sortedCurrenciesWithRate = pairs
     }
+    
 }

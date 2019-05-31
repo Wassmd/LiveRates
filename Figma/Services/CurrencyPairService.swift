@@ -41,6 +41,7 @@ class CurrencyPairService {
             added.fromCurrencyName = currencyPair.fromCurrencyName
             added.targetCurrencyCode = currencyPair.targetCurrencyCode
             added.targetCurrencyName = currencyPair.targetCurrencyName
+            added.creationDate = currencyPair.creationDate
             try save()
             
         } catch let error {
@@ -67,7 +68,7 @@ class CurrencyPairService {
         let context = self.persistentContainer.newBackgroundContext()
         context.perform {
             do {
-                let result = try context.fetch(ManagedCurrencyPair.fetchRequest())
+                let result = try context.fetch(ManagedCurrencyPair.fetchRequestOrdered())
                     .map {  try self.asImmutable(managed: $0) }
                 completion(result, nil)
             } catch let error {
@@ -83,7 +84,8 @@ class CurrencyPairService {
                             fromCurrencyName: managed.fromCurrencyName,
                             targetCurrencyCode: managed.targetCurrencyCode,
                             targetCurrencyName: managed.targetCurrencyName,
-                            conversionRate: nil)
+                            conversionRate: nil,
+                            creationDate: managed.creationDate)
         
     }
     
