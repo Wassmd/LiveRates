@@ -11,6 +11,7 @@ class CurrencyCell: UITableViewCell {
         static let codeLabelLeadingOffset: CGFloat = 16
         static let currancyLabelLeadingOffset: CGFloat = 18
         static let codeTextFont: UIFont = UIFont.systemFont(ofSize: 16)
+        static let cellAlpha: CGFloat = 0.5
     }
     
     enum CellType {
@@ -106,11 +107,9 @@ class CurrencyCell: UITableViewCell {
         case .standard:
             contentView.backgroundColor = .white
             isUserInteractionEnabled = true
-            print("Wasim standard")
         case .disabled:
-            self.alpha = 0.5
+            self.alpha = Constants.cellAlpha
             isUserInteractionEnabled = false
-             print("Wasim disabled")
         }
         self.layoutIfNeeded()
     }

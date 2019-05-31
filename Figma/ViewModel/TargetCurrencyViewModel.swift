@@ -26,7 +26,6 @@ final class TargetCurrencyViewModel: BaseCurrencyViewModel {
         super.init()
         
         setupObserving()
-       
     }
     
     
@@ -49,6 +48,7 @@ final class TargetCurrencyViewModel: BaseCurrencyViewModel {
             if let saveCurrencyPairs = saveCurrencyPairs {
                 self.savedCurrencyPairs = saveCurrencyPairs
                 self.updateItemViewModelCellType()
+                self.updateCellTypeForSelectedFromCurrency()
             }
             completion()
         }
@@ -81,6 +81,14 @@ final class TargetCurrencyViewModel: BaseCurrencyViewModel {
                 itemViewModel.cellType = cellType
             }
         }
+    }
+    
+    func updateCellTypeForSelectedFromCurrency() {
+        guard let indexPath = self.indexPath(of: selectedFromCurrency)
+            else { return }
+        
+        let itemViewModel = self.itemViewModel(for: indexPath)
+        itemViewModel.cellType = CurrencyCell.CellType.disabled
     }
     
     func handleTargetCurrencySelection(indexPath: IndexPath) {
