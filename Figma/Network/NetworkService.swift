@@ -1,24 +1,14 @@
-//
-//  NetworkService.swift
-//  IPad_App
-//
-//  Created by Mohammed Wasimuddin on 18.05.19.
-//  Copyright © 2019 Demo. All rights reserved.
-//
-
 import Foundation
-import RxSwift
 
 class NetworkService {
     
-    typealias dict = [String: Any]
+    typealias responseDictionary = [String: Any]
+    
+    
+    // MARK: - Inner Types
     
     private enum Constants {
         static let timeout: TimeInterval = 10.0
-        static let apiKeyValue = "43753f3c6af7101d0078a6d016154662"
-        static let method = "flickr.photos.search"
-        static let searchText = "kitten"
-        static let json = "json"
     }
     
     private enum RequestError: Error {
@@ -34,9 +24,14 @@ class NetworkService {
         case noPhotosAvailable
     }
     
+    
+    // MARK: Properties
+    // MARK: Immutable
+    
     private let config: URLSessionConfiguration
     
-    /// Designated initializer
+    
+    // MARK: - initializer
     
     init() {
         self.config = URLSessionConfiguration.default
@@ -45,88 +40,49 @@ class NetworkService {
         self.config.waitsForConnectivity = true
     }
     
-    func fetchPhotosRequest(isFallback: Bool = false) -> Single<[dict]> {
-        guard let url = getURLString(isFallback) else {
-            return Single.error(RequestError.illegalParams)
+    
+    // MARK: - setup
+    
+    func rateConversionURL(with pairs: [String]) -> URL? {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "europe-west1-revolut-230009.cloudfunctions.net"
+        components.path = "/revolut-ios/"
+        components.queryItems = pairs.map { URLQueryItem(name: "pairs", value: $0)}
+        
+        return components.url
+    }
+    
+    
+    // MARK: API
+    
+    func fetchPhotosRequest(with pairs: [String] , completion: @escaping ((Dictionary<String, Any>?, Error?) -> Void)) {
+        guard let url = rateConversionURL(with: pairs) else {
+            print("Error:\(RequestError.illegalParams)")
+            return
         }
+        print("Request URL: \(url.absoluteString)")
         
         let urlRequest = URLRequest(url: url)
         let urlSession = URLSession(configuration: config)
         
-        return Single.create { [weak self] subscriber -> Disposable in
-            let task = urlSession.dataTask(with: urlRequest) { (data, response, error) in
-                if let error = error {
-                    subscriber(.error(error))
-                } else if let data = data {
-                    do {
-                        print("Response form server: \(String(describing: String(data: data, encoding: .utf8)))")
-                        if let result = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                            if let networkError = self?.serverError(from: result) {
-                                subscriber(.error(networkError))
-                            } else {
-                                if let photosDict = result["photos"] as? dict {
-                                    guard let photos = photosDict["photo"] as? [dict]
-                                        else { subscriber(.error(ResponseError.noPhotosAvailable)); return }
-                                    subscriber(.success(photos))
-                                }
-                            }
-                        }
-                    } catch {
-                        subscriber(.error(ResponseError.malFunctionJson))
-                        print(error.localizedDescription)
+        let task = urlSession.dataTask(with: urlRequest) { (data, response, error) in
+            if let error = error {
+                print("Error: \(error)")
+            } else if let data = data {
+                do {
+                    print("Response form server: \(String(describing: String(data: data, encoding: .utf8)))")
+                    if let result = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                            print(result)
+                        completion(result, nil)
                     }
+                }catch {
+                    print(ResponseError.malFunctionJson)
+                    print(error.localizedDescription)
                 }
             }
-            task.resume()
-            
-            return Disposables.create {
-                task.cancel()
-            }
         }
-    }
-    
-    func getURLString(_ isFallback: Bool) -> URL? {
-        let flickerURL = flickerSearchURL()
-        let localURL = Bundle.main.url(forResource: "kitten", withExtension: "json")
         
-        return isFallback ? localURL : flickerURL
-    }
-    
-    
-    // MARK: - Helpers
-    
-    func flickerSearchURL() -> URL? {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "api.flickr.com"
-        components.path = "/services/rest/"
-        components.queryItems = [
-            URLQueryItem(name: "method", value: Constants.method),
-            URLQueryItem(name: "api_key", value: Constants.apiKeyValue),
-            URLQueryItem(name: "text", value: Constants.searchText),
-            URLQueryItem(name: "content_type", value: Constants.json),
-            URLQueryItem(name: "format", value: Constants.json),
-            URLQueryItem(name: "nojsoncallback", value: "1"),
-        ]
-        
-        return components.url
-    }
-}
-
-
-extension NetworkService {
-    
-    private func serverError(from result: [String:Any]) -> RequestError? {
-        guard let status = result["stat"] as? String
-            else { return .unknown}
-        
-        switch status {
-        case "ok", "Ok", "OK":
-            return nil
-        case "fail":
-            return .invalidAPIKey
-        default:
-            return .serverError
-        }
+        task.resume()
     }
 }

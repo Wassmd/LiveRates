@@ -1,22 +1,23 @@
 import UIKit
 
-protocol ToCurrencyViewControllerDelegate: AnyObject {
-    func selectedTargetCurrency(_ currency: Currency)
+protocol TargetCurrencyViewControllerDelegate: AnyObject {
+    func selectedTargetCurrency()
 }
 
-class TargetCurrencyViewController: BaseCurrencyViewController {
-    
+class TargetCurrencyViewController: BaseCurrencyViewController<TargetCurrencyViewModel> {
+
     // MARK: Mutable
     
-    weak var coordinatorDelegate: ToCurrencyViewControllerDelegate?
+    weak var coordinatorDelegate: TargetCurrencyViewControllerDelegate?
     
     // MARK: - Initializers
     
-    init(viewModel: CurrencyViewModel = CurrencyViewModel(),
-         indexPath: IndexPath? = nil,
-         coordinatorDelegate: ToCurrencyViewControllerDelegate?) {
+    init(viewModel: TargetCurrencyViewModel,
+         coordinatorDelegate: TargetCurrencyViewControllerDelegate?) {
         self.coordinatorDelegate = coordinatorDelegate
-        super.init(viewModel: viewModel, indexPath: indexPath)
+        super.init(viewModel: viewModel)
+        
+        fetchSavedCurrency()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -24,10 +25,20 @@ class TargetCurrencyViewController: BaseCurrencyViewController {
     }
     
     
-    // MARK: Actions
+    // MARK: - Actions
+    
+    func fetchSavedCurrency() {
+        viewModel.fetchSavedCurrecyPair {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     override func userSelectedCurrency(indexPath: IndexPath) {
-        let currency = viewModel.itemViewModel(for: indexPath).currency
-        coordinatorDelegate?.selectedTargetCurrency(currency)
+        viewModel.persisCurrencyPair(for: indexPath)
+        viewModel.persistOnboardingShown()
+        coordinatorDelegate?.selectedTargetCurrency()
+        
     }
 }

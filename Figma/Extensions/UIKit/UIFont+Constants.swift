@@ -1,9 +1,7 @@
-//
-//  UIFont+Constants.swift
-//  Figma
-//
-//  Created by Mohammed Wasimuddin on 26.05.19.
-//  Copyright © 2019 Wasim. All rights reserved.
-//
+import UIKit
 
-import Foundation
+extension UIFont {
+    static func roboto(withSize size: CGFloat) -> UIFont {
+        return UIFont(name: "Roboto-Regular", size: size)!
+    }
+}

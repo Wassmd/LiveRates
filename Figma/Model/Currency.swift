@@ -1,9 +1,7 @@
-//
-//  Currency.swift
-//  Figma
-//
-//  Created by Mohammed Wasimuddin on 25.05.19.
-//  Copyright © 2019 Wasim. All rights reserved.
-//
-
 import Foundation
+
+struct Currency: Codable, Equatable {
+    let currency: String
+    let code: String
+    let country: String
+}

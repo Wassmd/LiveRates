@@ -1,15 +1,8 @@
-//
-//  AppCoordinator.swift
-//  IPad_App
-//
-//  Created by Mohammed Wasimuddin on 18.05.19.
-//  Copyright © 2019 Demo. All rights reserved.
-//
-
 import UIKit
 
 enum AppStep: CoordinatorStep {
-    case showPhotoGridView
+    case addCurrency
+    case rateConverter
 }
 
 final class AppCoordinator: Coordinatable {
@@ -20,7 +13,7 @@ final class AppCoordinator: Coordinatable {
     public let identifier = UUID()
     weak var dismissable: CoordinatorDismissable?
     private let application : UIApplication
-    
+    private let onboardingStateMachine: OnboardingStateMachine
     
     // MARK: Mutable
     
@@ -31,9 +24,11 @@ final class AppCoordinator: Coordinatable {
     // MARK: - Initializers
     
     init(dismissable: CoordinatorDismissable? = nil,
-         application: UIApplication = UIApplication.shared) {
+         application: UIApplication = UIApplication.shared,
+         onboardingStateMachine: OnboardingStateMachine = OnboardingStateMachine.shared) {
         self.dismissable = dismissable
         self.application = application
+        self.onboardingStateMachine = onboardingStateMachine
         
         setupWindow()
     }
@@ -53,26 +48,44 @@ final class AppCoordinator: Coordinatable {
     func coordinate(to step: CoordinatorStep) {
         guard let step = step as? AppStep else { return }
         switch step {
-        case .showPhotoGridView:
-            showPhotoGridView()
+        case .addCurrency:
+            showAddCurrency()
+        case .rateConverter:
+            showRateConveter()
         }
     }
     
     func start() {
-        coordinate(to: AppStep.showPhotoGridView)
+        print("Wasim isAddCurrenyShown:\(onboardingStateMachine.isAddCurrenyShown)")
+       if onboardingStateMachine.isAddCurrenyShown {
+            coordinate(to: AppStep.rateConverter)
+       } else {
+            coordinate(to: AppStep.addCurrency)
+        }
     }
     
     
      // MARK: - Transitions
     
-    private func showPhotoGridView() {
+    private func showAddCurrency() {
         let identifier = UUID()
-        let photoGridCoordinator = PhotoGridCoordinator(
+        let addCurrencyCoordinator = AddCurrencyCoordinator(
             identifier: identifier,
             dismissable: self,
             window: window)
         
-        photoGridCoordinator.start()
-        childCoordinators[identifier] = photoGridCoordinator
+        addCurrencyCoordinator.start()
+        childCoordinators[identifier] = addCurrencyCoordinator
+    }
+    
+    private func showRateConveter() {
+        let identifier = UUID()
+        let coordinator = RateConverterCoordinator(
+            identifier: identifier,
+            dismissable: self,
+            window: window)
+        
+        coordinator.start()
+        childCoordinators[identifier] = coordinator
     }
 }

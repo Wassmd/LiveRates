@@ -42,6 +42,21 @@ extension UIView {
         return bottomAnchor.constraint(equalTo: layoutElement.bottomAnchor, constant: offset).activate()
     }
     
+    @discardableResult func pinLeadingEdgeToTrailingEdge(of layoutElement: LayoutElement, withOffset offset: CGFloat = 0) -> NSLayoutConstraint {
+        setConstraintTranslationToFalse()
+        return leadingAnchor.constraint(equalTo: layoutElement.trailingAnchor, constant: offset).activate()
+    }
+    
+    @discardableResult func pinLeadingEdgeToTrailingEdge(lessThanOrEqualTo layoutElement: LayoutElement, withOffset offset: CGFloat = 0) -> NSLayoutConstraint {
+        setConstraintTranslationToFalse()
+        return leadingAnchor.constraint(lessThanOrEqualTo: layoutElement.trailingAnchor, constant: offset).activate()
+    }
+    
+    @discardableResult func pinLeadingEdgeToTrailingEdge(graterThanOrEqualTo layoutElement: LayoutElement, withOffset offset: CGFloat = 0) -> NSLayoutConstraint {
+        setConstraintTranslationToFalse()
+        return leadingAnchor.constraint(greaterThanOrEqualTo: layoutElement.trailingAnchor, constant: offset).activate()
+    }
+    
     @discardableResult func pinLeadingAndTrailingEdges(to layoutElement: LayoutElement, withOffset offset: CGFloat = 0) -> [NSLayoutConstraint] {
         setConstraintTranslationToFalse()
         return [
@@ -55,9 +70,19 @@ extension UIView {
         return trailingAnchor.constraint(equalTo: layoutElement.trailingAnchor, constant: offset).activate()
     }
     
+    func setHorizontalContentHugging(to priority: UILayoutPriority = .defaultLow, withOffset offset: Float = 0) {
+        setConstraintTranslationToFalse()
+        setContentHuggingPriority(UILayoutPriority(priority.rawValue + offset), for: .horizontal)
+    }
+    
     @discardableResult func pinLeadingEdge(to layoutElement: LayoutElement, withOffset offset: CGFloat = 0) -> NSLayoutConstraint {
         setConstraintTranslationToFalse()
         return leadingAnchor.constraint(equalTo: layoutElement.leadingAnchor, constant: offset).activate()
+    }
+    
+    @discardableResult func pinTrailingEdgeToLeading(of layoutElement: LayoutElement, withOffset offset: CGFloat = 0) -> NSLayoutConstraint {
+        setConstraintTranslationToFalse()
+        return trailingAnchor.constraint(equalTo: layoutElement.leadingAnchor, constant: offset).activate()
     }
     
     @discardableResult func pinTopEdgeToBottom(of layoutElement: LayoutElement, withOffset offset: CGFloat = 0) -> NSLayoutConstraint {

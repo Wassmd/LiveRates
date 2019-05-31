@@ -7,12 +7,70 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F034E03229A73570023AAE1 /* FromCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F034E02229A73570023AAE1 /* FromCurrencyViewController.swift */; };
+		5F034E09229A8A820023AAE1 /* RateConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F034E08229A8A820023AAE1 /* RateConverterViewController.swift */; };
+		5F034E1F229A9B470023AAE1 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E0C229A9B470023AAE1 /* Roboto-Medium.ttf */; };
+		5F034E20229A9B470023AAE1 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E0D229A9B470023AAE1 /* Roboto-Light.ttf */; };
+		5F034E21229A9B470023AAE1 /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E0E229A9B470023AAE1 /* RobotoCondensed-Bold.ttf */; };
+		5F034E22229A9B470023AAE1 /* RobotoCondensed-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E0F229A9B470023AAE1 /* RobotoCondensed-Light.ttf */; };
+		5F034E23229A9B470023AAE1 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E10229A9B470023AAE1 /* Roboto-Regular.ttf */; };
+		5F034E24229A9B470023AAE1 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E11229A9B470023AAE1 /* Roboto-MediumItalic.ttf */; };
+		5F034E25229A9B470023AAE1 /* RobotoCondensed-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E12229A9B470023AAE1 /* RobotoCondensed-Italic.ttf */; };
+		5F034E26229A9B470023AAE1 /* RobotoCondensed-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E13229A9B470023AAE1 /* RobotoCondensed-BoldItalic.ttf */; };
+		5F034E27229A9B470023AAE1 /* Apache License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E14229A9B470023AAE1 /* Apache License.txt */; };
+		5F034E28229A9B470023AAE1 /* RobotoCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E15229A9B470023AAE1 /* RobotoCondensed-LightItalic.ttf */; };
+		5F034E29229A9B470023AAE1 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E16229A9B470023AAE1 /* Roboto-ThinItalic.ttf */; };
+		5F034E2A229A9B470023AAE1 /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E17229A9B470023AAE1 /* RobotoCondensed-Regular.ttf */; };
+		5F034E2B229A9B470023AAE1 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E18229A9B470023AAE1 /* Roboto-BoldItalic.ttf */; };
+		5F034E2C229A9B470023AAE1 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E19229A9B470023AAE1 /* Roboto-LightItalic.ttf */; };
+		5F034E2D229A9B470023AAE1 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E1A229A9B470023AAE1 /* Roboto-Italic.ttf */; };
+		5F034E2E229A9B470023AAE1 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E1B229A9B470023AAE1 /* Roboto-BlackItalic.ttf */; };
+		5F034E2F229A9B470023AAE1 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E1C229A9B470023AAE1 /* Roboto-Bold.ttf */; };
+		5F034E30229A9B470023AAE1 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E1D229A9B470023AAE1 /* Roboto-Thin.ttf */; };
+		5F034E31229A9B470023AAE1 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E1E229A9B470023AAE1 /* Roboto-Black.ttf */; };
+		5F034E33229AA0190023AAE1 /* RateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F034E32229AA0190023AAE1 /* RateTableViewCell.swift */; };
+		5F034E35229AC2BC0023AAE1 /* UIFont+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F034E34229AC2BC0023AAE1 /* UIFont+Constants.swift */; };
+		5F034E37229AD44C0023AAE1 /* RateConverterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F034E36229AD44C0023AAE1 /* RateConverterViewModel.swift */; };
+		5F034E39229AE0650023AAE1 /* CurrencyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F034E38229AE0650023AAE1 /* CurrencyPair.swift */; };
+		5F034E3B229AED8F0023AAE1 /* String+SubString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F034E3A229AED8F0023AAE1 /* String+SubString.swift */; };
+		5F034E3D229B09090023AAE1 /* TargetCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F034E3C229B09090023AAE1 /* TargetCurrencyViewController.swift */; };
+		5F034E3F229B10860023AAE1 /* TargetCurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F034E3E229B10860023AAE1 /* TargetCurrencyViewModel.swift */; };
+		5F034E41229B121E0023AAE1 /* BaseCurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F034E40229B121E0023AAE1 /* BaseCurrencyViewModel.swift */; };
+		5F4E902F229FCE4A00E29D50 /* RateConverterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E902E229FCE4A00E29D50 /* RateConverterCoordinator.swift */; };
+		5F4E9032229FE01700E29D50 /* OnboardingStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E9031229FE01700E29D50 /* OnboardingStateMachine.swift */; };
+		5F4E9036229FF1BF00E29D50 /* CurrencyPair.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E9034229FF1BF00E29D50 /* CurrencyPair.xcdatamodeld */; };
+		5F4E9038229FFCA000E29D50 /* CurrencyPairService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E9037229FFCA000E29D50 /* CurrencyPairService.swift */; };
 		5FDFC70722986FE0009B263D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC70622986FE0009B263D /* AppDelegate.swift */; };
-		5FDFC70922986FE0009B263D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC70822986FE0009B263D /* ViewController.swift */; };
-		5FDFC70C22986FE0009B263D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FDFC70A22986FE0009B263D /* Main.storyboard */; };
 		5FDFC70E22986FE2009B263D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FDFC70D22986FE2009B263D /* Assets.xcassets */; };
 		5FDFC71122986FE2009B263D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FDFC70F22986FE2009B263D /* LaunchScreen.storyboard */; };
 		5FDFC71C22986FE2009B263D /* FigmaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC71B22986FE2009B263D /* FigmaTests.swift */; };
+		5FDFC732229870B7009B263D /* UIEdgeInsets+AllEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC727229870B7009B263D /* UIEdgeInsets+AllEdges.swift */; };
+		5FDFC733229870B7009B263D /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC729229870B7009B263D /* UIView+Layout.swift */; };
+		5FDFC734229870B7009B263D /* UIAlertController+ErrorAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC72A229870B7009B263D /* UIAlertController+ErrorAlert.swift */; };
+		5FDFC735229870B7009B263D /* Optional+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC72C229870B7009B263D /* Optional+Generic.swift */; };
+		5FDFC736229870B7009B263D /* Array+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC72D229870B7009B263D /* Array+Generic.swift */; };
+		5FDFC737229870B7009B263D /* CGSize+AllDimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC72F229870B7009B263D /* CGSize+AllDimensions.swift */; };
+		5FDFC73C229870BE009B263D /* LayoutConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC73A229870BE009B263D /* LayoutConstants.swift */; };
+		5FDFC73D229870BE009B263D /* ViewCreationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC73B229870BE009B263D /* ViewCreationHelper.swift */; };
+		5FDFC74122987130009B263D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC73F22987130009B263D /* AppCoordinator.swift */; };
+		5FDFC74222987130009B263D /* AddCurrencyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC74022987130009B263D /* AddCurrencyCoordinator.swift */; };
+		5FDFC74822987530009B263D /* AddCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC74622987530009B263D /* AddCurrencyViewController.swift */; };
+		5FDFC74B22987591009B263D /* FromCurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC74A22987591009B263D /* FromCurrencyViewModel.swift */; };
+		5FDFC74F2298788B009B263D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC74E2298788B009B263D /* NetworkService.swift */; };
+		5FDFC75322988EB7009B263D /* ResuableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC75122988EB7009B263D /* ResuableView.swift */; };
+		5FDFC75422988EB7009B263D /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC75222988EB7009B263D /* Coordinatable.swift */; };
+		5FDFC75822990F47009B263D /* CurrecnyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC75722990F47009B263D /* CurrecnyCoordinator.swift */; };
+		5FDFC75B22992E86009B263D /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC75A22992E86009B263D /* CurrencyCell.swift */; };
+		5FDFC75D22995217009B263D /* UITableView+Generics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC75C22995217009B263D /* UITableView+Generics.swift */; };
+		5FDFC75F22997759009B263D /* Optional+Required.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC75E22997759009B263D /* Optional+Required.swift */; };
+		5FDFC761229990F6009B263D /* CurrencyItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC760229990F6009B263D /* CurrencyItemViewModel.swift */; };
+		5FDFC7642299936A009B263D /* CurrencyViewModelCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC7632299936A009B263D /* CurrencyViewModelCreator.swift */; };
+		5FDFC76722999742009B263D /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC76622999742009B263D /* Currency.swift */; };
+		5FDFC76A22999BCF009B263D /* currencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 5FDFC76922999BCF009B263D /* currencies.json */; };
+		5FDFC76C2299A74A009B263D /* FileManagerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC76B2299A74A009B263D /* FileManagerHelper.swift */; };
+		5FDFC76E2299AB6E009B263D /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC76D2299AB6E009B263D /* Errors.swift */; };
+		5FDFC7702299AF34009B263D /* CurrencyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC76F2299AF34009B263D /* CurrencyHelper.swift */; };
+		5FDFC772229A67FA009B263D /* BaseCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC771229A67FA009B263D /* BaseCurrencyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +84,74 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F034E02229A73570023AAE1 /* FromCurrencyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromCurrencyViewController.swift; sourceTree = "<group>"; };
+		5F034E08229A8A820023AAE1 /* RateConverterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateConverterViewController.swift; sourceTree = "<group>"; };
+		5F034E0C229A9B470023AAE1 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		5F034E0D229A9B470023AAE1 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		5F034E0E229A9B470023AAE1 /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
+		5F034E0F229A9B470023AAE1 /* RobotoCondensed-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Light.ttf"; sourceTree = "<group>"; };
+		5F034E10229A9B470023AAE1 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		5F034E11229A9B470023AAE1 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		5F034E12229A9B470023AAE1 /* RobotoCondensed-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Italic.ttf"; sourceTree = "<group>"; };
+		5F034E13229A9B470023AAE1 /* RobotoCondensed-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-BoldItalic.ttf"; sourceTree = "<group>"; };
+		5F034E14229A9B470023AAE1 /* Apache License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
+		5F034E15229A9B470023AAE1 /* RobotoCondensed-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
+		5F034E16229A9B470023AAE1 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		5F034E17229A9B470023AAE1 /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
+		5F034E18229A9B470023AAE1 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		5F034E19229A9B470023AAE1 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		5F034E1A229A9B470023AAE1 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		5F034E1B229A9B470023AAE1 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		5F034E1C229A9B470023AAE1 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		5F034E1D229A9B470023AAE1 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		5F034E1E229A9B470023AAE1 /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		5F034E32229AA0190023AAE1 /* RateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateTableViewCell.swift; sourceTree = "<group>"; };
+		5F034E34229AC2BC0023AAE1 /* UIFont+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Constants.swift"; sourceTree = "<group>"; };
+		5F034E36229AD44C0023AAE1 /* RateConverterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateConverterViewModel.swift; sourceTree = "<group>"; };
+		5F034E38229AE0650023AAE1 /* CurrencyPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPair.swift; sourceTree = "<group>"; };
+		5F034E3A229AED8F0023AAE1 /* String+SubString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+SubString.swift"; sourceTree = "<group>"; };
+		5F034E3C229B09090023AAE1 /* TargetCurrencyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetCurrencyViewController.swift; sourceTree = "<group>"; };
+		5F034E3E229B10860023AAE1 /* TargetCurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCurrencyViewModel.swift; sourceTree = "<group>"; };
+		5F034E40229B121E0023AAE1 /* BaseCurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyViewModel.swift; sourceTree = "<group>"; };
+		5F4E902E229FCE4A00E29D50 /* RateConverterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateConverterCoordinator.swift; sourceTree = "<group>"; };
+		5F4E9031229FE01700E29D50 /* OnboardingStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStateMachine.swift; sourceTree = "<group>"; };
+		5F4E9035229FF1BF00E29D50 /* CurrencyPair.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CurrencyPair.xcdatamodel; sourceTree = "<group>"; };
+		5F4E9037229FFCA000E29D50 /* CurrencyPairService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPairService.swift; sourceTree = "<group>"; };
 		5FDFC70322986FE0009B263D /* Figma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Figma.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDFC70622986FE0009B263D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5FDFC70822986FE0009B263D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5FDFC70B22986FE0009B263D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5FDFC70D22986FE2009B263D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5FDFC71022986FE2009B263D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5FDFC71222986FE2009B263D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FDFC71722986FE2009B263D /* FigmaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FigmaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDFC71B22986FE2009B263D /* FigmaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigmaTests.swift; sourceTree = "<group>"; };
 		5FDFC71D22986FE2009B263D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FDFC727229870B7009B263D /* UIEdgeInsets+AllEdges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+AllEdges.swift"; sourceTree = "<group>"; };
+		5FDFC729229870B7009B263D /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
+		5FDFC72A229870B7009B263D /* UIAlertController+ErrorAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+ErrorAlert.swift"; sourceTree = "<group>"; };
+		5FDFC72C229870B7009B263D /* Optional+Generic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Generic.swift"; sourceTree = "<group>"; };
+		5FDFC72D229870B7009B263D /* Array+Generic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Generic.swift"; sourceTree = "<group>"; };
+		5FDFC72F229870B7009B263D /* CGSize+AllDimensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+AllDimensions.swift"; sourceTree = "<group>"; };
+		5FDFC73A229870BE009B263D /* LayoutConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutConstants.swift; sourceTree = "<group>"; };
+		5FDFC73B229870BE009B263D /* ViewCreationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCreationHelper.swift; sourceTree = "<group>"; };
+		5FDFC73F22987130009B263D /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		5FDFC74022987130009B263D /* AddCurrencyCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCurrencyCoordinator.swift; sourceTree = "<group>"; };
+		5FDFC74622987530009B263D /* AddCurrencyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCurrencyViewController.swift; sourceTree = "<group>"; };
+		5FDFC74A22987591009B263D /* FromCurrencyViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromCurrencyViewModel.swift; sourceTree = "<group>"; };
+		5FDFC74E2298788B009B263D /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		5FDFC75122988EB7009B263D /* ResuableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResuableView.swift; sourceTree = "<group>"; };
+		5FDFC75222988EB7009B263D /* Coordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
+		5FDFC75722990F47009B263D /* CurrecnyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrecnyCoordinator.swift; sourceTree = "<group>"; };
+		5FDFC75A22992E86009B263D /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
+		5FDFC75C22995217009B263D /* UITableView+Generics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Generics.swift"; sourceTree = "<group>"; };
+		5FDFC75E22997759009B263D /* Optional+Required.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Required.swift"; sourceTree = "<group>"; };
+		5FDFC760229990F6009B263D /* CurrencyItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyItemViewModel.swift; sourceTree = "<group>"; };
+		5FDFC7632299936A009B263D /* CurrencyViewModelCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModelCreator.swift; sourceTree = "<group>"; };
+		5FDFC76622999742009B263D /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		5FDFC76922999BCF009B263D /* currencies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = currencies.json; sourceTree = "<group>"; };
+		5FDFC76B2299A74A009B263D /* FileManagerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerHelper.swift; sourceTree = "<group>"; };
+		5FDFC76D2299AB6E009B263D /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		5FDFC76F2299AF34009B263D /* CurrencyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyHelper.swift; sourceTree = "<group>"; };
+		5FDFC771229A67FA009B263D /* BaseCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +172,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F034E0A229A9B2C0023AAE1 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5F034E0B229A9B470023AAE1 /* roboto */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		5F034E0B229A9B470023AAE1 /* roboto */ = {
+			isa = PBXGroup;
+			children = (
+				5F034E0C229A9B470023AAE1 /* Roboto-Medium.ttf */,
+				5F034E0D229A9B470023AAE1 /* Roboto-Light.ttf */,
+				5F034E0E229A9B470023AAE1 /* RobotoCondensed-Bold.ttf */,
+				5F034E0F229A9B470023AAE1 /* RobotoCondensed-Light.ttf */,
+				5F034E10229A9B470023AAE1 /* Roboto-Regular.ttf */,
+				5F034E11229A9B470023AAE1 /* Roboto-MediumItalic.ttf */,
+				5F034E12229A9B470023AAE1 /* RobotoCondensed-Italic.ttf */,
+				5F034E13229A9B470023AAE1 /* RobotoCondensed-BoldItalic.ttf */,
+				5F034E14229A9B470023AAE1 /* Apache License.txt */,
+				5F034E15229A9B470023AAE1 /* RobotoCondensed-LightItalic.ttf */,
+				5F034E16229A9B470023AAE1 /* Roboto-ThinItalic.ttf */,
+				5F034E17229A9B470023AAE1 /* RobotoCondensed-Regular.ttf */,
+				5F034E18229A9B470023AAE1 /* Roboto-BoldItalic.ttf */,
+				5F034E19229A9B470023AAE1 /* Roboto-LightItalic.ttf */,
+				5F034E1A229A9B470023AAE1 /* Roboto-Italic.ttf */,
+				5F034E1B229A9B470023AAE1 /* Roboto-BlackItalic.ttf */,
+				5F034E1C229A9B470023AAE1 /* Roboto-Bold.ttf */,
+				5F034E1D229A9B470023AAE1 /* Roboto-Thin.ttf */,
+				5F034E1E229A9B470023AAE1 /* Roboto-Black.ttf */,
+			);
+			path = roboto;
+			sourceTree = "<group>";
+		};
+		5F4E9030229FDFCB00E29D50 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5F4E9031229FE01700E29D50 /* OnboardingStateMachine.swift */,
+				5F4E9037229FFCA000E29D50 /* CurrencyPairService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		5FDFC6FA22986FE0009B263D = {
 			isa = PBXGroup;
 			children = (
@@ -77,12 +236,18 @@
 		5FDFC70522986FE0009B263D /* Figma */ = {
 			isa = PBXGroup;
 			children = (
-				5FDFC70622986FE0009B263D /* AppDelegate.swift */,
-				5FDFC70822986FE0009B263D /* ViewController.swift */,
-				5FDFC70A22986FE0009B263D /* Main.storyboard */,
-				5FDFC70D22986FE2009B263D /* Assets.xcassets */,
-				5FDFC70F22986FE2009B263D /* LaunchScreen.storyboard */,
-				5FDFC71222986FE2009B263D /* Info.plist */,
+				5FDFC74322987137009B263D /* Application */,
+				5FDFC73E22987130009B263D /* Coordinator */,
+				5FDFC74422987530009B263D /* Controllers */,
+				5FDFC74922987591009B263D /* ViewModel */,
+				5FDFC75922992E57009B263D /* Views */,
+				5FDFC7652299970A009B263D /* Model */,
+				5FDFC74D2298788B009B263D /* Network */,
+				5FDFC739229870BE009B263D /* Helpers */,
+				5F4E9030229FDFCB00E29D50 /* Services */,
+				5FDFC75022988EB7009B263D /* Protocols */,
+				5FDFC726229870B7009B263D /* Extensions */,
+				5FDFC74C22987599009B263D /* Resources */,
 			);
 			path = Figma;
 			sourceTree = "<group>";
@@ -94,6 +259,167 @@
 				5FDFC71D22986FE2009B263D /* Info.plist */,
 			);
 			path = FigmaTests;
+			sourceTree = "<group>";
+		};
+		5FDFC726229870B7009B263D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5FDFC727229870B7009B263D /* UIEdgeInsets+AllEdges.swift */,
+				5FDFC728229870B7009B263D /* UIKit */,
+				5FDFC72B229870B7009B263D /* Foundation */,
+				5FDFC72E229870B7009B263D /* Core Graphics */,
+				5FDFC75C22995217009B263D /* UITableView+Generics.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5FDFC728229870B7009B263D /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				5FDFC729229870B7009B263D /* UIView+Layout.swift */,
+				5FDFC72A229870B7009B263D /* UIAlertController+ErrorAlert.swift */,
+				5F034E34229AC2BC0023AAE1 /* UIFont+Constants.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		5FDFC72B229870B7009B263D /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				5FDFC72C229870B7009B263D /* Optional+Generic.swift */,
+				5FDFC72D229870B7009B263D /* Array+Generic.swift */,
+				5FDFC75E22997759009B263D /* Optional+Required.swift */,
+				5F034E3A229AED8F0023AAE1 /* String+SubString.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		5FDFC72E229870B7009B263D /* Core Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				5FDFC72F229870B7009B263D /* CGSize+AllDimensions.swift */,
+			);
+			path = "Core Graphics";
+			sourceTree = "<group>";
+		};
+		5FDFC739229870BE009B263D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5FDFC7622299934B009B263D /* Caching */,
+				5FDFC73A229870BE009B263D /* LayoutConstants.swift */,
+				5FDFC73B229870BE009B263D /* ViewCreationHelper.swift */,
+				5FDFC76B2299A74A009B263D /* FileManagerHelper.swift */,
+				5FDFC76D2299AB6E009B263D /* Errors.swift */,
+				5FDFC76F2299AF34009B263D /* CurrencyHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		5FDFC73E22987130009B263D /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				5FDFC73F22987130009B263D /* AppCoordinator.swift */,
+				5FDFC74022987130009B263D /* AddCurrencyCoordinator.swift */,
+				5FDFC75722990F47009B263D /* CurrecnyCoordinator.swift */,
+				5F4E902E229FCE4A00E29D50 /* RateConverterCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		5FDFC74322987137009B263D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				5FDFC70622986FE0009B263D /* AppDelegate.swift */,
+				5FDFC71222986FE2009B263D /* Info.plist */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		5FDFC74422987530009B263D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5FDFC74622987530009B263D /* AddCurrencyViewController.swift */,
+				5FDFC771229A67FA009B263D /* BaseCurrencyViewController.swift */,
+				5F034E02229A73570023AAE1 /* FromCurrencyViewController.swift */,
+				5F034E3C229B09090023AAE1 /* TargetCurrencyViewController.swift */,
+				5F034E08229A8A820023AAE1 /* RateConverterViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5FDFC74922987591009B263D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5FDFC760229990F6009B263D /* CurrencyItemViewModel.swift */,
+				5F034E40229B121E0023AAE1 /* BaseCurrencyViewModel.swift */,
+				5FDFC74A22987591009B263D /* FromCurrencyViewModel.swift */,
+				5F034E3E229B10860023AAE1 /* TargetCurrencyViewModel.swift */,
+				5F034E36229AD44C0023AAE1 /* RateConverterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5FDFC74C22987599009B263D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5F034E0A229A9B2C0023AAE1 /* Fonts */,
+				5FDFC76822999B76009B263D /* JSON */,
+				5FDFC70F22986FE2009B263D /* LaunchScreen.storyboard */,
+				5FDFC70D22986FE2009B263D /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5FDFC74D2298788B009B263D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				5FDFC74E2298788B009B263D /* NetworkService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		5FDFC75022988EB7009B263D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5FDFC75122988EB7009B263D /* ResuableView.swift */,
+				5FDFC75222988EB7009B263D /* Coordinatable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		5FDFC75922992E57009B263D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5FDFC75A22992E86009B263D /* CurrencyCell.swift */,
+				5F034E32229AA0190023AAE1 /* RateTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5FDFC7622299934B009B263D /* Caching */ = {
+			isa = PBXGroup;
+			children = (
+				5FDFC7632299936A009B263D /* CurrencyViewModelCreator.swift */,
+			);
+			path = Caching;
+			sourceTree = "<group>";
+		};
+		5FDFC7652299970A009B263D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5F4E9034229FF1BF00E29D50 /* CurrencyPair.xcdatamodeld */,
+				5FDFC76622999742009B263D /* Currency.swift */,
+				5F034E38229AE0650023AAE1 /* CurrencyPair.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5FDFC76822999B76009B263D /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				5FDFC76922999BCF009B263D /* currencies.json */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,9 +503,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F034E21229A9B470023AAE1 /* RobotoCondensed-Bold.ttf in Resources */,
+				5F034E2D229A9B470023AAE1 /* Roboto-Italic.ttf in Resources */,
+				5F034E2F229A9B470023AAE1 /* Roboto-Bold.ttf in Resources */,
+				5F034E27229A9B470023AAE1 /* Apache License.txt in Resources */,
+				5F034E1F229A9B470023AAE1 /* Roboto-Medium.ttf in Resources */,
+				5F034E31229A9B470023AAE1 /* Roboto-Black.ttf in Resources */,
+				5F034E2A229A9B470023AAE1 /* RobotoCondensed-Regular.ttf in Resources */,
+				5F034E23229A9B470023AAE1 /* Roboto-Regular.ttf in Resources */,
+				5F034E28229A9B470023AAE1 /* RobotoCondensed-LightItalic.ttf in Resources */,
 				5FDFC71122986FE2009B263D /* LaunchScreen.storyboard in Resources */,
+				5F034E2E229A9B470023AAE1 /* Roboto-BlackItalic.ttf in Resources */,
+				5F034E20229A9B470023AAE1 /* Roboto-Light.ttf in Resources */,
+				5F034E22229A9B470023AAE1 /* RobotoCondensed-Light.ttf in Resources */,
 				5FDFC70E22986FE2009B263D /* Assets.xcassets in Resources */,
-				5FDFC70C22986FE0009B263D /* Main.storyboard in Resources */,
+				5F034E2B229A9B470023AAE1 /* Roboto-BoldItalic.ttf in Resources */,
+				5F034E30229A9B470023AAE1 /* Roboto-Thin.ttf in Resources */,
+				5F034E2C229A9B470023AAE1 /* Roboto-LightItalic.ttf in Resources */,
+				5F034E26229A9B470023AAE1 /* RobotoCondensed-BoldItalic.ttf in Resources */,
+				5F034E29229A9B470023AAE1 /* Roboto-ThinItalic.ttf in Resources */,
+				5F034E24229A9B470023AAE1 /* Roboto-MediumItalic.ttf in Resources */,
+				5FDFC76A22999BCF009B263D /* currencies.json in Resources */,
+				5F034E25229A9B470023AAE1 /* RobotoCondensed-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,8 +542,47 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FDFC70922986FE0009B263D /* ViewController.swift in Sources */,
+				5FDFC74122987130009B263D /* AppCoordinator.swift in Sources */,
+				5FDFC74B22987591009B263D /* FromCurrencyViewModel.swift in Sources */,
+				5FDFC73D229870BE009B263D /* ViewCreationHelper.swift in Sources */,
+				5FDFC75B22992E86009B263D /* CurrencyCell.swift in Sources */,
+				5FDFC7702299AF34009B263D /* CurrencyHelper.swift in Sources */,
+				5FDFC75822990F47009B263D /* CurrecnyCoordinator.swift in Sources */,
+				5F034E3D229B09090023AAE1 /* TargetCurrencyViewController.swift in Sources */,
+				5F4E902F229FCE4A00E29D50 /* RateConverterCoordinator.swift in Sources */,
+				5F4E9036229FF1BF00E29D50 /* CurrencyPair.xcdatamodeld in Sources */,
+				5FDFC75D22995217009B263D /* UITableView+Generics.swift in Sources */,
+				5FDFC733229870B7009B263D /* UIView+Layout.swift in Sources */,
+				5FDFC75F22997759009B263D /* Optional+Required.swift in Sources */,
+				5FDFC75322988EB7009B263D /* ResuableView.swift in Sources */,
+				5FDFC75422988EB7009B263D /* Coordinatable.swift in Sources */,
+				5FDFC736229870B7009B263D /* Array+Generic.swift in Sources */,
+				5F034E33229AA0190023AAE1 /* RateTableViewCell.swift in Sources */,
+				5F034E3F229B10860023AAE1 /* TargetCurrencyViewModel.swift in Sources */,
+				5FDFC7642299936A009B263D /* CurrencyViewModelCreator.swift in Sources */,
+				5F034E39229AE0650023AAE1 /* CurrencyPair.swift in Sources */,
+				5F034E37229AD44C0023AAE1 /* RateConverterViewModel.swift in Sources */,
+				5F034E35229AC2BC0023AAE1 /* UIFont+Constants.swift in Sources */,
+				5FDFC76722999742009B263D /* Currency.swift in Sources */,
+				5FDFC74222987130009B263D /* AddCurrencyCoordinator.swift in Sources */,
+				5F4E9038229FFCA000E29D50 /* CurrencyPairService.swift in Sources */,
+				5F4E9032229FE01700E29D50 /* OnboardingStateMachine.swift in Sources */,
+				5FDFC76C2299A74A009B263D /* FileManagerHelper.swift in Sources */,
+				5FDFC772229A67FA009B263D /* BaseCurrencyViewController.swift in Sources */,
+				5FDFC74822987530009B263D /* AddCurrencyViewController.swift in Sources */,
+				5FDFC734229870B7009B263D /* UIAlertController+ErrorAlert.swift in Sources */,
+				5FDFC735229870B7009B263D /* Optional+Generic.swift in Sources */,
+				5FDFC761229990F6009B263D /* CurrencyItemViewModel.swift in Sources */,
+				5FDFC76E2299AB6E009B263D /* Errors.swift in Sources */,
+				5F034E09229A8A820023AAE1 /* RateConverterViewController.swift in Sources */,
+				5F034E03229A73570023AAE1 /* FromCurrencyViewController.swift in Sources */,
+				5FDFC732229870B7009B263D /* UIEdgeInsets+AllEdges.swift in Sources */,
+				5FDFC74F2298788B009B263D /* NetworkService.swift in Sources */,
+				5F034E3B229AED8F0023AAE1 /* String+SubString.swift in Sources */,
 				5FDFC70722986FE0009B263D /* AppDelegate.swift in Sources */,
+				5FDFC737229870B7009B263D /* CGSize+AllDimensions.swift in Sources */,
+				5F034E41229B121E0023AAE1 /* BaseCurrencyViewModel.swift in Sources */,
+				5FDFC73C229870BE009B263D /* LayoutConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,14 +605,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5FDFC70A22986FE0009B263D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5FDFC70B22986FE0009B263D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5FDFC70F22986FE2009B263D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -360,14 +736,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Figma/Info.plist;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = JCPY7FXGR4;
+				INFOPLIST_FILE = Figma/Application/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.wasim.Figma;
+				PRODUCT_BUNDLE_IDENTIFIER = net.grandcentrix.Figma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "grandcentrix Enterprise Wildcard Development";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -377,14 +756,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Figma/Info.plist;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Figma/Application/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.wasim.Figma;
+				PRODUCT_BUNDLE_IDENTIFIER = net.grandcentrix.Figma;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -461,6 +843,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5F4E9034229FF1BF00E29D50 /* CurrencyPair.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5F4E9035229FF1BF00E29D50 /* CurrencyPair.xcdatamodel */,
+			);
+			currentVersion = 5F4E9035229FF1BF00E29D50 /* CurrencyPair.xcdatamodel */;
+			path = CurrencyPair.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5FDFC6FB22986FE0009B263D /* Project object */;
 }

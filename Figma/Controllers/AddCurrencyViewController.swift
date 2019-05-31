@@ -12,7 +12,7 @@ class AddCurrencyViewController: UIViewController {
     
     enum Constants {
         static let defaultPadding: CGFloat = 8
-        static let featureContentInnerVerticalSpacing: CGFloat = 8
+        static let contentInnerVerticalSpacing: CGFloat = 8
         static let addImageHeight: CGFloat = 64
         static let buttonTitle = "Add currency pair"
         static let titleText = "Choose a currency pair to compare their live rates"
@@ -22,9 +22,8 @@ class AddCurrencyViewController: UIViewController {
     // MARK: - Properties
     // MARK: Immutable
     
-    private let viewModel: AddCurrencyViewModel
     private let coordinatorDelegate: AddCurrencyViewControllerDelegate?
-    private lazy var featureContentStackViewContainer = buildStackViewContainer()
+    private lazy var stackViewContainer = buildStackViewContainer()
 
     private let actionButton: UIButton = {
         let button = UIButton(type: .system)
@@ -37,9 +36,7 @@ class AddCurrencyViewController: UIViewController {
     
     // MARK: - Initializers
     
-    init(viewModel: AddCurrencyViewModel = AddCurrencyViewModel(),
-         coordinatorDelegate: AddCurrencyViewControllerDelegate?) {
-        self.viewModel = viewModel
+    init(coordinatorDelegate: AddCurrencyViewControllerDelegate?) {
         self.coordinatorDelegate = coordinatorDelegate
         super.init(nibName: nil, bundle: nil)
     }
@@ -67,13 +64,13 @@ class AddCurrencyViewController: UIViewController {
     }
     
     private func setupSubViews() {
-        view.addSubview(featureContentStackViewContainer)
+        view.addSubview(stackViewContainer)
         actionButton.addTarget(self, action: #selector(addCurrencyAction), for: .touchUpInside)
     }
     
     private func setupConstraints() {
-        featureContentStackViewContainer.centerVertically(to: view)
-        featureContentStackViewContainer.pinLeadingAndTrailingEdges(to: view, withOffset: 50)
+        stackViewContainer.centerVertically(to: view)
+        stackViewContainer.pinLeadingAndTrailingEdges(to: view, withOffset: 50)
     }
     
    
@@ -91,7 +88,7 @@ class AddCurrencyViewController: UIViewController {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = Constants.featureContentInnerVerticalSpacing
+        stackView.spacing = Constants.contentInnerVerticalSpacing
         
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

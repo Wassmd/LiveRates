@@ -1,34 +1,57 @@
 [
-	"AUD",
-	"BGN",
-	"BRL",
-	"CAD",
-	"CHF",
-	"CNY",
-	"CZK",
-	"DKK",
-	"EUR",
-	"GBP",
-	"HKD",
-	"HRK",
-	"HUF",
-	"IDR",
-	"ILS",
-	"INR",
-	"ISK",
-	"JPY",
-	"KRW",
-	"MXN",
-	"MYR",
-	"NOK",
-	"NZD",
-	"PHP",
-	"PLN",
-	"RON",
-	"RUB",
-	"SEK",
-	"SGD",
-	"THB",
-	"USD",
-    "ZAR"
+    {
+        "currency": "British Pound",
+        "code": "GBP",
+        "country": "UK"
+    },
+    {
+        "currency": "Swedish Krona",
+        "code": "SEK",
+        "country": "Sweden"
+    },
+    {
+        "currency": "Danish Krone",
+        "code": "DKK",
+        "country": "Denmark"
+    },
+    {
+        "currency": "Polish Zloty",
+        "code": "PLN",
+        "country":"Poland"
+    },
+    {
+        "currency": "Euro",
+        "code": "EUR",
+        "country": "EU"
+    },
+    {
+        "currency": "Norwegian Krone",
+        "code": "NOK",
+        "country": "Norway"
+    },
+    {
+        "currency": "Hungarian Forint",
+        "code": "HUF",
+        "country": "Hungary"
+    },
+    {
+        "currency": "Czech Koruna",
+        "code": "CZK",
+        "country": "Czech"
+    },
+    {
+        "currency": "US Dollar",
+        "code": "USD",
+        "country": "US"
+    },
+    {
+        "currency": "Singapore Dollar",
+        "code": "SGD",
+        "country": "Singapore"
+    },
+    {
+        "currency": "Hong Kong Dollar",
+        "code": "HKD",
+        "country": "HK"
+    }
 ]
