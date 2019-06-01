@@ -6,7 +6,7 @@ final class RateConverterViewModel {
     // MARK: - Inner Types
     
     enum Constants {
-        static let refreshInterval: TimeInterval = 15.0
+        static let refreshInterval: TimeInterval = 1.0
     }
     
     
@@ -122,7 +122,6 @@ final class RateConverterViewModel {
     // Persist
     func persistOnboardingShown() {
         savedCurrencyPairs.count > 0 ? onboardingStateMachine.persistOnboardingShown(true) :  onboardingStateMachine.persistOnboardingShown(false)
-        
     }
 
 }

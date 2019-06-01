@@ -13,6 +13,7 @@ class RateTableViewCell: UITableViewCell {
         static let fromCurrencyValueFont: UIFont = UIFont.roboto(withSize: 20)
         static let fromCurrencyNameFont: UIFont = UIFont.roboto(withSize: 14)
         static let toCurrencyValueFont: UIFont = UIFont.roboto(withSize: 20)
+        static let toCurrencyFractionValueFont: UIFont = UIFont.roboto(withSize: 15)
         static let toCurrencyNameCodeFont: UIFont = UIFont.roboto(withSize: 14)
         static let labelWidth: CGFloat = 124
     }
@@ -23,6 +24,7 @@ class RateTableViewCell: UITableViewCell {
     private let fromCurrencyValueCodeLabel = ViewCreationHelper.createLabel(font: Constants.fromCurrencyValueFont, textColor: .black)
     private let fromCurrencyNameLabel = ViewCreationHelper.createLabel(font: Constants.fromCurrencyNameFont, textColor: .lightGray)
     private let toCurrencyValueLabel = ViewCreationHelper.createLabel(font: Constants.toCurrencyValueFont, textColor: .black, textAlignment: .right)
+     private let toCurrencyFractionValueLabel = ViewCreationHelper.createLabel(font: Constants.toCurrencyFractionValueFont, textColor: .black, textAlignment: .left)
     private let toCurrencyCodeLabel = ViewCreationHelper.createLabel(font: Constants.toCurrencyNameCodeFont, textColor: .lightGray, textAlignment: .right)
     
     
@@ -50,6 +52,7 @@ class RateTableViewCell: UITableViewCell {
         addSubview(fromCurrencyValueCodeLabel)
         addSubview(fromCurrencyNameLabel)
         addSubview(toCurrencyValueLabel)
+        addSubview(toCurrencyFractionValueLabel)
         addSubview(toCurrencyCodeLabel)
     }
     
@@ -62,25 +65,30 @@ class RateTableViewCell: UITableViewCell {
         fromCurrencyNameLabel.pinTopEdgeToBottom(of: fromCurrencyValueCodeLabel , withOffset: 8)
         fromCurrencyNameLabel.pinWidth(to: Constants.labelWidth)
       
-        toCurrencyValueLabel.pinTrailingEdge(to: self, withOffset: -Constants.offset)
+        toCurrencyValueLabel.pinTrailingEdgeToLeading(of: toCurrencyFractionValueLabel)
         toCurrencyValueLabel.pinTopEdge(to: self, withOffset: 17)
         toCurrencyValueLabel.pinWidth(to: Constants.labelWidth)
         
+        toCurrencyFractionValueLabel.pinTrailingEdge(to: self, withOffset: -Constants.offset)
+        toCurrencyFractionValueLabel.pinTopEdge(to: self, withOffset: 20)
+        toCurrencyFractionValueLabel.pinWidth(to: 24)
+        
         toCurrencyCodeLabel.pinTrailingEdge(to: self, withOffset: -Constants.offset)
         toCurrencyCodeLabel.pinTopEdgeToBottom(of: toCurrencyValueLabel, withOffset: 8)
-        toCurrencyCodeLabel.pinWidth(to: Constants.labelWidth)
+        toCurrencyCodeLabel.pinWidth(to: 200)
         
     }
     
     func configureCell(with currencyPair: CurrencyPair) {
+        fromCurrencyValueCodeLabel.text = "1 \(currencyPair.fromCurrencyCode)"
+        fromCurrencyNameLabel.text = currencyPair.fromCurrencyName
+        toCurrencyCodeLabel.text = "\(currencyPair.targetCurrencyName ?? "") . \(currencyPair.targetCurrencyCode)"
+        
         if let value = currencyPair.conversionRate {
-            toCurrencyValueLabel.text = "\(value)"
+            toCurrencyValueLabel.text = CurrencyHelper.currencyDecimalValue(currencyRate: value).0
+            toCurrencyFractionValueLabel.text = CurrencyHelper.currencyDecimalValue(currencyRate: value).1
         } else {
             toCurrencyValueLabel.text = "---"
         }
-        fromCurrencyValueCodeLabel.text = "1 \(currencyPair.fromCurrencyCode)"
-        fromCurrencyNameLabel.text = currencyPair.fromCurrencyName
-        
-        toCurrencyCodeLabel.text = "\(currencyPair.fromCurrencyName ?? "")  \(currencyPair.targetCurrencyCode) "
     }
 }

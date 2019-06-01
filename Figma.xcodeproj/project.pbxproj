@@ -72,6 +72,7 @@
 		5FDFC76E2299AB6E009B263D /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC76D2299AB6E009B263D /* Errors.swift */; };
 		5FDFC7702299AF34009B263D /* CurrencyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC76F2299AF34009B263D /* CurrencyHelper.swift */; };
 		5FDFC772229A67FA009B263D /* BaseCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC771229A67FA009B263D /* BaseCurrencyViewController.swift */; };
+		5FF7F5F822A2BF5400ACC67D /* Float+NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF7F5F722A2BF5400ACC67D /* Float+NumberFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +155,7 @@
 		5FDFC76D2299AB6E009B263D /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		5FDFC76F2299AF34009B263D /* CurrencyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyHelper.swift; sourceTree = "<group>"; };
 		5FDFC771229A67FA009B263D /* BaseCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyViewController.swift; sourceTree = "<group>"; };
+		5FF7F5F722A2BF5400ACC67D /* Float+NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+NumberFormatter.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +295,7 @@
 				5FDFC72D229870B7009B263D /* Array+Generic.swift */,
 				5FDFC75E22997759009B263D /* Optional+Required.swift */,
 				5F034E3A229AED8F0023AAE1 /* String+SubString.swift */,
+				5FF7F5F722A2BF5400ACC67D /* Float+NumberFormatter.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				5FDFC73D229870BE009B263D /* ViewCreationHelper.swift in Sources */,
 				5FDFC75B22992E86009B263D /* CurrencyCell.swift in Sources */,
 				5FDFC7702299AF34009B263D /* CurrencyHelper.swift in Sources */,
+				5FF7F5F822A2BF5400ACC67D /* Float+NumberFormatter.swift in Sources */,
 				5FDFC75822990F47009B263D /* CurrecnyCoordinator.swift in Sources */,
 				5F034E3D229B09090023AAE1 /* TargetCurrencyViewController.swift in Sources */,
 				5F4E902F229FCE4A00E29D50 /* RateConverterCoordinator.swift in Sources */,
