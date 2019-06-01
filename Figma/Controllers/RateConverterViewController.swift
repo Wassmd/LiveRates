@@ -46,7 +46,6 @@ class RateConverterViewController: UIViewController {
         button.setTitle(Constants.buttonTitle, for: .normal)
         button.contentHorizontalAlignment = .leading
         button.imageEdgeInsets = Constants.buttonImageInsets
-        button.setTitleColor(.blue, for: .normal)
         return button
     }()
     
@@ -157,7 +156,6 @@ extension RateConverterViewController: UITableViewDelegate {
                 success(false)
             }
         }
-        
         return UISwipeActionsConfiguration(actions: [delectAction])
     }
 }
