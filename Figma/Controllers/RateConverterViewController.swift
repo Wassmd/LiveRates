@@ -147,5 +147,17 @@ extension RateConverterViewController: UITableViewDataSource {
 }
 
 extension RateConverterViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delectAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, success: (Bool) -> Void) in
+            do {
+                try self?.viewModel.deleteCurrencyPair(at: indexPath)
+                success(true)
+            } catch let error {
+                print("delectAction error:\(error)")
+                success(false)
+            }
+        }
+        
+        return UISwipeActionsConfiguration(actions: [delectAction])
+    }
 }

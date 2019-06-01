@@ -37,7 +37,6 @@ class TargetCurrencyViewController: BaseCurrencyViewController<TargetCurrencyVie
     
     override func userSelectedCurrency(indexPath: IndexPath) {
         viewModel.persisCurrencyPair(for: indexPath)
-        viewModel.persistOnboardingShown()
         coordinatorDelegate?.selectedTargetCurrency()
         
     }

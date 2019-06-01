@@ -2,11 +2,11 @@ import Foundation
 
 final class RateConverterViewModel {
     
-
+    
     // MARK: - Inner Types
     
     enum Constants {
-        static let refreshInterval: TimeInterval = 5.0
+        static let refreshInterval: TimeInterval = 15.0
     }
     
     
@@ -15,6 +15,8 @@ final class RateConverterViewModel {
     
     private let networkService: NetworkService
     private let currencyPairService: CurrencyPairService
+    private let notificationCenter: NotificationCenter
+    private let onboardingStateMachine: OnboardingStateMachine
     
     // MARK: Mutable
     
@@ -23,53 +25,71 @@ final class RateConverterViewModel {
     
     private var savedCurrencyPairs = [CurrencyPair]()
     var sortedCurrenciesWithRate = [CurrencyPair]()
-
+    
     private var pairs: [String] {
         return savedCurrencyPairs.map { "\($0.fromCurrencyCode)\($0.targetCurrencyCode)" }
     }
     
     
-     // MARK: - Initializers
-
+    // MARK: - Initializers
+    
     init(networkService: NetworkService = NetworkService(),
-         currencyPairService: CurrencyPairService = CurrencyPairService.instance) {
+         currencyPairService: CurrencyPairService = CurrencyPairService.instance,
+         notificationCenter: NotificationCenter = NotificationCenter.default,
+         onboardingStateMachine: OnboardingStateMachine = OnboardingStateMachine()) {
         self.networkService = networkService
         self.currencyPairService = currencyPairService
+        self.notificationCenter = notificationCenter
+        self.onboardingStateMachine = onboardingStateMachine
         
-         startRefreshTimer()
+        setupObserving()
+        startRefreshTimer()
     }
     
     deinit {
         requestTimer?.invalidate()
     }
-
-
-    // MARK: - Actions
+    
+    
+    // MARK: setupObserving
+    private func setupObserving() {
+        notificationCenter.addObserver(self, selector: #selector(saveCurrenciesChanges), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
+    }
+    
+    
+    // MARK: - APIs
     
     func fetchSavedCurrenciesPair() {
         currencyPairService.fetchSavedCurrenciesPair() { [weak self] saveCurrencyPairs, error in
+            guard let self = self else { return }
             guard error == nil else { return }
+            guard let saveCurrencyPairs = saveCurrencyPairs else { return }
             
-            print("Wasim ***** \(String(describing: saveCurrencyPairs))")
-            
-            if let saveCurrencyPairs = saveCurrencyPairs {
-                self?.savedCurrencyPairs = saveCurrencyPairs
-            }
+            self.savedCurrencyPairs = saveCurrencyPairs
+            self.requestTimer?.fire()
+            self.persistOnboardingShown()
         }
     }
     
-    func fetchConversionRates() {
-        
+    @objc func fetchConversionRates() {
         networkService.fetchRatesRequest(with: pairs)  { [weak self] (dictionary, error) in
-             guard error == nil else { return }
+            guard error == nil else { return }
+            guard let dictionary = dictionary else { return }
+            print("Wasim Thread: \(Thread.isMainThread)")
+            self?.updatePairsWithRate(from: dictionary)
+            self?.refeshTableView?()
             
-            if let dictionary = dictionary {
-                print("Wasim Thread: \(Thread.isMainThread)")
-                self?.updatePairsWithRate(from: dictionary)
-                self?.refeshTableView?()
-            }
         }
     }
+    
+    func deleteCurrencyPair(at indexPath: IndexPath) throws {
+         guard let currencyPair = sortedCurrenciesWithRate[safe: indexPath.row] else { return }
+        
+        try currencyPairService.remove(currencyPair: currencyPair)
+    }
+    
+    
+    // MARK: - Helper
     
     private func updatePairsWithRate(from dictionary: Dictionary<String, Any>) {
         let pairs = dictionary.compactMap { (key, value) -> CurrencyPair? in
@@ -79,8 +99,8 @@ final class RateConverterViewModel {
             guard var currencyPair = savedCurrencyPairs.first(where: { $0.fromCurrencyCode == fromCurrencyCode && $0.targetCurrencyCode == targetCurrencyCode }) else { return nil}
             currencyPair.conversionRate = conversionRate
             return currencyPair
-        }
-        .sorted(by: { $0.creationDate > $1.creationDate })
+            }
+            .sorted(by: { $0.creationDate > $1.creationDate })
         
         sortedCurrenciesWithRate = pairs
     }
@@ -89,9 +109,20 @@ final class RateConverterViewModel {
     
     private func startRefreshTimer() {
         requestTimer?.invalidate()
-        
-        requestTimer = Timer.scheduledTimer(withTimeInterval: Constants.refreshInterval, repeats: true, block: { [weak self] _ in
-            self?.fetchConversionRates()
-        })
+        requestTimer = Timer.scheduledTimer(timeInterval: Constants.refreshInterval, target: self, selector: #selector(fetchConversionRates), userInfo: nil, repeats: true)
     }
+    
+    // MARK: Notification
+    
+    @objc func saveCurrenciesChanges() {
+        print("Wasim saveCurrenciesChanges")
+        fetchSavedCurrenciesPair()
+    }
+    
+    // Persist
+    func persistOnboardingShown() {
+        savedCurrencyPairs.count > 0 ? onboardingStateMachine.persistOnboardingShown(true) :  onboardingStateMachine.persistOnboardingShown(false)
+        
+    }
+
 }

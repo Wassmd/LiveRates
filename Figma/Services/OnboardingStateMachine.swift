@@ -25,8 +25,8 @@ struct OnboardingStateMachine {
     
     // MARK: - Action
     
-    func persistOnboardingShown() {
-        userDefaults.set(true, forKey: OnboardingStateMachine.key.isAddCurrenyShown)
+    func persistOnboardingShown(_ enable: Bool) {
+        userDefaults.set(enable, forKey: OnboardingStateMachine.key.isAddCurrenyShown)
         userDefaults.synchronize()
     }
 }

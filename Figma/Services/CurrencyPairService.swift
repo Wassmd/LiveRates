@@ -9,6 +9,7 @@ class CurrencyPairService {
     enum Errors: Error {
         case addError(cause: Error?)
         case fetchError(cause: Error?, message: String?)
+        case removeError(cause: Error?)
     }
     
     
@@ -76,6 +77,25 @@ class CurrencyPairService {
             }
         }
     }
+    
+    func remove(currencyPair: CurrencyPair) throws {
+        do {
+            let fetched = try fetch(currencyPair)
+            managedObjectContext.delete(fetched)
+            try save()
+        } catch let error {
+            throw Errors.removeError(cause: error)
+        }
+    }
+    
+    private func fetch(_ currencyPair: CurrencyPair) throws -> ManagedCurrencyPair {
+        if let fetched = try managedObjectContext.fetch(ManagedCurrencyPair.fetchRequest(fromCurrencyCode: currencyPair.fromCurrencyCode, targetCurrency: currencyPair.targetCurrencyCode)).first {
+            return fetched
+        } else {
+            throw Errors.fetchError(cause: nil, message: "Entity not found in persistence layer: \(currencyPair)")
+        }
+    }
+    
     
     // MARK: - Helper
     
