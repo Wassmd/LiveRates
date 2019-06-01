@@ -124,9 +124,23 @@ class RateConverterViewController: UIViewController {
     @objc func addCurrency() {
         coordinatorDelegate?.addCurrency()
     }
+    
+    
+    // MARK: - Animation
+    
+    private func addRowToTableViewWithAnimation() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            let indexPath = IndexPath(row: 0, section: 0)
+            self.tableView.insertRows(at: [indexPath], with: .top)
+        }
+    }
 }
 
 extension RateConverterViewController: UITableViewDataSource {
+    
+    
+    // MARK: - Protocol Conformance
+    // MARK: UITableViewDatasource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.sortedCurrenciesWithRate.count
@@ -146,6 +160,11 @@ extension RateConverterViewController: UITableViewDataSource {
 }
 
 extension RateConverterViewController: UITableViewDelegate {
+    
+    
+    // MARK: - Protocol Conformance
+    // MARK: UITableViewDelegate
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delectAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, success: (Bool) -> Void) in
             do {

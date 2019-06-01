@@ -6,7 +6,7 @@ final class RateConverterViewModel {
     // MARK: - Inner Types
     
     enum Constants {
-        static let refreshInterval: TimeInterval = 1.0
+        static let refreshInterval: TimeInterval = 10.0
     }
     
     
@@ -14,7 +14,7 @@ final class RateConverterViewModel {
     // MARK: Immutables
     
     private let networkService: NetworkService
-    private let currencyPairService: CurrencyPairService
+    let currencyPairService: CurrencyPairService
     private let notificationCenter: NotificationCenter
     private let onboardingStateMachine: OnboardingStateMachine
     
@@ -53,7 +53,7 @@ final class RateConverterViewModel {
     
     // MARK: setupObserving
     private func setupObserving() {
-        notificationCenter.addObserver(self, selector: #selector(saveCurrenciesChanges), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(savedCurrenciesChanges), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
     }
     
     
@@ -84,7 +84,6 @@ final class RateConverterViewModel {
     
     func deleteCurrencyPair(at indexPath: IndexPath) throws {
          guard let currencyPair = sortedCurrenciesWithRate[safe: indexPath.row] else { return }
-        
         try currencyPairService.remove(currencyPair: currencyPair)
     }
     
@@ -114,13 +113,15 @@ final class RateConverterViewModel {
     
     // MARK: Notification
     
-    @objc func saveCurrenciesChanges() {
+    @objc private func savedCurrenciesChanges() {
         print("Wasim saveCurrenciesChanges")
         fetchSavedCurrenciesPair()
     }
     
-    // Persist
-    func persistOnboardingShown() {
+    
+    // MARK: Persist
+    
+    private func persistOnboardingShown() {
         savedCurrencyPairs.count > 0 ? onboardingStateMachine.persistOnboardingShown(true) :  onboardingStateMachine.persistOnboardingShown(false)
     }
 
