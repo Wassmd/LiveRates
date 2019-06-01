@@ -2,12 +2,25 @@ import Foundation
 
 final class RateConverterViewModel {
     
+
+    // MARK: - Inner Types
     
-    //MARK: - Properties
-    //MARK: Immutables
+    enum Constants {
+        static let refreshInterval: TimeInterval = 5.0
+    }
+    
+    
+    // MARK: - Properties
+    // MARK: Immutables
     
     private let networkService: NetworkService
     private let currencyPairService: CurrencyPairService
+    
+    // MARK: Mutable
+    
+    var refeshTableView: (() -> ())?
+    private var requestTimer: Timer?
+    
     private var savedCurrencyPairs = [CurrencyPair]()
     var sortedCurrenciesWithRate = [CurrencyPair]()
 
@@ -16,19 +29,24 @@ final class RateConverterViewModel {
     }
     
     
-     //MARK: - Initializers
+     // MARK: - Initializers
 
     init(networkService: NetworkService = NetworkService(),
          currencyPairService: CurrencyPairService = CurrencyPairService.instance) {
         self.networkService = networkService
         self.currencyPairService = currencyPairService
         
+         startRefreshTimer()
     }
     
-    
-    //MARK: - Action
+    deinit {
+        requestTimer?.invalidate()
+    }
 
-    func fetchSavedCurrenciesPair(completion: @escaping (() -> Void)) {
+
+    // MARK: - Actions
+    
+    func fetchSavedCurrenciesPair() {
         currencyPairService.fetchSavedCurrenciesPair() { [weak self] saveCurrencyPairs, error in
             guard error == nil else { return }
             
@@ -36,21 +54,20 @@ final class RateConverterViewModel {
             
             if let saveCurrencyPairs = saveCurrencyPairs {
                 self?.savedCurrencyPairs = saveCurrencyPairs
-                completion()
             }
         }
     }
     
-    func fetchRateConversion(completion: @escaping (() -> Void)) {
+    func fetchConversionRates() {
         
-        networkService.fetchPhotosRequest(with: pairs)  { [weak self] (dictionary, error) in
+        networkService.fetchRatesRequest(with: pairs)  { [weak self] (dictionary, error) in
              guard error == nil else { return }
             
             if let dictionary = dictionary {
                 print("Wasim Thread: \(Thread.isMainThread)")
                 self?.updatePairsWithRate(from: dictionary)
+                self?.refeshTableView?()
             }
-             completion()
         }
     }
     
@@ -68,4 +85,13 @@ final class RateConverterViewModel {
         sortedCurrenciesWithRate = pairs
     }
     
+    // MARK: Timer
+    
+    private func startRefreshTimer() {
+        requestTimer?.invalidate()
+        
+        requestTimer = Timer.scheduledTimer(withTimeInterval: Constants.refreshInterval, repeats: true, block: { [weak self] _ in
+            self?.fetchConversionRates()
+        })
+    }
 }

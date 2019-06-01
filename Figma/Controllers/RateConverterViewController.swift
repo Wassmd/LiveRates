@@ -72,14 +72,7 @@ class RateConverterViewController: UIViewController {
     }
     
     private func start() {
-        viewModel.fetchSavedCurrenciesPair { [weak self] in
-            self?.viewModel.fetchRateConversion { [weak self] in
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            }
-        }
-        
+        viewModel.fetchSavedCurrenciesPair()
     }
     
     
@@ -91,6 +84,7 @@ class RateConverterViewController: UIViewController {
         setupView()
         setupSubviews()
         setupConstraints()
+        setupDataObserving()
     }
     
     
@@ -118,11 +112,17 @@ class RateConverterViewController: UIViewController {
         tableView.pinBottomEdge(to: view.safeAreaLayoutGuide, withOffset: -Constants.tableBottomOffset)
     }
     
+    private func setupDataObserving() {
+        viewModel.refeshTableView = { [weak self] in
+            DispatchQueue.main.sync {
+                self?.tableView.reloadData()
+            }
+        }
+    }
     
     // MARK: - Action
     
     @objc func addCurrency() {
-        print("Wasim \(self.coordinatorDelegate)")
         coordinatorDelegate?.addCurrency()
     }
 }
@@ -147,9 +147,5 @@ extension RateConverterViewController: UITableViewDataSource {
 }
 
 extension RateConverterViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        let itemViewModel = viewModel.itemViewModel(for: indexPath)
-        //        itemViewModel.updateSelectionState()
-        //        userSelectedCurrency(indexPath: indexPath)
-    }
+    
 }
