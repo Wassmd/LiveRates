@@ -1,37 +1,19 @@
 import Foundation
 import CoreData
 
-struct CurrencyPair: Equatable {
+struct CurrencyPair: Hashable {
     let fromCurrencyCode: String
     let fromCurrencyName: String?
     let targetCurrencyCode: String
     let targetCurrencyName: String?
     var conversionRate: Double?
     let creationDate: Date
-    
-//    static func == (lhs: CurrencyPair, rhs: CurrencyPair) -> Bool {
-//        return lhs.fromCurrencyCode == rhs.fromCurrencyCode &&
-//        lhs.targetCurrencyCode == rhs.targetCurrencyCode
-//    }
 }
 
 extension CurrencyPair {
     var pair: String {
         return "\(fromCurrencyCode)\(targetCurrencyCode)"
     }
-    
-//    static func createCurrencyPair(key: String, value: Double?, fromCurrenyFullName: String?, targetCurrencyFullName: String?) -> CurrencyPair {
-//        let fromCurrencyCode = "\(key.fromCurrencyCode())"
-//        let targetCurrencyCode = "\(key.targetCurrencyCode())"
-//        let conversionRate = value
-//
-//        return CurrencyPair(
-//            fromCurrencyCode: fromCurrencyCode,
-//            fromCurrencyName: fromCurrenyFullName,
-//            targetCurrencyCode: targetCurrencyCode,
-//            targetCurrencyName: targetCurrencyFullName,
-//            conversionRate: conversionRate)
-//    }
     
     static func createCurrencyPair(with fromCurrency: Currency, with targetCurrency: Currency) -> CurrencyPair {
         return CurrencyPair(
@@ -60,6 +42,7 @@ final class ManagedCurrencyPair: NSManagedObject {
         static let keyCreationDate = "creationDate"
     }
     
+    
     // MARK: - Properties
     // MARK: Immutable
     
@@ -86,6 +69,12 @@ final class ManagedCurrencyPair: NSManagedObject {
         let fetchRequest = NSFetchRequest<ManagedCurrencyPair>(entityName: Constants.entityName)
         let byCreationDate = NSSortDescriptor(key: Constants.keyCreationDate, ascending: true)
         fetchRequest.sortDescriptors = [byCreationDate]
+        return fetchRequest
+    }
+    
+    class func fetchRequest(fromCurrencyCode: String, targetCurrency: String) -> NSFetchRequest<ManagedCurrencyPair> {
+        let fetchRequest = NSFetchRequest<ManagedCurrencyPair>(entityName: Constants.entityName)
+        fetchRequest.predicate = NSPredicate(format: "\(Constants.keyFromCurrencyCode) == %@ AND \(Constants.keyTargetCurrencyCode) == %@", fromCurrencyCode as CVarArg, targetCurrency as CVarArg)
         return fetchRequest
     }
 }

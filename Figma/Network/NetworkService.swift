@@ -56,7 +56,7 @@ class NetworkService {
     
     // MARK: API
     
-    func fetchPhotosRequest(with pairs: [String] , completion: @escaping ((Dictionary<String, Any>?, Error?) -> Void)) {
+    func fetchRatesRequest(with pairs: [String] , completion: @escaping ((Dictionary<String, Any>?, Error?) -> Void)) {
         guard let url = rateConversionURL(with: pairs) else {
             print("Error:\(RequestError.illegalParams)")
             return

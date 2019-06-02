@@ -11,6 +11,7 @@ final class RateConverterCoordinator: Coordinatable {
     
     public let identifier: UUID
     private let navigationController: UINavigationController
+    private let newCurrencyPair: CurrencyPair?
     
     // MARK: - Mutable
     
@@ -19,8 +20,6 @@ final class RateConverterCoordinator: Coordinatable {
     
     private weak var window: UIWindow?
     private weak var rootViewController: UIViewController?
-    
-    private lazy var currencyViewModel = BaseCurrencyViewModel()
     private lazy var viewModel = RateConverterViewModel()
     private lazy var rateConverterViewController = RateConverterViewController(
         viewModel: viewModel,
@@ -31,14 +30,18 @@ final class RateConverterCoordinator: Coordinatable {
     
     init(identifier: UUID,
          dismissable: CoordinatorDismissable? = nil,
+         rootViewController: UIViewController?,
          window: UIWindow?,
-         navigationController: UINavigationController = UINavigationController()) {
+         navigationController: UINavigationController = UINavigationController(),
+         newCurrencyPair: CurrencyPair? = nil) {
         self.identifier = identifier
         self.dismissable = dismissable
         self.navigationController = navigationController
+        self.rootViewController = rootViewController
         self.window = window
-        
+        self.newCurrencyPair = newCurrencyPair
     }
+    
     
     // MARK: Protocol Conformance
     // MARK: Coordinatable
@@ -54,8 +57,25 @@ final class RateConverterCoordinator: Coordinatable {
     }
     
     func start() {
-        window?.rootViewController = rateConverterViewController
-        window?.makeKeyAndVisible()
+        if rootViewController is AddCurrencyViewController {
+            rootViewController = rateConverterViewController
+            if let newCurrencyPair = newCurrencyPair {
+                updateModel(with: newCurrencyPair, of: rootViewController)
+                updateShouldAddNewCurrencyPairs(enable: true, for: rootViewController)
+            }
+            window?.rootViewController = rateConverterViewController
+            window?.makeKeyAndVisible()
+        } else if rootViewController is RateConverterViewController {
+            if let newCurrencyPair = newCurrencyPair {
+                updateModel(with: newCurrencyPair, of: rootViewController)
+                updateShouldAddNewCurrencyPairs(enable: true, for: rootViewController)
+            }
+        }  else {
+            rootViewController = rateConverterViewController
+            updateShouldAddNewCurrencyPairs(enable: false, for: rootViewController)
+            window?.rootViewController = rootViewController
+            window?.makeKeyAndVisible()
+        }
     }
     
     private func showFromCurrency() {
@@ -68,6 +88,21 @@ final class RateConverterCoordinator: Coordinatable {
         
         coordinator.start()
         childCoordinators[identifier] = coordinator
+    }
+    
+    // MARK: - Helpers
+    
+    private func updateModel(with newCurrencyPair: CurrencyPair, of rootViewController: UIViewController?) {
+        if let rootViewController = (rootViewController as? RateConverterViewController) {
+            rootViewController.viewModel.handleAddNewCurrency(currencyPair: newCurrencyPair)
+        }
+        
+    }
+    
+    private func updateShouldAddNewCurrencyPairs(enable: Bool, for rootViewController: UIViewController?) {
+        if let rootViewController = (rootViewController as? RateConverterViewController) {
+            rootViewController.viewModel.shouldAddNewCurrencyPair = enable
+        }
     }
 }
 

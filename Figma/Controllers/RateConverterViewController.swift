@@ -46,7 +46,6 @@ class RateConverterViewController: UIViewController {
         button.setTitle(Constants.buttonTitle, for: .normal)
         button.contentHorizontalAlignment = .leading
         button.imageEdgeInsets = Constants.buttonImageInsets
-        button.setTitleColor(.blue, for: .normal)
         return button
     }()
     
@@ -63,26 +62,13 @@ class RateConverterViewController: UIViewController {
         self.viewModel = viewModel
         self.coordinatorDelegate = coordinatorDelegate
         super.init(nibName: nil, bundle: nil)
-        
-        start()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func start() {
-        viewModel.fetchSavedCurrenciesPair { [weak self] in
-            self?.viewModel.fetchRateConversion { [weak self] in
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            }
-        }
-        
-    }
-    
-    
+
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -91,6 +77,7 @@ class RateConverterViewController: UIViewController {
         setupView()
         setupSubviews()
         setupConstraints()
+        setupDataObserving()
     }
     
     
@@ -118,16 +105,47 @@ class RateConverterViewController: UIViewController {
         tableView.pinBottomEdge(to: view.safeAreaLayoutGuide, withOffset: -Constants.tableBottomOffset)
     }
     
+    private func setupDataObserving() {
+        viewModel.refeshTableView = { [weak self] in
+            DispatchQueue.main.sync {
+                self?.tableView.reloadData()
+            }
+        }
+        
+        viewModel.addNewCurrencyOnTop = { [weak self] in
+            DispatchQueue.main.async {
+                self?.addRowToTableViewWithAnimation()
+//                self?.viewModel.persistNewCurrencyPair()
+            
+            }
+        }
+    }
     
     // MARK: - Action
     
     @objc func addCurrency() {
-        print("Wasim \(self.coordinatorDelegate)")
         coordinatorDelegate?.addCurrency()
+    }
+    
+    
+    // MARK: - Animation
+    
+    private func addRowToTableViewWithAnimation() {
+        print("Wasim addRowToTableViewWithAnimation:\(self.viewModel.sortedCurrenciesWithRate.count)")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            let indexPath = IndexPath(row: 0, section: 0)
+            self.tableView.beginUpdates()
+            self.tableView.insertRows(at: [indexPath], with: .top)
+            self.tableView.endUpdates()
+        }
     }
 }
 
 extension RateConverterViewController: UITableViewDataSource {
+    
+    
+    // MARK: - Protocol Conformance
+    // MARK: UITableViewDatasource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.sortedCurrenciesWithRate.count
@@ -147,9 +165,21 @@ extension RateConverterViewController: UITableViewDataSource {
 }
 
 extension RateConverterViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        let itemViewModel = viewModel.itemViewModel(for: indexPath)
-        //        itemViewModel.updateSelectionState()
-        //        userSelectedCurrency(indexPath: indexPath)
+    
+    
+    // MARK: - Protocol Conformance
+    // MARK: UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delectAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, success: (Bool) -> Void) in
+            do {
+                try self?.viewModel.deleteCurrencyPair(at: indexPath)
+                success(true)
+            } catch let error {
+                print("delectAction error:\(error)")
+                success(false)
+            }
+        }
+        return UISwipeActionsConfiguration(actions: [delectAction])
     }
 }

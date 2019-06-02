@@ -39,7 +39,18 @@ final class CurrencyHelper {
     
     
     // MARK: Helper
+    
     private func retrieveFileURL() -> URL? {
         return Bundle.main.url(forResource: Constants.currenciesFileName, withExtension: "json")
+    }
+    
+    static func currencyDecimalValue(currencyRate: Double) -> (String, String) {
+        let rateFirstPart = String(format: "%.2f", currencyRate)
+        let rateFirstPartFloat = Float(rateFirstPart)?.formattedCurrencyValue
+        let truncatedValue = String(format: "%.4f", currencyRate)
+        let subStrings = "\(truncatedValue)".split(separator: ".")
+        let firtFourDecimalDigits = String(subStrings[1])
+        let lastTwoDigit = String(firtFourDecimalDigits.lastTwoCharacterFromString())
+        return ("\(rateFirstPartFloat ?? "")", lastTwoDigit)
     }
 }

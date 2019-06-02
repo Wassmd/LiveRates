@@ -56,7 +56,6 @@ final class AppCoordinator: Coordinatable {
     }
     
     func start() {
-        print("Wasim isAddCurrenyShown:\(onboardingStateMachine.isAddCurrenyShown)")
        if onboardingStateMachine.isAddCurrenyShown {
             coordinate(to: AppStep.rateConverter)
        } else {
@@ -83,6 +82,7 @@ final class AppCoordinator: Coordinatable {
         let coordinator = RateConverterCoordinator(
             identifier: identifier,
             dismissable: self,
+            rootViewController: nil,
             window: window)
         
         coordinator.start()

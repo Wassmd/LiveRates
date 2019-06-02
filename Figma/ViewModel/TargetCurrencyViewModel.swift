@@ -8,31 +8,17 @@ final class TargetCurrencyViewModel: BaseCurrencyViewModel {
     
     let selectedFromCurrency: Currency
     private let currencyPairService: CurrencyPairService
-    private var savedCurrencyPairs = [CurrencyPair]()
-    private let onboardingStateMachine: OnboardingStateMachine
-    private let notificationCenter: NotificationCenter
+    var savedCurrencyPairs = [CurrencyPair]()
     
     
     //MARK: - Initializers
     
     init(selectedFromCurrency: Currency,
-         currencyPairService: CurrencyPairService = CurrencyPairService.instance,
-         onboardingStateMachine: OnboardingStateMachine = OnboardingStateMachine(),
-         notificationCenter: NotificationCenter = NotificationCenter.default) {
+         currencyPairService: CurrencyPairService = CurrencyPairService.instance) {
         self.selectedFromCurrency = selectedFromCurrency
         self.currencyPairService = currencyPairService
-        self.notificationCenter = notificationCenter
-        self.onboardingStateMachine = onboardingStateMachine
-        super.init()
         
-        setupObserving()
-    }
-    
-    
-    // MARK: setupObserving
-    
-    private func setupObserving() {
-        notificationCenter.addObserver(self, selector: #selector(pairSaved), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
+        super.init()
     }
     
    
@@ -54,20 +40,13 @@ final class TargetCurrencyViewModel: BaseCurrencyViewModel {
         }
     }
     
-    func persisCurrencyPair(for indexPath: IndexPath) {
+    func prepareNewCurrencyPair(for indexPath: IndexPath) -> CurrencyPair{
         let targetCurrency = getCurrency(at: indexPath)
         let currencyPair = CurrencyPair.createCurrencyPair(with: selectedFromCurrency, with: targetCurrency)
-        do {
-            try currencyPairService.addCurrencyPair(currencyPair: currencyPair)
-        } catch let error {
-            print(error)
-        }
+        return currencyPair
     }
     
-    @objc func pairSaved() {
-        print("Wasim pairSaved")
-    }
-    
+   
     // MARK: - Helpers
     
     func updateItemViewModelCellType() {
@@ -106,9 +85,5 @@ final class TargetCurrencyViewModel: BaseCurrencyViewModel {
         with fromCurrency: Currency,
         with targetCurrency: Currency) -> CurrencyPair {
         return CurrencyPair(fromCurrencyCode: fromCurrency.code, fromCurrencyName: fromCurrency.currency, targetCurrencyCode: targetCurrency.code, targetCurrencyName: targetCurrency.currency, conversionRate: nil, creationDate: Date())
-    }
-    
-    func persistOnboardingShown() {
-        onboardingStateMachine.persistOnboardingShown()
-    }
+    }    
 }

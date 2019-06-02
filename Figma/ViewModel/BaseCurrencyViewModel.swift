@@ -55,4 +55,8 @@ class BaseCurrencyViewModel {
         guard let index = supportedCurrencies.firstIndex(of: currency) else { return nil }
         return IndexPath(row: index, section: 0)
     }
+    
+    func getAllItemModelsCount() -> Int {
+        return viewModelCreator.itemViewModels.count
+    }
 }

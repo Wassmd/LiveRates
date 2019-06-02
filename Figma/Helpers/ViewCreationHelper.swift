@@ -79,7 +79,7 @@ enum ViewCreationHelper {
         return alertController
     }
     
-    public static func createImageButton(image: UIImage, titleFont: UIFont? = nil, highlightedImage: UIImage? = nil, width: CGFloat? = nil, height: CGFloat? = nil, buttonType: UIButton.ButtonType = .custom, titleInsets: UIEdgeInsets = UIEdgeInsets.zero) -> UIButton {
+    public static func createImageButton(image: UIImage, titleFont: UIFont? = nil, highlightedImage: UIImage? = nil, width: CGFloat? = nil, height: CGFloat? = nil, buttonType: UIButton.ButtonType = .system, titleInsets: UIEdgeInsets = UIEdgeInsets.zero) -> UIButton {
         let button = UIButton(type: buttonType)
         
         if let width = width { button.pinWidth(to: width) }
@@ -87,9 +87,8 @@ enum ViewCreationHelper {
         if let titleFont = titleFont { button.titleLabel?.font = titleFont }
         
         button.titleEdgeInsets = titleInsets
-        button.setImage(image, for: .normal)
+        button.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
         button.setImage(highlightedImage, for: .highlighted)
-        
         return button
     }
 }
