@@ -88,6 +88,12 @@ extension CurrencyCoordinator: FromCurrencyViewControllerDelegate {
 }
 
 extension CurrencyCoordinator: TargetCurrencyViewControllerDelegate {
+    func maxPairingAchieved() {
+        navigationController.dismiss(animated: true) { [weak self] in
+            self?.finish()
+        }
+    }
+    
     func selectedTargetCurrency(_ newCurrencyPair: CurrencyPair) {
         coordinate(to: currencySteps.rateConverter(newCurrencyPair))
         navigationController.dismiss(animated: true) { [weak self] in

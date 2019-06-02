@@ -8,7 +8,7 @@ final class TargetCurrencyViewModel: BaseCurrencyViewModel {
     
     let selectedFromCurrency: Currency
     private let currencyPairService: CurrencyPairService
-    private var savedCurrencyPairs = [CurrencyPair]()
+    var savedCurrencyPairs = [CurrencyPair]()
     
     
     //MARK: - Initializers

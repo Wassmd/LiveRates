@@ -2,6 +2,7 @@ import UIKit
 
 protocol TargetCurrencyViewControllerDelegate: AnyObject {
     func selectedTargetCurrency(_ newCurrencyPair: CurrencyPair)
+    func maxPairingAchieved()
 }
 
 class TargetCurrencyViewController: BaseCurrencyViewController<TargetCurrencyViewModel> {
@@ -31,6 +32,7 @@ class TargetCurrencyViewController: BaseCurrencyViewController<TargetCurrencyVie
         viewModel.fetchSavedCurrecyPair {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.showInfomativeAlertIfNeed()
             }
         }
     }
@@ -39,5 +41,20 @@ class TargetCurrencyViewController: BaseCurrencyViewController<TargetCurrencyVie
         let newCurrencyPair = viewModel.prepareNewCurrencyPair(for: indexPath)
         coordinatorDelegate?.selectedTargetCurrency(newCurrencyPair)
         
+    }
+    
+    // MARK: Transition
+    
+    private func showInfomativeAlertIfNeed() {
+       let maxCombinationDone = viewModel.savedCurrencyPairs.count + 1
+        if maxCombinationDone == viewModel.getAllItemModelsCount() {
+            let alertController = UIAlertController(title: "Figma", message: "You have created all posiible pairs.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default) { _ in                
+                self.coordinatorDelegate?.maxPairingAchieved()
+            }
+            
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
+        }
     }
 }

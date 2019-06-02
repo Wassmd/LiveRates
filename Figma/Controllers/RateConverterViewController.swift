@@ -62,8 +62,6 @@ class RateConverterViewController: UIViewController {
         self.viewModel = viewModel
         self.coordinatorDelegate = coordinatorDelegate
         super.init(nibName: nil, bundle: nil)
-        
-//        start()
     }
     
     required init?(coder aDecoder: NSCoder) {

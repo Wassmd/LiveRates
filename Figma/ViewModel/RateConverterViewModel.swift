@@ -6,7 +6,7 @@ final class RateConverterViewModel {
     // MARK: - Inner Types
     
     enum Constants {
-        static let refreshInterval: TimeInterval = 13.0
+        static let refreshInterval: TimeInterval = 5.0
     }
     
     
@@ -52,7 +52,7 @@ final class RateConverterViewModel {
         self.notificationCenter = notificationCenter
         self.onboardingStateMachine = onboardingStateMachine
         
-        setupSavedCurrenciesPairs()
+        setUpInitialData()
         setupObserving()
         startRefreshTimer()
     }
@@ -69,6 +69,20 @@ final class RateConverterViewModel {
     
     
     // MARK: - Action
+    private func setUpInitialData() {
+        currencyPairService.fetchCurrenciesPairFromLocalDatabase() { [weak self] savedCurrencyPairs, error in
+            guard let self = self else { return }
+            guard error == nil else { return }
+            
+            guard let savedCurrencyPairs = savedCurrencyPairs, !savedCurrencyPairs.isEmpty else {
+                return
+            }
+            
+            self.updateSortedCurrenciesWithRate(with: savedCurrencyPairs)
+            self.persistOnboardingShown(true)
+            self.fireupRateRequestIfNeeded()
+        }
+    }
     
     func setupSavedCurrenciesPairs() {
         currencyPairService.fetchCurrenciesPairFromLocalDatabase() { [weak self] savedCurrencyPairs, error in
@@ -77,6 +91,7 @@ final class RateConverterViewModel {
             
             guard let savedCurrencyPairs = savedCurrencyPairs, !savedCurrencyPairs.isEmpty else {
                 self.persistOnboardingShown(false)
+                self.updateSortedCurrenciesWithRate(with: [])
                 return
             }
             
@@ -87,7 +102,8 @@ final class RateConverterViewModel {
     }
     
     @objc func fetchConversionRates() {
-        print("Pairs:\(pairs)")
+        guard !pairs.isEmpty else { print("Pairs are emplty!"); return }
+        
         networkService.fetchRatesRequest(with: pairs)  { [weak self] (dictionary, error) in
             guard let self = self else { return }
             guard error == nil else { return }
@@ -149,8 +165,11 @@ final class RateConverterViewModel {
     }
     
     private func handleTableViewUpdate() {
-         shouldAddNewCurrencyPair ? self.addNewCurrencyOnTop?() : self.refeshTableView?()
+//         shouldAddNewCurrencyPair ? self.addNewCurrencyOnTop?() : self.refeshTableView?()
+        shouldAddNewCurrencyPair ? self.refeshTableView?() : self.refeshTableView?()
     }
+    
+    
     // MARK: - Timer
     
     private func startRefreshTimer() {

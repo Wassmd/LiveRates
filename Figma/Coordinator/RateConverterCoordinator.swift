@@ -60,16 +60,20 @@ final class RateConverterCoordinator: Coordinatable {
         if rootViewController is AddCurrencyViewController {
             rootViewController = rateConverterViewController
             if let newCurrencyPair = newCurrencyPair {
-                rateConverterViewController.viewModel.handleAddNewCurrency(currencyPair: newCurrencyPair)
+                updateModel(with: newCurrencyPair, of: rootViewController)
+                updateShouldAddNewCurrencyPairs(enable: true, for: rootViewController)
             }
             window?.rootViewController = rateConverterViewController
             window?.makeKeyAndVisible()
         } else if rootViewController is RateConverterViewController {
             if let newCurrencyPair = newCurrencyPair {
-                (rootViewController as! RateConverterViewController).viewModel.handleAddNewCurrency(currencyPair: newCurrencyPair)
+                updateModel(with: newCurrencyPair, of: rootViewController)
+                updateShouldAddNewCurrencyPairs(enable: true, for: rootViewController)
             }
         }  else {
-            window?.rootViewController = rateConverterViewController
+            rootViewController = rateConverterViewController
+            updateShouldAddNewCurrencyPairs(enable: false, for: rootViewController)
+            window?.rootViewController = rootViewController
             window?.makeKeyAndVisible()
         }
     }
@@ -84,6 +88,21 @@ final class RateConverterCoordinator: Coordinatable {
         
         coordinator.start()
         childCoordinators[identifier] = coordinator
+    }
+    
+    // MARK: - Helpers
+    
+    private func updateModel(with newCurrencyPair: CurrencyPair, of rootViewController: UIViewController?) {
+        if let rootViewController = (rootViewController as? RateConverterViewController) {
+            rootViewController.viewModel.handleAddNewCurrency(currencyPair: newCurrencyPair)
+        }
+        
+    }
+    
+    private func updateShouldAddNewCurrencyPairs(enable: Bool, for rootViewController: UIViewController?) {
+        if let rootViewController = (rootViewController as? RateConverterViewController) {
+            rootViewController.viewModel.shouldAddNewCurrencyPair = enable
+        }
     }
 }
 
