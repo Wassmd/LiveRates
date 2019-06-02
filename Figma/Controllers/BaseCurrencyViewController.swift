@@ -108,7 +108,6 @@ class BaseCurrencyViewController<ViewModelType: BaseCurrencyViewModel>: UIViewCo
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let itemViewModel = viewModel.itemViewModel(for: indexPath)
-        itemViewModel.updateSelectionState()
         userSelectedCurrency(indexPath: indexPath)
     }
 }

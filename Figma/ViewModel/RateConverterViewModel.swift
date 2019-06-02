@@ -6,7 +6,7 @@ final class RateConverterViewModel {
     // MARK: - Inner Types
     
     enum Constants {
-        static let refreshInterval: TimeInterval = 10.0
+        static let refreshInterval: TimeInterval = 13.0
     }
     
     
@@ -20,14 +20,24 @@ final class RateConverterViewModel {
     
     // MARK: Mutable
     
-    var refeshTableView: (() -> ())?
     private var requestTimer: Timer?
+    var shouldAddNewCurrencyPair: Bool = false
     
-    private var savedCurrencyPairs = [CurrencyPair]()
-    var sortedCurrenciesWithRate = [CurrencyPair]()
+    var refeshTableView: (() -> Void)?
+    var addNewCurrencyOnTop: (() -> Void)?
+    
+    fileprivate(set) var sortedCurrenciesWithRate1 = Set<CurrencyPair>()
+    var sortedCurrenciesWithRate = [CurrencyPair]() {
+        didSet {
+            print("wasim in didSet")
+//            self.addNewCurrencyOnTop?()
+        }
+    }
     
     private var pairs: [String] {
-        return savedCurrencyPairs.map { "\($0.fromCurrencyCode)\($0.targetCurrencyCode)" }
+        print("pairs sortedCurrenciesWithRate:\(sortedCurrenciesWithRate)")
+        let pairs = sortedCurrenciesWithRate.map { "\($0.fromCurrencyCode)\($0.targetCurrencyCode)" }
+        return pairs
     }
     
     
@@ -42,6 +52,7 @@ final class RateConverterViewModel {
         self.notificationCenter = notificationCenter
         self.onboardingStateMachine = onboardingStateMachine
         
+        setupSavedCurrenciesPairs()
         setupObserving()
         startRefreshTimer()
     }
@@ -57,72 +68,107 @@ final class RateConverterViewModel {
     }
     
     
-    // MARK: - APIs
+    // MARK: - Action
     
-    func fetchSavedCurrenciesPair() {
-        currencyPairService.fetchSavedCurrenciesPair() { [weak self] saveCurrencyPairs, error in
+    func setupSavedCurrenciesPairs() {
+        currencyPairService.fetchCurrenciesPairFromLocalDatabase() { [weak self] savedCurrencyPairs, error in
             guard let self = self else { return }
             guard error == nil else { return }
-            guard let saveCurrencyPairs = saveCurrencyPairs else { return }
             
-            self.savedCurrencyPairs = saveCurrencyPairs
-            self.requestTimer?.fire()
-            self.persistOnboardingShown()
+            guard let savedCurrencyPairs = savedCurrencyPairs, !savedCurrencyPairs.isEmpty else {
+                self.persistOnboardingShown(false)
+                return
+            }
+            
+            self.updateSortedCurrenciesWithRate(with: savedCurrencyPairs)
+            self.persistOnboardingShown(true)
+            self.fireupRateRequestIfNeeded()
         }
     }
     
     @objc func fetchConversionRates() {
+        print("Pairs:\(pairs)")
         networkService.fetchRatesRequest(with: pairs)  { [weak self] (dictionary, error) in
+            guard let self = self else { return }
             guard error == nil else { return }
-            guard let dictionary = dictionary else { return }
-            print("Wasim Thread: \(Thread.isMainThread)")
-            self?.updatePairsWithRate(from: dictionary)
-            self?.refeshTableView?()
-            
+            guard let dictionary = dictionary, !dictionary.isEmpty else { return }
+        
+            self.updateConversationRates(from: dictionary)
+            self.handleTableViewUpdate()
+        }
+    }
+    
+    func handleAddNewCurrency(currencyPair: CurrencyPair)  {
+        sortedCurrenciesWithRate.insert(currencyPair, at: 0)
+        print("Wasim sorted count \(sortedCurrenciesWithRate.count)")
+        
+        fireupRateRequestIfNeeded()
+        persistNewCurrencyPair(currencyPair)
+    }
+    
+    // MARK: - APIs
+    
+    func persistNewCurrencyPair(_ currencyPair: CurrencyPair) {
+        do {
+            try currencyPairService.addCurrencyPair(currencyPair: currencyPair)
+        } catch let error {
+            print(error)
         }
     }
     
     func deleteCurrencyPair(at indexPath: IndexPath) throws {
-         guard let currencyPair = sortedCurrenciesWithRate[safe: indexPath.row] else { return }
+        guard let currencyPair = sortedCurrenciesWithRate[safe: indexPath.row] else { return }
         try currencyPairService.remove(currencyPair: currencyPair)
     }
-    
+
     
     // MARK: - Helper
     
-    private func updatePairsWithRate(from dictionary: Dictionary<String, Any>) {
-        let pairs = dictionary.compactMap { (key, value) -> CurrencyPair? in
+    private func fireupRateRequestIfNeeded() {
+        requestTimer?.fire()
+    }
+    
+    private func updateConversationRates(from dictionary: Dictionary<String, Any>) {
+        print("Wasim sortedCurrenciesWithRate begin: \(sortedCurrenciesWithRate)")
+        let currenciesPair = dictionary.compactMap { (key, value) -> CurrencyPair? in
             let fromCurrencyCode = "\(key.fromCurrencyCode())"
             let targetCurrencyCode = "\(key.targetCurrencyCode())"
             let conversionRate = value as? Double
-            guard var currencyPair = savedCurrencyPairs.first(where: { $0.fromCurrencyCode == fromCurrencyCode && $0.targetCurrencyCode == targetCurrencyCode }) else { return nil}
+            guard var currencyPair = sortedCurrenciesWithRate.first(where: { $0.fromCurrencyCode == fromCurrencyCode && $0.targetCurrencyCode == targetCurrencyCode }) else { return nil }
             currencyPair.conversionRate = conversionRate
             return currencyPair
             }
             .sorted(by: { $0.creationDate > $1.creationDate })
         
-        sortedCurrenciesWithRate = pairs
+        updateSortedCurrenciesWithRate(with: currenciesPair)
+
     }
     
-    // MARK: Timer
+    private func updateSortedCurrenciesWithRate(with currenciesPair: [CurrencyPair]) {
+        sortedCurrenciesWithRate = currenciesPair
+    }
+    
+    private func handleTableViewUpdate() {
+         shouldAddNewCurrencyPair ? self.addNewCurrencyOnTop?() : self.refeshTableView?()
+    }
+    // MARK: - Timer
     
     private func startRefreshTimer() {
         requestTimer?.invalidate()
         requestTimer = Timer.scheduledTimer(timeInterval: Constants.refreshInterval, target: self, selector: #selector(fetchConversionRates), userInfo: nil, repeats: true)
     }
     
-    // MARK: Notification
     
-    @objc private func savedCurrenciesChanges() {
-        print("Wasim saveCurrenciesChanges")
-        fetchSavedCurrenciesPair()
+    // MARK: - Notification
+    
+    @objc func savedCurrenciesChanges() {
+        setupSavedCurrenciesPairs()
     }
     
     
-    // MARK: Persist
+    // MARK: - Persistence
     
-    private func persistOnboardingShown() {
-        savedCurrencyPairs.count > 0 ? onboardingStateMachine.persistOnboardingShown(true) :  onboardingStateMachine.persistOnboardingShown(false)
+    private func persistOnboardingShown(_ enable: Bool) {
+        onboardingStateMachine.persistOnboardingShown(enable)
     }
-
 }

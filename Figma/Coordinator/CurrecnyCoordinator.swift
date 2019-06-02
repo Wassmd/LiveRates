@@ -2,7 +2,7 @@ import UIKit
 
 private enum currencySteps: CoordinatorStep {
     case toCurrency(currency: Currency)
-    case rateConverter
+    case rateConverter(_ newCurrencyPair: CurrencyPair)
 }
 
 final class CurrencyCoordinator: Coordinatable {
@@ -50,8 +50,8 @@ final class CurrencyCoordinator: Coordinatable {
         switch step {
         case .toCurrency(let currency):
             showTargetCurrency(currency: currency)
-        case .rateConverter:
-            showRateConverter()
+        case .rateConverter(let currencyPair):
+            showRateConverter(currencyPair)
         }
     }
     
@@ -66,12 +66,14 @@ final class CurrencyCoordinator: Coordinatable {
         navigationController.pushViewController(controller, animated: true)
     }
     
-    private func showRateConverter() {
+    private func showRateConverter(_ newCurrencyPair: CurrencyPair) {
         let identifier = UUID()
         let coordinator = RateConverterCoordinator(
             identifier: identifier,
             dismissable: self,
-            window: window)
+            rootViewController: rootViewController,
+            window: window,
+            newCurrencyPair: newCurrencyPair)
         
         coordinator.start()
         childCoordinators[identifier] = coordinator
@@ -86,14 +88,12 @@ extension CurrencyCoordinator: FromCurrencyViewControllerDelegate {
 }
 
 extension CurrencyCoordinator: TargetCurrencyViewControllerDelegate {
-    func selectedTargetCurrency() {
-        coordinate(to: currencySteps.rateConverter)
+    func selectedTargetCurrency(_ newCurrencyPair: CurrencyPair) {
+        coordinate(to: currencySteps.rateConverter(newCurrencyPair))
+        navigationController.dismiss(animated: true) { [weak self] in
+            self?.finish()
+        }
     }
 }
 
-extension CurrencyCoordinator: RateConverterViewControllerDelegate {
-    func addCurrency() {
-        print("Wasim addCurrency")
-    }
-}
 

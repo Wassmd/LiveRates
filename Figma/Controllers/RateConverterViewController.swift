@@ -63,18 +63,14 @@ class RateConverterViewController: UIViewController {
         self.coordinatorDelegate = coordinatorDelegate
         super.init(nibName: nil, bundle: nil)
         
-        start()
+//        start()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func start() {
-        viewModel.fetchSavedCurrenciesPair()
-    }
-    
-    
+
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -117,6 +113,14 @@ class RateConverterViewController: UIViewController {
                 self?.tableView.reloadData()
             }
         }
+        
+        viewModel.addNewCurrencyOnTop = { [weak self] in
+            DispatchQueue.main.async {
+                self?.addRowToTableViewWithAnimation()
+//                self?.viewModel.persistNewCurrencyPair()
+            
+            }
+        }
     }
     
     // MARK: - Action
@@ -129,9 +133,12 @@ class RateConverterViewController: UIViewController {
     // MARK: - Animation
     
     private func addRowToTableViewWithAnimation() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        print("Wasim addRowToTableViewWithAnimation:\(self.viewModel.sortedCurrenciesWithRate.count)")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             let indexPath = IndexPath(row: 0, section: 0)
+            self.tableView.beginUpdates()
             self.tableView.insertRows(at: [indexPath], with: .top)
+            self.tableView.endUpdates()
         }
     }
 }

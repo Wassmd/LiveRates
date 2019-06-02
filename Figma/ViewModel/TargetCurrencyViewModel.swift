@@ -40,14 +40,10 @@ final class TargetCurrencyViewModel: BaseCurrencyViewModel {
         }
     }
     
-    func persisCurrencyPair(for indexPath: IndexPath) {
+    func prepareNewCurrencyPair(for indexPath: IndexPath) -> CurrencyPair{
         let targetCurrency = getCurrency(at: indexPath)
         let currencyPair = CurrencyPair.createCurrencyPair(with: selectedFromCurrency, with: targetCurrency)
-        do {
-            try currencyPairService.addCurrencyPair(currencyPair: currencyPair)
-        } catch let error {
-            print(error)
-        }
+        return currencyPair
     }
     
    

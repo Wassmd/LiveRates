@@ -51,7 +51,6 @@ final class CurrencyHelper {
         let subStrings = "\(truncatedValue)".split(separator: ".")
         let firtFourDecimalDigits = String(subStrings[1])
         let lastTwoDigit = String(firtFourDecimalDigits.lastTwoCharacterFromString())
-        print("Wasim rateFirstPart:\(rateFirstPart) lastTwoDigit:\(lastTwoDigit)")
-        return ("\(rateFirstPartFloat ?? "----")", lastTwoDigit)
+        return ("\(rateFirstPartFloat ?? "")", lastTwoDigit)
     }
 }

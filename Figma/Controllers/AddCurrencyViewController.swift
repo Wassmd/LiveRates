@@ -77,7 +77,6 @@ class AddCurrencyViewController: UIViewController {
     //MARK: Actions
     
     @objc private func addCurrencyAction() {
-        print("Wasim inside addCurrencyAction")
         coordinatorDelegate?.showCurrency()
     }
     

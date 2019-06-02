@@ -12,7 +12,6 @@ final class CurrencyItemViewModel {
     
     // MARK: Immutable
     
-    var isSelected: Bool = false
     var cellType: CurrencyCell.CellType
     
     // MARK: - Initializers
@@ -26,12 +25,7 @@ final class CurrencyItemViewModel {
     }
     
     
-    // MARK: Helper
-    
-    func updateSelectionState() {
-        isSelected = !isSelected
-        print("Wasim ----- code:\(currency.code) isSelected:\(isSelected)")
-    }
+    // MARK: - Helper
     
     func updateCellType(cellType: CurrencyCell.CellType) {
         self.cellType = cellType

@@ -1,7 +1,7 @@
 import UIKit
 
 protocol TargetCurrencyViewControllerDelegate: AnyObject {
-    func selectedTargetCurrency()
+    func selectedTargetCurrency(_ newCurrencyPair: CurrencyPair)
 }
 
 class TargetCurrencyViewController: BaseCurrencyViewController<TargetCurrencyViewModel> {
@@ -36,8 +36,8 @@ class TargetCurrencyViewController: BaseCurrencyViewController<TargetCurrencyVie
     }
     
     override func userSelectedCurrency(indexPath: IndexPath) {
-        viewModel.persisCurrencyPair(for: indexPath)
-        coordinatorDelegate?.selectedTargetCurrency()
+        let newCurrencyPair = viewModel.prepareNewCurrencyPair(for: indexPath)
+        coordinatorDelegate?.selectedTargetCurrency(newCurrencyPair)
         
     }
 }

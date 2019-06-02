@@ -70,7 +70,7 @@ class RateTableViewCell: UITableViewCell {
         toCurrencyValueLabel.pinWidth(to: Constants.labelWidth)
         
         toCurrencyFractionValueLabel.pinTrailingEdge(to: self, withOffset: -Constants.offset)
-        toCurrencyFractionValueLabel.pinTopEdge(to: self, withOffset: 20)
+        toCurrencyFractionValueLabel.pinTopEdge(to: self, withOffset: 21)
         toCurrencyFractionValueLabel.pinWidth(to: 24)
         
         toCurrencyCodeLabel.pinTrailingEdge(to: self, withOffset: -Constants.offset)
@@ -88,7 +88,7 @@ class RateTableViewCell: UITableViewCell {
             toCurrencyValueLabel.text = CurrencyHelper.currencyDecimalValue(currencyRate: value).0
             toCurrencyFractionValueLabel.text = CurrencyHelper.currencyDecimalValue(currencyRate: value).1
         } else {
-            toCurrencyValueLabel.text = "---"
+            toCurrencyValueLabel.text = ""
         }
     }
 }
