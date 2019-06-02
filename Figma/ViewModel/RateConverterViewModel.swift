@@ -6,7 +6,7 @@ final class RateConverterViewModel {
     // MARK: - Inner Types
     
     enum Constants {
-        static let refreshInterval: TimeInterval = 5.0
+        static let refreshInterval: TimeInterval = 3.0
     }
     
     
