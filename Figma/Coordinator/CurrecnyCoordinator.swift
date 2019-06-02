@@ -1,8 +1,10 @@
 import UIKit
 
-private enum currencySteps: CoordinatorStep {
+private enum CurrencySteps: CoordinatorStep {
     case toCurrency(currency: Currency)
     case rateConverter(_ newCurrencyPair: CurrencyPair)
+    case informativeAlert(message: String)
+    
 }
 
 final class CurrencyCoordinator: Coordinatable {
@@ -24,7 +26,7 @@ final class CurrencyCoordinator: Coordinatable {
     
     private lazy var currencyViewModel = BaseCurrencyViewModel()
     private lazy var fromCurrencyViewController = FromCurrencyViewController(viewModel: currencyViewModel,
-                                                                     coordinatorDelegate: self)
+                                                                             coordinatorDelegate: self)
     
     // MARK: - Initializers
     
@@ -44,7 +46,7 @@ final class CurrencyCoordinator: Coordinatable {
     // MARK: Coordinatable
     
     func coordinate(to step: CoordinatorStep) {
-        guard let step = step as? currencySteps else {
+        guard let step = step as? CurrencySteps else {
             return
         }
         switch step {
@@ -52,6 +54,8 @@ final class CurrencyCoordinator: Coordinatable {
             showTargetCurrency(currency: currency)
         case .rateConverter(let currencyPair):
             showRateConverter(currencyPair)
+        case .informativeAlert(let message):
+            showInformativeAlert(with: message)
         }
     }
     
@@ -78,12 +82,18 @@ final class CurrencyCoordinator: Coordinatable {
         coordinator.start()
         childCoordinators[identifier] = coordinator
     }
-
+    
+    
+    // MARK: Alert
+    
+    private func showInformativeAlert(with message: String) {
+        UIAlertController.showAlertMessage(message: message, presentedBy: rootViewController)
+    }
 }
 
 extension CurrencyCoordinator: FromCurrencyViewControllerDelegate {
     func selectedFromCurrency(_ currency: Currency) {
-        coordinate(to: currencySteps.toCurrency(currency: currency))
+        coordinate(to: CurrencySteps.toCurrency(currency: currency))
     }
 }
 
@@ -95,10 +105,14 @@ extension CurrencyCoordinator: TargetCurrencyViewControllerDelegate {
     }
     
     func selectedTargetCurrency(_ newCurrencyPair: CurrencyPair) {
-        coordinate(to: currencySteps.rateConverter(newCurrencyPair))
+        coordinate(to: CurrencySteps.rateConverter(newCurrencyPair))
         navigationController.dismiss(animated: true) { [weak self] in
             self?.finish()
         }
+    }
+    
+    func infoAlert(with message: String) {
+        coordinate(to: CurrencySteps.informativeAlert(message: message))
     }
 }
 

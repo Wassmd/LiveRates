@@ -1,7 +1,8 @@
 import UIKit
 
-private enum rateConverterSteps: CoordinatorStep {
+private enum RateConverterSteps: CoordinatorStep {
     case addCurrency
+    case errorAlert(_ error: Error)
 }
 
 final class RateConverterCoordinator: Coordinatable {
@@ -47,12 +48,14 @@ final class RateConverterCoordinator: Coordinatable {
     // MARK: Coordinatable
     
     func coordinate(to step: CoordinatorStep) {
-        guard let step = step as? rateConverterSteps else {
+        guard let step = step as? RateConverterSteps else {
             return
         }
         switch step {
         case .addCurrency:
             showFromCurrency()
+        case .errorAlert(let error):
+            showErrorAlert(with: error)
         }
     }
     
@@ -90,6 +93,29 @@ final class RateConverterCoordinator: Coordinatable {
         childCoordinators[identifier] = coordinator
     }
     
+    
+    // MARK: Alerts
+    
+    private func showErrorAlert(with error: Error) {
+        print("Wasim showErrorAlert:\(error)")
+        var errorMessage = "Failed to get rates."
+        if let requestError = error as? RequestError {
+            switch requestError {
+            case .networkError:
+                errorMessage = "The connection to server failed. Check your network connection"
+            case .unknown:
+                errorMessage = "server Error"
+            case .invalidURL:
+                print("Invalid URL")
+            }
+        }
+        
+        if let rootViewController = rootViewController {
+            UIAlertController.showAlertMessage(message: errorMessage, presentedBy: rootViewController)
+        }
+    }
+    
+    
     // MARK: - Helpers
     
     private func updateModel(with newCurrencyPair: CurrencyPair, of rootViewController: UIViewController?) {
@@ -108,6 +134,10 @@ final class RateConverterCoordinator: Coordinatable {
 
 extension RateConverterCoordinator: RateConverterViewControllerDelegate {
     func addCurrency() {
-        coordinate(to: rateConverterSteps.addCurrency)
+        coordinate(to: RateConverterSteps.addCurrency)
+    }
+    
+    func errorAlert(with error: Error) {
+        coordinate(to: RateConverterSteps.errorAlert(error))
     }
 }

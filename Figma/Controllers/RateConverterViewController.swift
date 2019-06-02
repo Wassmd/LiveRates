@@ -2,6 +2,8 @@ import UIKit
 
 protocol RateConverterViewControllerDelegate: AnyObject {
     func addCurrency()
+    func errorAlert(with error: Error)
+
 }
 
 class RateConverterViewController: UIViewController {
@@ -77,7 +79,7 @@ class RateConverterViewController: UIViewController {
         setupView()
         setupSubviews()
         setupConstraints()
-        setupDataObserving()
+        setupObserving()
     }
     
     
@@ -105,11 +107,18 @@ class RateConverterViewController: UIViewController {
         tableView.pinBottomEdge(to: view.safeAreaLayoutGuide, withOffset: -Constants.tableBottomOffset)
     }
     
-    private func setupDataObserving() {
+    private func setupObserving() {
         viewModel.refeshTableView = { [weak self] in
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
+        }
+        
+        viewModel.handleError = { [weak self] error in
+            DispatchQueue.main.async {
+                self?.coordinatorDelegate?.errorAlert(with: error)
+            }
+            
         }
         
         viewModel.addNewCurrencyOnTop = { [weak self] in
@@ -171,13 +180,14 @@ extension RateConverterViewController: UITableViewDelegate {
     // MARK: UITableViewDelegate
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delectAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, success: (Bool) -> Void) in
+        
+        let delectAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] ( action, view, success: (Bool) -> Void) in
             do {
                 try self?.viewModel.deleteCurrencyPair(at: indexPath)
                 success(true)
             } catch let error {
-                print("delectAction error:\(error)")
                 success(false)
+                print("Row could not be deleted:\(error)")
             }
         }
         return UISwipeActionsConfiguration(actions: [delectAction])
