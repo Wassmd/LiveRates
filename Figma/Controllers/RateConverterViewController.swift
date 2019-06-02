@@ -109,13 +109,13 @@ class RateConverterViewController: UIViewController {
     
     private func setupObserving() {
         viewModel.refeshTableView = { [weak self] in
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 self?.tableView.reloadData()
             }
         }
         
         viewModel.handleError = { [weak self] error in
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 self?.coordinatorDelegate?.errorAlert(with: error)
             }
             
@@ -124,8 +124,7 @@ class RateConverterViewController: UIViewController {
         viewModel.addNewCurrencyOnTop = { [weak self] in
             DispatchQueue.main.async {
                 self?.addRowToTableViewWithAnimation()
-//                self?.viewModel.persistNewCurrencyPair()
-            
+                
             }
         }
     }

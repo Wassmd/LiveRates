@@ -163,8 +163,7 @@ final class RateConverterViewModel {
     }
     
     private func handleTableViewUpdate() {
-//         shouldAddNewCurrencyPair ? self.addNewCurrencyOnTop?() : self.refeshTableView?()
-        shouldAddNewCurrencyPair ? self.refeshTableView?() : self.refeshTableView?()
+        shouldAddNewCurrencyPair ? self.addNewCurrencyOnTop?() : self.refeshTableView?()
     }
     
     
