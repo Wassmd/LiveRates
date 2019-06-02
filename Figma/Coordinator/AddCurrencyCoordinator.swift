@@ -83,6 +83,8 @@ extension AddCurrencyCoordinator: AddCurrencyViewControllerDelegate {
 }
 
 extension AddCurrencyCoordinator: RateConverterViewControllerDelegate {
+    func errorAlert(with error: Error) {}
+    
     func addCurrency() {
         coordinate(to: AddCurrencySteps.showCurrency)
     }

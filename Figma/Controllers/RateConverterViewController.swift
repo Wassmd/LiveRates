@@ -2,6 +2,8 @@ import UIKit
 
 protocol RateConverterViewControllerDelegate: AnyObject {
     func addCurrency()
+    func errorAlert(with error: Error)
+
 }
 
 class RateConverterViewController: UIViewController {
@@ -77,7 +79,7 @@ class RateConverterViewController: UIViewController {
         setupView()
         setupSubviews()
         setupConstraints()
-        setupDataObserving()
+        setupObserving()
     }
     
     
@@ -105,11 +107,18 @@ class RateConverterViewController: UIViewController {
         tableView.pinBottomEdge(to: view.safeAreaLayoutGuide, withOffset: -Constants.tableBottomOffset)
     }
     
-    private func setupDataObserving() {
+    private func setupObserving() {
         viewModel.refeshTableView = { [weak self] in
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
+        }
+        
+        viewModel.handleError = { [weak self] error in
+            DispatchQueue.main.async {
+                self?.coordinatorDelegate?.errorAlert(with: error)
+            }
+            
         }
         
         viewModel.addNewCurrencyOnTop = { [weak self] in

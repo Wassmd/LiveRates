@@ -25,17 +25,12 @@ final class RateConverterViewModel {
     
     var refeshTableView: (() -> Void)?
     var addNewCurrencyOnTop: (() -> Void)?
+    var handleError: ((Error) -> Void)?
     
     fileprivate(set) var sortedCurrenciesWithRate1 = Set<CurrencyPair>()
-    var sortedCurrenciesWithRate = [CurrencyPair]() {
-        didSet {
-            print("wasim in didSet")
-//            self.addNewCurrencyOnTop?()
-        }
-    }
+    var sortedCurrenciesWithRate = [CurrencyPair]()
     
     private var pairs: [String] {
-        print("pairs sortedCurrenciesWithRate:\(sortedCurrenciesWithRate)")
         let pairs = sortedCurrenciesWithRate.map { "\($0.fromCurrencyCode)\($0.targetCurrencyCode)" }
         return pairs
     }
@@ -104,9 +99,12 @@ final class RateConverterViewModel {
     @objc func fetchConversionRates() {
         guard !pairs.isEmpty else { print("Pairs are emplty!"); return }
         
-        networkService.fetchRatesRequest(with: pairs)  { [weak self] (dictionary, error) in
+        networkService.fetchConvertionRates(with: pairs)  { [weak self] (dictionary, error) in
             guard let self = self else { return }
-            guard error == nil else { return }
+            if let error = error {
+                self.handleError?(error)
+            }
+            
             guard let dictionary = dictionary, !dictionary.isEmpty else { return }
         
             self.updateConversationRates(from: dictionary)
