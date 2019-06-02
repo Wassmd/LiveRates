@@ -3,7 +3,6 @@ import UIKit
 protocol TargetCurrencyViewControllerDelegate: AnyObject {
     func selectedTargetCurrency(_ newCurrencyPair: CurrencyPair)
     func maxPairingAchieved()
-    func infoAlert(with message: String)
 }
 
 class TargetCurrencyViewController: BaseCurrencyViewController<TargetCurrencyViewModel> {
@@ -49,15 +48,9 @@ class TargetCurrencyViewController: BaseCurrencyViewController<TargetCurrencyVie
     private func showInfomativeAlertIfNeed() {
        let maxCombinationDone = viewModel.savedCurrencyPairs.count + 1
         if maxCombinationDone == viewModel.getAllItemModelsCount() {
-            coordinatorDelegate?.infoAlert(with: "You have created all posiible pairs.")
-            
-//            let alertController = UIAlertController(title: "Figma", message: "You have created all posiible pairs.", preferredStyle: .alert)
-//            let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
-//                self.coordinatorDelegate?.maxPairingAchieved()
-//            }
-//
-//            alertController.addAction(okAction)
-//            present(alertController, animated: true, completion: nil)
+             UIAlertController.showAlertMessage(message: "You have created all posiible pairs.", presentedBy: self) {  _ in
+                self.coordinatorDelegate?.maxPairingAchieved()
+            }
         }
     }
 }
