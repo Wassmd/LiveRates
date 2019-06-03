@@ -58,6 +58,7 @@ final class RateConverterViewModel {
     
     
     // MARK: setupObserving
+    
     private func setupObserving() {
         notificationCenter.addObserver(self, selector: #selector(savedCurrenciesChanges), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
     }

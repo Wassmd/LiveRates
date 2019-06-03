@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		388D65197ABB700DB09BB8CC /* Pods_FigmaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF13B6BD5D65A68FC9EE16E /* Pods_FigmaTests.framework */; };
 		5F034E03229A73570023AAE1 /* FromCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F034E02229A73570023AAE1 /* FromCurrencyViewController.swift */; };
 		5F034E09229A8A820023AAE1 /* RateConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F034E08229A8A820023AAE1 /* RateConverterViewController.swift */; };
 		5F034E1F229A9B470023AAE1 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F034E0C229A9B470023AAE1 /* Roboto-Medium.ttf */; };
@@ -36,11 +37,18 @@
 		5F034E3D229B09090023AAE1 /* TargetCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F034E3C229B09090023AAE1 /* TargetCurrencyViewController.swift */; };
 		5F034E3F229B10860023AAE1 /* TargetCurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F034E3E229B10860023AAE1 /* TargetCurrencyViewModel.swift */; };
 		5F034E41229B121E0023AAE1 /* BaseCurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F034E40229B121E0023AAE1 /* BaseCurrencyViewModel.swift */; };
+		5F44B80522A44E35007C1B09 /* response.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F44B80322A44E35007C1B09 /* response.json */; };
+		5F44B80722A44E7A007C1B09 /* response_mal.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F44B80622A44E7A007C1B09 /* response_mal.json */; };
 		5F4E902F229FCE4A00E29D50 /* RateConverterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E902E229FCE4A00E29D50 /* RateConverterCoordinator.swift */; };
 		5F4E9032229FE01700E29D50 /* OnboardingStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E9031229FE01700E29D50 /* OnboardingStateMachine.swift */; };
 		5F4E9036229FF1BF00E29D50 /* CurrencyPair.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E9034229FF1BF00E29D50 /* CurrencyPair.xcdatamodeld */; };
 		5F4E9038229FFCA000E29D50 /* CurrencyPairService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E9037229FFCA000E29D50 /* CurrencyPairService.swift */; };
 		5F4E903B22A24A9F00E29D50 /* UIImage+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E903A22A24A9F00E29D50 /* UIImage+Generic.swift */; };
+		5FCA5D2C22A4197B00580962 /* RateConverterViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA5D2B22A4197B00580962 /* RateConverterViewModelTests.swift */; };
+		5FCA5D2F22A41BC300580962 /* NetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA5D2E22A41BC300580962 /* NetworkServiceMock.swift */; };
+		5FCA5D3122A41BD900580962 /* CurrencyPairServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA5D3022A41BD900580962 /* CurrencyPairServiceMock.swift */; };
+		5FCA5D3322A41BEC00580962 /* OnboardingStateMachineMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA5D3222A41BEC00580962 /* OnboardingStateMachineMock.swift */; };
+		5FCA5D3622A42F5300580962 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA5D3522A42F5300580962 /* NetworkServiceTests.swift */; };
 		5FDFC70722986FE0009B263D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC70622986FE0009B263D /* AppDelegate.swift */; };
 		5FDFC70E22986FE2009B263D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FDFC70D22986FE2009B263D /* Assets.xcassets */; };
 		5FDFC71122986FE2009B263D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FDFC70F22986FE2009B263D /* LaunchScreen.storyboard */; };
@@ -73,6 +81,7 @@
 		5FDFC7702299AF34009B263D /* CurrencyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC76F2299AF34009B263D /* CurrencyHelper.swift */; };
 		5FDFC772229A67FA009B263D /* BaseCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC771229A67FA009B263D /* BaseCurrencyViewController.swift */; };
 		5FF7F5F822A2BF5400ACC67D /* Float+NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF7F5F722A2BF5400ACC67D /* Float+NumberFormatter.swift */; };
+		EAD4523AA90D6E96ED891D47 /* Pods_Figma.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFC5C8F0824BFFE48913603 /* Pods_Figma.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +95,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0BFC5C8F0824BFFE48913603 /* Pods_Figma.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Figma.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2AC78DA1C3BD6E1768FAC11D /* Pods-FigmaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FigmaTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FigmaTests/Pods-FigmaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2C49983BDBB7DCC08AEC4675 /* Pods-FigmaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FigmaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FigmaTests/Pods-FigmaTests.release.xcconfig"; sourceTree = "<group>"; };
+		4BF13B6BD5D65A68FC9EE16E /* Pods_FigmaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FigmaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DB7DEFAD7851E33B131F73D /* Pods-Figma.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Figma.release.xcconfig"; path = "Pods/Target Support Files/Pods-Figma/Pods-Figma.release.xcconfig"; sourceTree = "<group>"; };
 		5F034E02229A73570023AAE1 /* FromCurrencyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromCurrencyViewController.swift; sourceTree = "<group>"; };
 		5F034E08229A8A820023AAE1 /* RateConverterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateConverterViewController.swift; sourceTree = "<group>"; };
 		5F034E0C229A9B470023AAE1 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
@@ -115,11 +129,18 @@
 		5F034E3C229B09090023AAE1 /* TargetCurrencyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetCurrencyViewController.swift; sourceTree = "<group>"; };
 		5F034E3E229B10860023AAE1 /* TargetCurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetCurrencyViewModel.swift; sourceTree = "<group>"; };
 		5F034E40229B121E0023AAE1 /* BaseCurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyViewModel.swift; sourceTree = "<group>"; };
+		5F44B80322A44E35007C1B09 /* response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response.json; sourceTree = "<group>"; };
+		5F44B80622A44E7A007C1B09 /* response_mal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = response_mal.json; sourceTree = "<group>"; };
 		5F4E902E229FCE4A00E29D50 /* RateConverterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateConverterCoordinator.swift; sourceTree = "<group>"; };
 		5F4E9031229FE01700E29D50 /* OnboardingStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStateMachine.swift; sourceTree = "<group>"; };
 		5F4E9035229FF1BF00E29D50 /* CurrencyPair.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CurrencyPair.xcdatamodel; sourceTree = "<group>"; };
 		5F4E9037229FFCA000E29D50 /* CurrencyPairService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPairService.swift; sourceTree = "<group>"; };
 		5F4E903A22A24A9F00E29D50 /* UIImage+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Generic.swift"; sourceTree = "<group>"; };
+		5FCA5D2B22A4197B00580962 /* RateConverterViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateConverterViewModelTests.swift; sourceTree = "<group>"; };
+		5FCA5D2E22A41BC300580962 /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
+		5FCA5D3022A41BD900580962 /* CurrencyPairServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPairServiceMock.swift; sourceTree = "<group>"; };
+		5FCA5D3222A41BEC00580962 /* OnboardingStateMachineMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStateMachineMock.swift; sourceTree = "<group>"; };
+		5FCA5D3522A42F5300580962 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
 		5FDFC70322986FE0009B263D /* Figma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Figma.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDFC70622986FE0009B263D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5FDFC70D22986FE2009B263D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -156,6 +177,9 @@
 		5FDFC76F2299AF34009B263D /* CurrencyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyHelper.swift; sourceTree = "<group>"; };
 		5FDFC771229A67FA009B263D /* BaseCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyViewController.swift; sourceTree = "<group>"; };
 		5FF7F5F722A2BF5400ACC67D /* Float+NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Float+NumberFormatter.swift"; sourceTree = "<group>"; };
+		6BBD8605956BD184446051EA /* Pods-Figma.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Figma.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Figma/Pods-Figma.debug.xcconfig"; sourceTree = "<group>"; };
+		7C13759A33049982FB81983F /* Pods-FigmaTests.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FigmaTests.test.xcconfig"; path = "Pods/Target Support Files/Pods-FigmaTests/Pods-FigmaTests.test.xcconfig"; sourceTree = "<group>"; };
+		F5AD9580E17C0E0AD013F5A4 /* Pods-Figma.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Figma.test.xcconfig"; path = "Pods/Target Support Files/Pods-Figma/Pods-Figma.test.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAD4523AA90D6E96ED891D47 /* Pods_Figma.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				388D65197ABB700DB09BB8CC /* Pods_FigmaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +236,15 @@
 			path = roboto;
 			sourceTree = "<group>";
 		};
+		5F44B7FD22A448D9007C1B09 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				5F44B80622A44E7A007C1B09 /* response_mal.json */,
+				5F44B80322A44E35007C1B09 /* response.json */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		5F4E9030229FDFCB00E29D50 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,12 +254,40 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		5FCA5D2A22A4194400580962 /* viewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5FCA5D2B22A4197B00580962 /* RateConverterViewModelTests.swift */,
+			);
+			path = viewModels;
+			sourceTree = "<group>";
+		};
+		5FCA5D2D22A41BAE00580962 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				5FCA5D2E22A41BC300580962 /* NetworkServiceMock.swift */,
+				5FCA5D3022A41BD900580962 /* CurrencyPairServiceMock.swift */,
+				5FCA5D3222A41BEC00580962 /* OnboardingStateMachineMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		5FCA5D3422A42F2400580962 /* Network Service */ = {
+			isa = PBXGroup;
+			children = (
+				5FCA5D3522A42F5300580962 /* NetworkServiceTests.swift */,
+			);
+			path = "Network Service";
+			sourceTree = "<group>";
+		};
 		5FDFC6FA22986FE0009B263D = {
 			isa = PBXGroup;
 			children = (
 				5FDFC70522986FE0009B263D /* Figma */,
 				5FDFC71A22986FE2009B263D /* FigmaTests */,
 				5FDFC70422986FE0009B263D /* Products */,
+				8DDD8884BA33FE3A0288D22A /* Pods */,
+				94A89CEDAAAC1595C38E4E29 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -243,7 +306,7 @@
 				5FDFC74322987137009B263D /* Application */,
 				5FDFC73E22987130009B263D /* Coordinator */,
 				5FDFC74422987530009B263D /* Controllers */,
-				5FDFC74922987591009B263D /* ViewModel */,
+				5FDFC74922987591009B263D /* ViewModels */,
 				5FDFC75922992E57009B263D /* Views */,
 				5FDFC7652299970A009B263D /* Model */,
 				5FDFC74D2298788B009B263D /* Network */,
@@ -259,6 +322,10 @@
 		5FDFC71A22986FE2009B263D /* FigmaTests */ = {
 			isa = PBXGroup;
 			children = (
+				5F44B7FD22A448D9007C1B09 /* Resource */,
+				5FCA5D3422A42F2400580962 /* Network Service */,
+				5FCA5D2D22A41BAE00580962 /* Mocks */,
+				5FCA5D2A22A4194400580962 /* viewModels */,
 				5FDFC71B22986FE2009B263D /* FigmaTests.swift */,
 				5FDFC71D22986FE2009B263D /* Info.plist */,
 			);
@@ -353,7 +420,7 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		5FDFC74922987591009B263D /* ViewModel */ = {
+		5FDFC74922987591009B263D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				5FDFC760229990F6009B263D /* CurrencyItemViewModel.swift */,
@@ -362,7 +429,7 @@
 				5F034E3E229B10860023AAE1 /* TargetCurrencyViewModel.swift */,
 				5F034E36229AD44C0023AAE1 /* RateConverterViewModel.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		5FDFC74C22987599009B263D /* Resources */ = {
@@ -428,6 +495,28 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		8DDD8884BA33FE3A0288D22A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6BBD8605956BD184446051EA /* Pods-Figma.debug.xcconfig */,
+				4DB7DEFAD7851E33B131F73D /* Pods-Figma.release.xcconfig */,
+				2AC78DA1C3BD6E1768FAC11D /* Pods-FigmaTests.debug.xcconfig */,
+				2C49983BDBB7DCC08AEC4675 /* Pods-FigmaTests.release.xcconfig */,
+				F5AD9580E17C0E0AD013F5A4 /* Pods-Figma.test.xcconfig */,
+				7C13759A33049982FB81983F /* Pods-FigmaTests.test.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		94A89CEDAAAC1595C38E4E29 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0BFC5C8F0824BFFE48913603 /* Pods_Figma.framework */,
+				4BF13B6BD5D65A68FC9EE16E /* Pods_FigmaTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -435,6 +524,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FDFC72022986FE2009B263D /* Build configuration list for PBXNativeTarget "Figma" */;
 			buildPhases = (
+				270022E677EC238DD009328C /* [CP] Check Pods Manifest.lock */,
 				5FDFC6FF22986FE0009B263D /* Sources */,
 				5FDFC70022986FE0009B263D /* Frameworks */,
 				5FDFC70122986FE0009B263D /* Resources */,
@@ -452,9 +542,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5FDFC72322986FE2009B263D /* Build configuration list for PBXNativeTarget "FigmaTests" */;
 			buildPhases = (
+				B9F1EE0CF1C3A4A7AE77549B /* [CP] Check Pods Manifest.lock */,
 				5FDFC71322986FE2009B263D /* Sources */,
 				5FDFC71422986FE2009B263D /* Frameworks */,
 				5FDFC71522986FE2009B263D /* Resources */,
+				7F8B75B48B0AD49A4E02B3CE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -538,10 +630,83 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F44B80522A44E35007C1B09 /* response.json in Resources */,
+				5F44B80722A44E7A007C1B09 /* response_mal.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		270022E677EC238DD009328C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Figma-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F8B75B48B0AD49A4E02B3CE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FigmaTests/Pods-FigmaTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FigmaTests/Pods-FigmaTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B9F1EE0CF1C3A4A7AE77549B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FigmaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5FDFC6FF22986FE0009B263D /* Sources */ = {
@@ -599,6 +764,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FDFC71C22986FE2009B263D /* FigmaTests.swift in Sources */,
+				5FCA5D2C22A4197B00580962 /* RateConverterViewModelTests.swift in Sources */,
+				5FCA5D3122A41BD900580962 /* CurrencyPairServiceMock.swift in Sources */,
+				5FCA5D2F22A41BC300580962 /* NetworkServiceMock.swift in Sources */,
+				5FCA5D3622A42F5300580962 /* NetworkServiceTests.swift in Sources */,
+				5FCA5D3322A41BEC00580962 /* OnboardingStateMachineMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,6 +794,115 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5F774CCB22A43C5900EACF06 /* Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"TEST=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = TEST;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Test;
+		};
+		5F774CCC22A43C5900EACF06 /* Test */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5AD9580E17C0E0AD013F5A4 /* Pods-Figma.test.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = JCPY7FXGR4;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
+				INFOPLIST_FILE = Figma/Application/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.grandcentrix.Figma;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "grandcentrix Enterprise Wildcard Development";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Test;
+		};
+		5F774CCD22A43C5900EACF06 /* Test */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C13759A33049982FB81983F /* Pods-FigmaTests.test.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = JCPY7FXGR4;
+				INFOPLIST_FILE = FigmaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.wasim.FigmaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Figma.app/Figma";
+			};
+			name = Test;
+		};
 		5FDFC71E22986FE2009B263D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -742,10 +1021,15 @@
 		};
 		5FDFC72122986FE2009B263D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BBD8605956BD184446051EA /* Pods-Figma.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = JCPY7FXGR4;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+				);
 				INFOPLIST_FILE = Figma/Application/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -762,6 +1046,7 @@
 		};
 		5FDFC72222986FE2009B263D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4DB7DEFAD7851E33B131F73D /* Pods-Figma.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -782,10 +1067,13 @@
 		};
 		5FDFC72422986FE2009B263D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AC78DA1C3BD6E1768FAC11D /* Pods-FigmaTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = JCPY7FXGR4;
 				INFOPLIST_FILE = FigmaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -794,7 +1082,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.wasim.FigmaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Figma.app/Figma";
 			};
@@ -802,10 +1091,12 @@
 		};
 		5FDFC72522986FE2009B263D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C49983BDBB7DCC08AEC4675 /* Pods-FigmaTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = FigmaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -814,7 +1105,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.wasim.FigmaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Figma.app/Figma";
 			};
@@ -827,6 +1119,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FDFC71E22986FE2009B263D /* Debug */,
+				5F774CCB22A43C5900EACF06 /* Test */,
 				5FDFC71F22986FE2009B263D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -836,6 +1129,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FDFC72122986FE2009B263D /* Debug */,
+				5F774CCC22A43C5900EACF06 /* Test */,
 				5FDFC72222986FE2009B263D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -845,6 +1139,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FDFC72422986FE2009B263D /* Debug */,
+				5F774CCD22A43C5900EACF06 /* Test */,
 				5FDFC72522986FE2009B263D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;

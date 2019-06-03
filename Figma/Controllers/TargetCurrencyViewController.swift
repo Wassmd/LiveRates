@@ -48,7 +48,7 @@ class TargetCurrencyViewController: BaseCurrencyViewController<TargetCurrencyVie
     private func showInfomativeAlertIfNeed() {
        let maxCombinationDone = viewModel.savedCurrencyPairs.count + 1
         if maxCombinationDone == viewModel.getAllItemModelsCount() {
-             UIAlertController.showAlertMessage(message: "You have created all posiible pairs.", presentedBy: self) {  _ in
+             UIAlertController.showAlertMessage(message: "You have created all possible pairs.", presentedBy: self) {  _ in
                 self.coordinatorDelegate?.maxPairingAchieved()
             }
         }
