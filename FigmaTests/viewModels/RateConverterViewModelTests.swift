@@ -34,38 +34,53 @@ class RateConverterViewModelTests: XCTestCase {
     }
     
     func testSetUpInitialData_shouldBeCalled() {
-        
+        expect(self.currencyPairServiceMock.calledCount.fetchCurrenciesPairFromLocalDatabase).to(equal(1))
     }
     
     func testSetUpInitialData_fetchCurrenciesPairFromLocalDatabase_shouldBeCalled() {
-        viewModel.setupSavedCurrenciesPairs()
+        currencyPairServiceMock.returnValue.currenciesPair = createCurrencyPairs()
+        
+        viewModel.syncCurrenciesPairWithLocalDatabase()
         
          expect(self.currencyPairServiceMock.calledCount.fetchCurrenciesPairFromLocalDatabase).to(equal(2))
-        
         expect(self.viewModel.sortedCurrenciesWithRate.count).to(equal(2))
-        let rate = viewModel.sortedCurrenciesWithRate.first { $0.conversionRate == 0.0443 }
-        let rate2 = viewModel.sortedCurrenciesWithRate.first { $0.conversionRate == 5.0251 }
-        print("\(viewModel.sortedCurrenciesWithRate)")
-
-        expect(rate).notTo(beNil())
-        expect(rate2).notTo(beNil())
-        
     }
     
     func testFetchConversionRates_fetchConverstionIsCalled_returnRateDict() {
-        let currencyPair = CurrencyPair(fromCurrencyCode: "CZK", fromCurrencyName:  nil, targetCurrencyCode: "USD", targetCurrencyName: nil, conversionRate: nil, creationDate:  Date())
-        let currencyPair2 = CurrencyPair(fromCurrencyCode: "GBP", fromCurrencyName:  nil, targetCurrencyCode: "PLN", targetCurrencyName: nil, conversionRate: nil, creationDate:  Date())
-        viewModel.sortedCurrenciesWithRate.append(currencyPair)
-        viewModel.sortedCurrenciesWithRate.append(currencyPair2)
+        networkServiceMock.returnValue.pairsDict =  ["CZKUSD":0.0443,"GBPPLN":5.0251]
+        
+        viewModel.updateSortedCurrenciesWithRate(with: createCurrencyPairs())
         
         viewModel.fetchConversionRates()
         
-        expect(self.networkServiceMock.calledCount.fetchConvertionRates).to(equal(1))
-        
+        expect(self.networkServiceMock.calledCount.fetchConvertionRatesCount).to(equal(1))
         let rate = viewModel.sortedCurrenciesWithRate.first { $0.conversionRate == 0.0443 }
         let rate2 = viewModel.sortedCurrenciesWithRate.first { $0.conversionRate == 5.0251 }
         
         expect(rate).notTo(beNil())
         expect(rate2).notTo(beNil())
+    }
+    
+    func testUpdateConversationRates_ofExistingCurrencyPairs_shouldUpdateToNewValue() {
+        viewModel.updateSortedCurrenciesWithRate(with: createCurrencyPairs())
+        networkServiceMock.returnValue.pairsDict =  ["CZKUSD":1.7777,"GBPPLN":23.23]
+        
+        viewModel.fetchConversionRates()
+        
+        let rate = viewModel.sortedCurrenciesWithRate.first { $0.conversionRate == 1.7777 }
+        let rate2 = viewModel.sortedCurrenciesWithRate.first { $0.conversionRate == 23.23 }
+        
+        expect(rate).notTo(beNil())
+        expect(rate2).notTo(beNil())
+    }
+    
+    
+    // MARK: - Helper
+    
+    private func createCurrencyPairs() -> [CurrencyPair] {
+        let currencyPair1 = CurrencyPair(fromCurrencyCode: "CZK", fromCurrencyName:  nil, targetCurrencyCode: "USD", targetCurrencyName: nil, conversionRate: 0.0443, creationDate:  Date())
+        let currencyPair2 = CurrencyPair(fromCurrencyCode: "GBP", fromCurrencyName:  "British Pound", targetCurrencyCode: "PLN", targetCurrencyName: "Polish Zloty", conversionRate: 5.0251, creationDate:  Date())
+        
+        return [currencyPair1, currencyPair2]
     }
 }

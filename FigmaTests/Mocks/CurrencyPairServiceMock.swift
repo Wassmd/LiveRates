@@ -11,7 +11,7 @@ class CurrencyPairServiceMock: CurrencyPairService {
     }
     
     class ReturnValue {
-        
+        var currenciesPair = [CurrencyPair]()
     }
     
     
@@ -23,10 +23,6 @@ class CurrencyPairServiceMock: CurrencyPairService {
     
     override func fetchCurrenciesPairFromLocalDatabase(completion: @escaping (([CurrencyPair]?, Error?) -> Void)) {
         calledCount.fetchCurrenciesPairFromLocalDatabase += 1
-        
-        let currencyPair1 = CurrencyPair(fromCurrencyCode: "CZK", fromCurrencyName:  nil, targetCurrencyCode: "USD", targetCurrencyName: nil, conversionRate: nil, creationDate:  Date())
-        let currencyPair2 = CurrencyPair(fromCurrencyCode: "GBP", fromCurrencyName:  "British Pound", targetCurrencyCode: "PLN", targetCurrencyName: "Polish Zloty", conversionRate: nil, creationDate:  Date())
-        
-        completion([currencyPair1,currencyPair2], nil)
+        completion(returnValue.currenciesPair, nil)
     }
 }

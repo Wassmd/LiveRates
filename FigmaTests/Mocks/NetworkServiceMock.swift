@@ -6,11 +6,11 @@ import XCTest
 class NetworkServiceMock: NetworkService {
     
     class CalledCount {
-        var fetchConvertionRates = 0
+        var fetchConvertionRatesCount = 0
     }
     
     class ReturnValue {
-        
+        var pairsDict = [String: Any]()
     }
     
     
@@ -21,8 +21,8 @@ class NetworkServiceMock: NetworkService {
     let returnValue = ReturnValue()
     
     override func fetchConvertionRates(with pairs: [String], completion: @escaping ((Dictionary<String, Any>?, Error?) -> Void)) {
-        calledCount.fetchConvertionRates += 1
-        completion(["CZKUSD":0.0443,"GBPPLN":5.0251], nil)
+        calledCount.fetchConvertionRatesCount += 1
+        completion(self.returnValue.pairsDict, nil)
     }
     
 }
