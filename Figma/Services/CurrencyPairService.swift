@@ -23,15 +23,27 @@ class CurrencyPairService {
     private let notificationCenter: NotificationCenter
     
     // MARK: - Intializers
+    #if TEST
     
-    private init(persistentContainerProvider: PersistanceContainerProviding = DefaultPersistanceContainerProvider(),
+    init(persistentContainerProvider: PersistanceContainerProviding = DefaultPersistanceContainerProvider(),
+                 notificationCenter: NotificationCenter = NotificationCenter.default){
+        self.persistentContainer = persistentContainerProvider.container
+        self.managedObjectContext = persistentContainer.viewContext
+        self.notificationCenter = notificationCenter
+    }
+    
+    #else
+    
+     private init(persistentContainerProvider: PersistanceContainerProviding = DefaultPersistanceContainerProvider(),
                  notificationCenter: NotificationCenter = NotificationCenter.default){
         self.persistentContainer = persistentContainerProvider.container
         self.managedObjectContext = persistentContainer.viewContext
         self.notificationCenter = notificationCenter
     }
 
-
+     #endif
+    
+    
     // MARK: - API
 
     func addCurrencyPair(currencyPair: CurrencyPair) throws {

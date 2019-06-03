@@ -15,7 +15,7 @@ class NetworkService {
     
     // MARK: - Inner Types
     
-    private enum Constants {
+    enum Constants {
         static let timeout: TimeInterval = 5.0
     }
     
@@ -61,6 +61,7 @@ class NetworkService {
             return
         }
         
+        print("URL:\(url.absoluteString)")
         let urlRequest = URLRequest(url: url)
         let urlSession = URLSession(configuration: config)
         

@@ -14,7 +14,7 @@ final class RateConverterViewModel {
     // MARK: Immutables
     
     private let networkService: NetworkService
-    let currencyPairService: CurrencyPairService
+    private let currencyPairService: CurrencyPairService
     private let notificationCenter: NotificationCenter
     private let onboardingStateMachine: OnboardingStateMachine
     
@@ -27,8 +27,7 @@ final class RateConverterViewModel {
     var addNewCurrencyOnTop: (() -> Void)?
     var handleError: ((Error) -> Void)?
     
-    fileprivate(set) var sortedCurrenciesWithRate1 = Set<CurrencyPair>()
-    var sortedCurrenciesWithRate = [CurrencyPair]()
+    private(set) var sortedCurrenciesWithRate = [CurrencyPair]()
     
     private var pairs: [String] {
         let pairs = sortedCurrenciesWithRate.map { "\($0.fromCurrencyCode)\($0.targetCurrencyCode)" }
@@ -57,13 +56,12 @@ final class RateConverterViewModel {
     }
     
     
-    // MARK: setupObserving
+    // MARK: - setups
+    
     private func setupObserving() {
         notificationCenter.addObserver(self, selector: #selector(savedCurrenciesChanges), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
     }
     
-    
-    // MARK: - Action
     private func setUpInitialData() {
         currencyPairService.fetchCurrenciesPairFromLocalDatabase() { [weak self] savedCurrencyPairs, error in
             guard let self = self else { return }
@@ -79,7 +77,10 @@ final class RateConverterViewModel {
         }
     }
     
-    func setupSavedCurrenciesPairs() {
+    
+    // MARK: - Action
+    
+    func syncCurrenciesPairWithLocalDatabase() {
         currencyPairService.fetchCurrenciesPairFromLocalDatabase() { [weak self] savedCurrencyPairs, error in
             guard let self = self else { return }
             guard error == nil else { return }
@@ -143,7 +144,6 @@ final class RateConverterViewModel {
     }
     
     private func updateConversationRates(from dictionary: Dictionary<String, Any>) {
-        print("Wasim sortedCurrenciesWithRate begin: \(sortedCurrenciesWithRate)")
         let currenciesPair = dictionary.compactMap { (key, value) -> CurrencyPair? in
             let fromCurrencyCode = "\(key.fromCurrencyCode())"
             let targetCurrencyCode = "\(key.targetCurrencyCode())"
@@ -158,7 +158,7 @@ final class RateConverterViewModel {
 
     }
     
-    private func updateSortedCurrenciesWithRate(with currenciesPair: [CurrencyPair]) {
+    func updateSortedCurrenciesWithRate(with currenciesPair: [CurrencyPair]) {
         sortedCurrenciesWithRate = currenciesPair
     }
     
@@ -179,7 +179,7 @@ final class RateConverterViewModel {
     // MARK: - Notification
     
     @objc func savedCurrenciesChanges() {
-        setupSavedCurrenciesPairs()
+        syncCurrenciesPairWithLocalDatabase()
     }
     
     
