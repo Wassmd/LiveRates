@@ -21,7 +21,7 @@ class CurrencyPairServiceMock: CurrencyPairService {
     let calledCount = CalledCount()
     let returnValue = ReturnValue()
     
-    override func fetchCurrenciesPairFromLocalDatabase(completion: @escaping (([CurrencyPair]?, Error?) -> Void)) {
+    override func fetchCurrencyPairsFromLocalDatabase(completion: @escaping (([CurrencyPair]?, Error?) -> Void)) {
         calledCount.fetchCurrenciesPairFromLocalDatabase += 1
         completion(returnValue.currenciesPair, nil)
     }

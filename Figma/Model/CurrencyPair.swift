@@ -1,7 +1,7 @@
 import Foundation
 import CoreData
 
-struct CurrencyPair: Hashable {
+struct CurrencyPair {
     let fromCurrencyCode: String
     let fromCurrencyName: String?
     let targetCurrencyCode: String

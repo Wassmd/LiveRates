@@ -97,7 +97,6 @@ final class RateConverterCoordinator: Coordinatable {
     // MARK: Alerts
     
     private func showErrorAlert(with error: Error) {
-        print("Wasim showErrorAlert:\(error)")
         var errorMessage = "Failed to get rates."
         if let requestError = error as? RequestError {
             switch requestError {

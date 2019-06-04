@@ -77,7 +77,7 @@ class CurrencyPairService {
         }
     }
     
-    func fetchCurrenciesPairFromLocalDatabase(completion: @escaping (([CurrencyPair]?, Error?) -> Void)) {
+    func fetchCurrencyPairsFromLocalDatabase(completion: @escaping (([CurrencyPair]?, Error?) -> Void)) {
         let context = self.persistentContainer.newBackgroundContext()
         context.perform {
             do {

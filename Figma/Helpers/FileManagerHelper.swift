@@ -22,7 +22,6 @@ final class FileManagerHelper {
             let element: Element = try decode(at: fileURL)
             return element
         }catch {
-            print("Wasim error:\(error)")
             return nil
         }
     }

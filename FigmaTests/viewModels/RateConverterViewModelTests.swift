@@ -40,7 +40,7 @@ class RateConverterViewModelTests: XCTestCase {
     func testSetUpInitialData_fetchCurrenciesPairFromLocalDatabase_shouldBeCalled() {
         currencyPairServiceMock.returnValue.currenciesPair = createCurrencyPairs()
         
-        viewModel.syncCurrenciesPairWithLocalDatabase()
+        viewModel.syncCurrencyPairsWithLocalDatabase()
         
          expect(self.currencyPairServiceMock.calledCount.fetchCurrenciesPairFromLocalDatabase).to(equal(2))
         expect(self.viewModel.sortedCurrenciesWithRate.count).to(equal(2))

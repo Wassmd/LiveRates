@@ -28,9 +28,7 @@ final class TargetCurrencyViewModel: BaseCurrencyViewModel {
         currencyPairService.fetchSavedCurrencyPair(by: selectedFromCurrency.code) { [weak self] saveCurrencyPairs, error in
             guard let self = self else { return }
             guard error == nil else { return }
-            
-            print("Wasim ***** \(String(describing: saveCurrencyPairs))")
-            
+                        
             if let saveCurrencyPairs = saveCurrencyPairs {
                 self.savedCurrencyPairs = saveCurrencyPairs
                 self.updateItemViewModelCellType()

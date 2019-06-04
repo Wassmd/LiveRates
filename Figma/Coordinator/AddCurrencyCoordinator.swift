@@ -30,7 +30,6 @@ final class AddCurrencyCoordinator: Coordinatable {
         self.identifier = identifier
         self.dismissable = dismissable
         self.window = window
-
     }
     
     

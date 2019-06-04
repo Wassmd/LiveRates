@@ -63,7 +63,7 @@ final class RateConverterViewModel {
     }
     
     private func setUpInitialData() {
-        currencyPairService.fetchCurrenciesPairFromLocalDatabase() { [weak self] savedCurrencyPairs, error in
+        currencyPairService.fetchCurrencyPairsFromLocalDatabase() { [weak self] savedCurrencyPairs, error in
             guard let self = self else { return }
             guard error == nil else { return }
             
@@ -80,8 +80,8 @@ final class RateConverterViewModel {
     
     // MARK: - Action
     
-    func syncCurrenciesPairWithLocalDatabase() {
-        currencyPairService.fetchCurrenciesPairFromLocalDatabase() { [weak self] savedCurrencyPairs, error in
+    func syncCurrencyPairsWithLocalDatabase() {
+        currencyPairService.fetchCurrencyPairsFromLocalDatabase() { [weak self] savedCurrencyPairs, error in
             guard let self = self else { return }
             guard error == nil else { return }
             
@@ -114,9 +114,7 @@ final class RateConverterViewModel {
     }
     
     func handleAddNewCurrency(currencyPair: CurrencyPair)  {
-        sortedCurrenciesWithRate.insert(currencyPair, at: 0)
-        print("Wasim sorted count \(sortedCurrenciesWithRate.count)")
-        
+        sortedCurrenciesWithRate.insert(currencyPair, at: 0)        
         fireupRateRequestIfNeeded()
         persistNewCurrencyPair(currencyPair)
     }
@@ -144,7 +142,7 @@ final class RateConverterViewModel {
     }
     
     private func updateConversationRates(from dictionary: Dictionary<String, Any>) {
-        let currenciesPair = dictionary.compactMap { (key, value) -> CurrencyPair? in
+        let currencyPairs = dictionary.compactMap { (key, value) -> CurrencyPair? in
             let fromCurrencyCode = "\(key.fromCurrencyCode())"
             let targetCurrencyCode = "\(key.targetCurrencyCode())"
             let conversionRate = value as? Double
@@ -154,17 +152,16 @@ final class RateConverterViewModel {
             }
             .sorted(by: { $0.creationDate > $1.creationDate })
         
-        updateSortedCurrenciesWithRate(with: currenciesPair)
+        updateSortedCurrenciesWithRate(with: currencyPairs)
 
     }
     
-    func updateSortedCurrenciesWithRate(with currenciesPair: [CurrencyPair]) {
-        sortedCurrenciesWithRate = currenciesPair
+    func updateSortedCurrenciesWithRate(with currencyPairs: [CurrencyPair]) {
+        sortedCurrenciesWithRate = currencyPairs
     }
     
     private func handleTableViewUpdate() {
-//         shouldAddNewCurrencyPair ? self.addNewCurrencyOnTop?() : self.refeshTableView?()
-        shouldAddNewCurrencyPair ? self.refeshTableView?() : self.refeshTableView?()
+        self.refeshTableView?()
     }
     
     
@@ -179,7 +176,7 @@ final class RateConverterViewModel {
     // MARK: - Notification
     
     @objc func savedCurrenciesChanges() {
-        syncCurrenciesPairWithLocalDatabase()
+        syncCurrencyPairsWithLocalDatabase()
     }
     
     

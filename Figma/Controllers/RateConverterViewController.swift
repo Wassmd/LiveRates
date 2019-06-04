@@ -118,15 +118,6 @@ class RateConverterViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.coordinatorDelegate?.errorAlert(with: error)
             }
-            
-        }
-        
-        viewModel.addNewCurrencyOnTop = { [weak self] in
-            DispatchQueue.main.async {
-                self?.addRowToTableViewWithAnimation()
-//                self?.viewModel.persistNewCurrencyPair()
-            
-            }
         }
     }
     
@@ -135,19 +126,6 @@ class RateConverterViewController: UIViewController {
     
     @objc func addCurrency() {
         coordinatorDelegate?.addCurrency()
-    }
-    
-    
-    // MARK: - Animation
-    
-    private func addRowToTableViewWithAnimation() {
-        print("Wasim addRowToTableViewWithAnimation:\(self.viewModel.sortedCurrenciesWithRate.count)")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            let indexPath = IndexPath(row: 0, section: 0)
-            self.tableView.beginUpdates()
-            self.tableView.insertRows(at: [indexPath], with: .top)
-            self.tableView.endUpdates()
-        }
     }
 }
 
