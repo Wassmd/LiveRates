@@ -29,11 +29,11 @@ final class RateConverterViewModel {
     var addNewCurrencyOnTop: (() -> Void)?
     var handleError: ((Error) -> Void)?
     
-    private var rawCurrencyPairs = [CurrencyPair]()
+    private var savedCurrencyPairs = [CurrencyPair]()
     private(set) var sortedCurrenciesWithRate = [CurrencyPair]()
     
     private var pairs: [String] {
-        let pairs = rawCurrencyPairs.map { "\($0.fromCurrencyCode)\($0.targetCurrencyCode)" }
+        let pairs = savedCurrencyPairs.map { "\($0.fromCurrencyCode)\($0.targetCurrencyCode)" }
         return pairs
     }
     
@@ -77,7 +77,7 @@ final class RateConverterViewModel {
                 return
             }
             
-            self.updateRawCurrencyPairs(with: savedCurrencyPairs)
+            self.updateSaveCurrencyPairs(with: savedCurrencyPairs)
             self.persistOnboardingShown(true)
             self.fireupRateRequestIfNeeded()
         }
@@ -93,11 +93,11 @@ final class RateConverterViewModel {
             
             guard let savedCurrencyPairs = savedCurrencyPairs, !savedCurrencyPairs.isEmpty else {
                 self.persistOnboardingShown(false)
-                self.updateRawCurrencyPairs(with: [])
+                self.updateSaveCurrencyPairs(with: [])
                 return
             }
             
-            self.updateRawCurrencyPairs(with: savedCurrencyPairs)
+            self.updateSaveCurrencyPairs(with: savedCurrencyPairs)
             self.persistOnboardingShown(true)
             self.fireupRateRequestIfNeeded()
         }
@@ -124,7 +124,7 @@ final class RateConverterViewModel {
     
     // MARK: - APIs
     
-    func persistNewCurrencyPair(_ currencyPair: CurrencyPair) {
+    private func persistNewCurrencyPair(_ currencyPair: CurrencyPair) {
         do {
             try currencyPairService.addCurrencyPair(currencyPair: currencyPair)
         } catch let error {
@@ -154,22 +154,20 @@ final class RateConverterViewModel {
             let targetCurrencyCode = "\(key.targetCurrencyCode())"
             let conversionRate = value as? Double
             
-            guard var currencyPair = rawCurrencyPairs.first(where: { $0.fromCurrencyCode == fromCurrencyCode && $0.targetCurrencyCode == targetCurrencyCode }) else { return nil }
+            guard var currencyPair = savedCurrencyPairs.first(where: { $0.fromCurrencyCode == fromCurrencyCode && $0.targetCurrencyCode == targetCurrencyCode }) else { return nil }
             
             currencyPair.updateConverstionRate(conversionRate)
             return currencyPair
             }
             .sorted(by: { $0.creationDate > $1.creationDate })
         
-        updateSortedCurrenciesWithRate(with: currencyPairs, isRatesAvailable: true)
+        updateSortedCurrenciesWithRate(with: currencyPairs)
         
     }
     
-    func updateSortedCurrenciesWithRate(with currencyPairs: [CurrencyPair], isRatesAvailable: Bool) {
+    func updateSortedCurrenciesWithRate(with currencyPairs: [CurrencyPair]) {
         let shouldAddRowAtTop =  shouldAddRowAtTopWithAnimation(currencyPairs)
         self.sortedCurrenciesWithRate = currencyPairs
-        
-        guard isRatesAvailable else { return }
         
         if shouldAddRowAtTop {
             self.addNewCurrencyOnTop?()
@@ -178,8 +176,8 @@ final class RateConverterViewModel {
         }
     }
 
-    private func updateRawCurrencyPairs(with currencyPairs: [CurrencyPair]) {
-        rawCurrencyPairs = currencyPairs
+    func updateSaveCurrencyPairs(with currencyPairs: [CurrencyPair]) {
+        savedCurrencyPairs = currencyPairs
     }
     
     private func handleTableViewUpdate() {
