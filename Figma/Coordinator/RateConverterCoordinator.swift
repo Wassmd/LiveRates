@@ -77,7 +77,6 @@ final class RateConverterCoordinator: Coordinatable {
     private func prepareModelForNewCurrency(with newCurrenyPair: CurrencyPair?) {
         if let newCurrencyPair = newCurrencyPair {
             if let rootViewController = rootViewController as? RateConverterViewController {
-                rootViewController.viewModel.stopRateTimer()
                 rootViewController.viewModel.handleAddNewCurrency(currencyPair: newCurrencyPair)
            }
         }

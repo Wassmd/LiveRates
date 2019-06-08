@@ -109,6 +109,7 @@ final class RateConverterViewModel {
             guard let self = self else { return }
             if let error = error {
                 self.handleError?(error)
+                self.updateSortedCurrenciesWithRate(with: self.savedCurrencyPairs)
             }
             
             guard let dictionary = dictionary, !dictionary.isEmpty else { return }
@@ -185,15 +186,12 @@ final class RateConverterViewModel {
     }
     
     func updateIsNewCurrencyPairAdded(_ didFinishAdding: Bool) {
-        if !didFinishAdding {
-            startRefreshTimer()
-        }
         isNewCurrencyPairAdded = didFinishAdding
     }
     
     private func shouldAddRowAtTopWithAnimation(_ currencyPairsWithRate: [CurrencyPair]) -> Bool {
         return currencyPairsWithRate.count > sortedCurrenciesWithRate.count &&
-            sortedCurrenciesWithRate.count > 1 &&
+            sortedCurrenciesWithRate.count > 0 &&
         isNewCurrencyPairAdded
     }
     
