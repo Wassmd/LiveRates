@@ -155,7 +155,6 @@ extension RateConverterViewController: UITableViewDataSource {
     // MARK: UITableViewDatasource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("Wasim viewModel.sortedCurrenciesWithRate.count:\(viewModel.sortedCurrenciesWithRate.count)")
         return viewModel.sortedCurrenciesWithRate.count
     }
     

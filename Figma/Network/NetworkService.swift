@@ -61,7 +61,7 @@ class NetworkService {
             return
         }
         
-        print("URL:\(url.absoluteString)")
+        print("Wasim URL:\(url.absoluteString)")
         let urlRequest = URLRequest(url: url)
         let urlSession = URLSession(configuration: config)
         
@@ -73,7 +73,7 @@ class NetworkService {
             
             if let data = data {
                 do {
-                    print("Response form server: \(String(describing: String(data: data, encoding: .utf8)))")
+                    print("Wasim Response form server: \(String(describing: String(data: data, encoding: .utf8)))")
                     if let result = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
                         completion(result, nil)
                     }

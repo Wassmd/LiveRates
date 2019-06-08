@@ -8,6 +8,13 @@ struct CurrencyPair {
     let targetCurrencyName: String?
     var conversionRate: Double?
     let creationDate: Date
+    
+    
+    // MARK: - Mutating
+    
+    mutating func updateConverstionRate(_ newConversionRate: Double?) {
+        conversionRate = newConversionRate
+    }
 }
 
 extension CurrencyPair {

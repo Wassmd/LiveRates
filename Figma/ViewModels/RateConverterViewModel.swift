@@ -22,17 +22,18 @@ final class RateConverterViewModel {
     
     // MARK: Mutable
     
-    private var requestTimer: Timer?
+    private weak var requestTimer: Timer?
     private var isNewCurrencyPairAdded: Bool = false
     
     var refeshTableView: (() -> Void)?
     var addNewCurrencyOnTop: (() -> Void)?
     var handleError: ((Error) -> Void)?
     
+    private var rawCurrencyPairs = [CurrencyPair]()
     private(set) var sortedCurrenciesWithRate = [CurrencyPair]()
     
     private var pairs: [String] {
-        let pairs = sortedCurrenciesWithRate.map { "\($0.fromCurrencyCode)\($0.targetCurrencyCode)" }
+        let pairs = rawCurrencyPairs.map { "\($0.fromCurrencyCode)\($0.targetCurrencyCode)" }
         return pairs
     }
     
@@ -76,7 +77,7 @@ final class RateConverterViewModel {
                 return
             }
             
-            self.updateSortedCurrenciesWithRate(with: savedCurrencyPairs, isRatesAvailable: false)
+            self.updateRawCurrencyPairs(with: savedCurrencyPairs)
             self.persistOnboardingShown(true)
             self.fireupRateRequestIfNeeded()
         }
@@ -92,11 +93,11 @@ final class RateConverterViewModel {
             
             guard let savedCurrencyPairs = savedCurrencyPairs, !savedCurrencyPairs.isEmpty else {
                 self.persistOnboardingShown(false)
-                self.updateSortedCurrenciesWithRate(with: [], isRatesAvailable: false)
+                self.updateRawCurrencyPairs(with: [])
                 return
             }
             
-            self.updateSortedCurrenciesWithRate(with: savedCurrencyPairs, isRatesAvailable: false)
+            self.updateRawCurrencyPairs(with: savedCurrencyPairs)
             self.persistOnboardingShown(true)
             self.fireupRateRequestIfNeeded()
         }
@@ -118,7 +119,6 @@ final class RateConverterViewModel {
     
     func handleAddNewCurrency(currencyPair: CurrencyPair)  {
         updateIsNewCurrencyPairAdded(true)
-        sortedCurrenciesWithRate.insert(currencyPair, at: 0)
         persistNewCurrencyPair(currencyPair)
     }
     
@@ -153,8 +153,10 @@ final class RateConverterViewModel {
             let fromCurrencyCode = "\(key.fromCurrencyCode())"
             let targetCurrencyCode = "\(key.targetCurrencyCode())"
             let conversionRate = value as? Double
-            guard var currencyPair = sortedCurrenciesWithRate.first(where: { $0.fromCurrencyCode == fromCurrencyCode && $0.targetCurrencyCode == targetCurrencyCode }) else { return nil }
-            currencyPair.conversionRate = conversionRate
+            
+            guard var currencyPair = rawCurrencyPairs.first(where: { $0.fromCurrencyCode == fromCurrencyCode && $0.targetCurrencyCode == targetCurrencyCode }) else { return nil }
+            
+            currencyPair.updateConverstionRate(conversionRate)
             return currencyPair
             }
             .sorted(by: { $0.creationDate > $1.creationDate })
@@ -164,17 +166,20 @@ final class RateConverterViewModel {
     }
     
     func updateSortedCurrenciesWithRate(with currencyPairs: [CurrencyPair], isRatesAvailable: Bool) {
-
-        print("Wasim updateSortedCurrenciesWithRate: \(self.isNewCurrencyPairAdded), isRatesAvailable: \(isRatesAvailable)")
+        let shouldAddRowAtTop =  shouldAddRowAtTopWithAnimation(currencyPairs)
         self.sortedCurrenciesWithRate = currencyPairs
         
         guard isRatesAvailable else { return }
         
-        if self.isNewCurrencyPairAdded && sortedCurrenciesWithRate.count > 1 {
+        if shouldAddRowAtTop {
             self.addNewCurrencyOnTop?()
         } else {
             self.handleTableViewUpdate()
         }
+    }
+
+    private func updateRawCurrencyPairs(with currencyPairs: [CurrencyPair]) {
+        rawCurrencyPairs = currencyPairs
     }
     
     private func handleTableViewUpdate() {
@@ -186,6 +191,12 @@ final class RateConverterViewModel {
             startRefreshTimer()
         }
         isNewCurrencyPairAdded = didFinishAdding
+    }
+    
+    private func shouldAddRowAtTopWithAnimation(_ currencyPairsWithRate: [CurrencyPair]) -> Bool {
+        return currencyPairsWithRate.count > sortedCurrenciesWithRate.count &&
+            sortedCurrenciesWithRate.count > 1 &&
+        isNewCurrencyPairAdded
     }
     
     // MARK: - Timer
