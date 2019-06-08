@@ -82,13 +82,14 @@ class RateTableViewCell: UITableViewCell {
     func configureCell(with currencyPair: CurrencyPair) {
         fromCurrencyValueCodeLabel.text = "1 \(currencyPair.fromCurrencyCode)"
         fromCurrencyNameLabel.text = currencyPair.fromCurrencyName
-        toCurrencyCodeLabel.text = "\(currencyPair.targetCurrencyName ?? "") . \(currencyPair.targetCurrencyCode)"
+        toCurrencyCodeLabel.text = "\(currencyPair.targetCurrencyName ?? "") · \(currencyPair.targetCurrencyCode)"
         
         if let value = currencyPair.conversionRate {
             toCurrencyValueLabel.text = CurrencyHelper.currencyDecimalValue(currencyRate: value).0
             toCurrencyFractionValueLabel.text = CurrencyHelper.currencyDecimalValue(currencyRate: value).1
         } else {
-            toCurrencyValueLabel.text = ""
+            toCurrencyValueLabel.text = "---"
+            toCurrencyFractionValueLabel.text = "-"
         }
     }
 }
