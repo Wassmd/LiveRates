@@ -80,6 +80,8 @@ class RateConverterViewController: UIViewController {
         setupSubviews()
         setupConstraints()
         setupObserving()
+        
+        viewModel.start()
     }
     
     
@@ -119,6 +121,12 @@ class RateConverterViewController: UIViewController {
                 self?.coordinatorDelegate?.errorAlert(with: error)
             }
         }
+        
+        viewModel.addNewCurrencyOnTop = { [weak self] in
+            DispatchQueue.main.async {
+                self?.insertNewCurrenyOnTop()
+            }
+        }
     }
     
     
@@ -126,6 +134,17 @@ class RateConverterViewController: UIViewController {
     
     @objc func addCurrency() {
         coordinatorDelegate?.addCurrency()
+    }
+    
+    private func insertNewCurrenyOnTop() {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            let indexPath = IndexPath(row: 0, section: 0)
+            self.tableView.beginUpdates()
+            self.tableView.insertRows(at: [indexPath], with: .top)
+            self.tableView.endUpdates()
+            self.viewModel.updateIsNewCurrencyPairAdded(false)
+        
+//        }
     }
 }
 
@@ -136,6 +155,7 @@ extension RateConverterViewController: UITableViewDataSource {
     // MARK: UITableViewDatasource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("Wasim viewModel.sortedCurrenciesWithRate.count:\(viewModel.sortedCurrenciesWithRate.count)")
         return viewModel.sortedCurrenciesWithRate.count
     }
     

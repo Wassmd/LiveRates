@@ -17,11 +17,13 @@ final class RateConverterViewModel {
     private let currencyPairService: CurrencyPairService
     private let notificationCenter: NotificationCenter
     private let onboardingStateMachine: OnboardingStateMachine
+    private let queue = DispatchQueue(label: "figma.readWriteLock", attributes: .concurrent)
+    private let progressAccessLock = NSRecursiveLock()
     
     // MARK: Mutable
     
     private var requestTimer: Timer?
-    var shouldAddNewCurrencyPair: Bool = false
+    private var isNewCurrencyPairAdded: Bool = false
     
     var refeshTableView: (() -> Void)?
     var addNewCurrencyOnTop: (() -> Void)?
@@ -46,15 +48,18 @@ final class RateConverterViewModel {
         self.notificationCenter = notificationCenter
         self.onboardingStateMachine = onboardingStateMachine
         
-        setUpInitialData()
         setupObserving()
-        startRefreshTimer()
+        
     }
     
     deinit {
-        requestTimer?.invalidate()
+        stopRateTimer()
     }
     
+    func start() {
+        setUpInitialData()
+        startRefreshTimer()
+    }
     
     // MARK: - setups
     
@@ -71,7 +76,7 @@ final class RateConverterViewModel {
                 return
             }
             
-            self.updateSortedCurrenciesWithRate(with: savedCurrencyPairs)
+            self.updateSortedCurrenciesWithRate(with: savedCurrencyPairs, isRatesAvailable: false)
             self.persistOnboardingShown(true)
             self.fireupRateRequestIfNeeded()
         }
@@ -87,11 +92,11 @@ final class RateConverterViewModel {
             
             guard let savedCurrencyPairs = savedCurrencyPairs, !savedCurrencyPairs.isEmpty else {
                 self.persistOnboardingShown(false)
-                self.updateSortedCurrenciesWithRate(with: [])
+                self.updateSortedCurrenciesWithRate(with: [], isRatesAvailable: false)
                 return
             }
             
-            self.updateSortedCurrenciesWithRate(with: savedCurrencyPairs)
+            self.updateSortedCurrenciesWithRate(with: savedCurrencyPairs, isRatesAvailable: false)
             self.persistOnboardingShown(true)
             self.fireupRateRequestIfNeeded()
         }
@@ -99,7 +104,6 @@ final class RateConverterViewModel {
     
     @objc func fetchConversionRates() {
         guard !pairs.isEmpty else { print("Pairs are emplty!"); return }
-        
         networkService.fetchConvertionRates(with: pairs)  { [weak self] (dictionary, error) in
             guard let self = self else { return }
             if let error = error {
@@ -107,15 +111,14 @@ final class RateConverterViewModel {
             }
             
             guard let dictionary = dictionary, !dictionary.isEmpty else { return }
-        
+            
             self.updateConversationRates(from: dictionary)
-            self.handleTableViewUpdate()
         }
     }
     
     func handleAddNewCurrency(currencyPair: CurrencyPair)  {
-        sortedCurrenciesWithRate.insert(currencyPair, at: 0)        
-        fireupRateRequestIfNeeded()
+        updateIsNewCurrencyPairAdded(true)
+        sortedCurrenciesWithRate.insert(currencyPair, at: 0)
         persistNewCurrencyPair(currencyPair)
     }
     
@@ -133,12 +136,16 @@ final class RateConverterViewModel {
         guard let currencyPair = sortedCurrenciesWithRate[safe: indexPath.row] else { return }
         try currencyPairService.remove(currencyPair: currencyPair)
     }
-
+    
     
     // MARK: - Helper
     
     private func fireupRateRequestIfNeeded() {
-        requestTimer?.fire()
+        fetchConversionRates()
+    }
+    
+    func stopRateTimer() {
+        requestTimer?.invalidate()
     }
     
     private func updateConversationRates(from dictionary: Dictionary<String, Any>) {
@@ -152,30 +159,47 @@ final class RateConverterViewModel {
             }
             .sorted(by: { $0.creationDate > $1.creationDate })
         
-        updateSortedCurrenciesWithRate(with: currencyPairs)
-
+        updateSortedCurrenciesWithRate(with: currencyPairs, isRatesAvailable: true)
+        
     }
     
-    func updateSortedCurrenciesWithRate(with currencyPairs: [CurrencyPair]) {
-        sortedCurrenciesWithRate = currencyPairs
+    func updateSortedCurrenciesWithRate(with currencyPairs: [CurrencyPair], isRatesAvailable: Bool) {
+
+        print("Wasim updateSortedCurrenciesWithRate: \(self.isNewCurrencyPairAdded), isRatesAvailable: \(isRatesAvailable)")
+        self.sortedCurrenciesWithRate = currencyPairs
+        
+        guard isRatesAvailable else { return }
+        
+        if self.isNewCurrencyPairAdded && sortedCurrenciesWithRate.count > 1 {
+            self.addNewCurrencyOnTop?()
+        } else {
+            self.handleTableViewUpdate()
+        }
     }
     
     private func handleTableViewUpdate() {
         self.refeshTableView?()
     }
     
+    func updateIsNewCurrencyPairAdded(_ didFinishAdding: Bool) {
+        if !didFinishAdding {
+            startRefreshTimer()
+        }
+        isNewCurrencyPairAdded = didFinishAdding
+    }
     
     // MARK: - Timer
     
-    private func startRefreshTimer() {
-        requestTimer?.invalidate()
+    func startRefreshTimer() {
+        stopRateTimer()
         requestTimer = Timer.scheduledTimer(timeInterval: Constants.refreshInterval, target: self, selector: #selector(fetchConversionRates), userInfo: nil, repeats: true)
     }
     
     
     // MARK: - Notification
     
-    @objc func savedCurrenciesChanges() {
+    @objc func savedCurrenciesChanges(notification: NSNotification) {
+        print("Wasim notification:\(notification)")
         syncCurrencyPairsWithLocalDatabase()
     }
     
