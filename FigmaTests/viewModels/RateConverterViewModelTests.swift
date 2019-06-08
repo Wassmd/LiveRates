@@ -34,6 +34,7 @@ class RateConverterViewModelTests: XCTestCase {
     }
     
     func testSetUpInitialData_shouldBeCalled() {
+        viewModel.start()
         expect(self.currencyPairServiceMock.calledCount.fetchCurrenciesPairFromLocalDatabase).to(equal(1))
     }
     
@@ -42,15 +43,14 @@ class RateConverterViewModelTests: XCTestCase {
         
         viewModel.syncCurrencyPairsWithLocalDatabase()
         
-         expect(self.currencyPairServiceMock.calledCount.fetchCurrenciesPairFromLocalDatabase).to(equal(2))
-        expect(self.viewModel.sortedCurrenciesWithRate.count).to(equal(2))
+         expect(self.currencyPairServiceMock.calledCount.fetchCurrenciesPairFromLocalDatabase).to(equal(1))
+        expect(self.viewModel.sortedCurrenciesWithRate.count).to(equal(0))
     }
     
     func testFetchConversionRates_fetchConverstionIsCalled_returnRateDict() {
-        networkServiceMock.returnValue.pairsDict =  ["CZKUSD":0.0443,"GBPPLN":5.0251]
-        
-        viewModel.updateSortedCurrenciesWithRate(with: createCurrencyPairs())
-        
+        networkServiceMock.returnValue.pairsDict =  ["CZKUSD": 0.0443,"GBPPLN": 5.0251]
+
+        viewModel.updateSaveCurrencyPairs(with: createCurrencyPairs())
         viewModel.fetchConversionRates()
         
         expect(self.networkServiceMock.calledCount.fetchConvertionRatesCount).to(equal(1))
@@ -62,7 +62,7 @@ class RateConverterViewModelTests: XCTestCase {
     }
     
     func testUpdateConversationRates_ofExistingCurrencyPairs_shouldUpdateToNewValue() {
-        viewModel.updateSortedCurrenciesWithRate(with: createCurrencyPairs())
+        viewModel.updateSaveCurrencyPairs(with: createCurrencyPairs())
         networkServiceMock.returnValue.pairsDict =  ["CZKUSD":1.7777,"GBPPLN":23.23]
         
         viewModel.fetchConversionRates()
