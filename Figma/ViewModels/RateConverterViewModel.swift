@@ -22,7 +22,7 @@ final class RateConverterViewModel {
     
     // MARK: Mutable
     
-    private weak var requestTimer: Timer?
+    private var requestTimer: Timer?
     private var isNewCurrencyPairAdded: Bool = false
     
     var refeshTableView: (() -> Void)?
