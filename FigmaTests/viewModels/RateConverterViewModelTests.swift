@@ -43,7 +43,7 @@ class RateConverterViewModelTests: XCTestCase {
         
         viewModel.syncCurrencyPairsWithLocalDatabase()
         
-         expect(self.currencyPairServiceMock.calledCount.fetchCurrenciesPairFromLocalDatabase).to(equal(1))
+        expect(self.currencyPairServiceMock.calledCount.fetchCurrenciesPairFromLocalDatabase).to(equal(1))
         expect(self.viewModel.sortedCurrenciesWithRate.count).to(equal(0))
     }
     

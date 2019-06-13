@@ -6,7 +6,8 @@ final class RateConverterViewModel {
     // MARK: - Inner Types
     
     enum Constants {
-        static let refreshInterval: TimeInterval = 3.0
+        static let refreshInterval: TimeInterval = 1.0
+        static let domainLabel = "figma.synchronizedArray"
     }
     
     
@@ -17,8 +18,7 @@ final class RateConverterViewModel {
     private let currencyPairService: CurrencyPairService
     private let notificationCenter: NotificationCenter
     private let onboardingStateMachine: OnboardingStateMachine
-    private let queue = DispatchQueue(label: "figma.readWriteLock", attributes: .concurrent)
-    private let progressAccessLock = NSRecursiveLock()
+    private let queue = DispatchQueue(label: Constants.domainLabel, attributes: .concurrent)
     
     // MARK: Mutable
     
@@ -103,7 +103,7 @@ final class RateConverterViewModel {
         }
     }
     
-    @objc func fetchConversionRates() {
+    func fetchConversionRates() {
         guard !pairs.isEmpty else { print("Pairs are emplty!"); return }
         networkService.fetchConvertionRates(with: pairs)  { [weak self] (dictionary, error) in
             guard let self = self else { return }
@@ -167,13 +167,15 @@ final class RateConverterViewModel {
     }
     
     func updateSortedCurrenciesWithRate(with currencyPairs: [CurrencyPair]) {
-        let shouldAddRowAtTop =  shouldAddRowAtTopWithAnimation(currencyPairs)
-        self.sortedCurrenciesWithRate = currencyPairs
-        
-        if shouldAddRowAtTop {
-            self.addNewCurrencyOnTop?()
-        } else {
-            self.handleTableViewUpdate()
+        queue.async(flags: .barrier) {
+            let shouldAddRowAtTop =  self.shouldAddRowAtTopWithAnimation(currencyPairs)
+            self.sortedCurrenciesWithRate = currencyPairs
+            
+            if shouldAddRowAtTop {
+                self.addNewCurrencyOnTop?()
+            } else {
+                self.handleTableViewUpdate()
+            }
         }
     }
 
@@ -199,14 +201,17 @@ final class RateConverterViewModel {
     
     func startRefreshTimer() {
         stopRateTimer()
-        requestTimer = Timer.scheduledTimer(timeInterval: Constants.refreshInterval, target: self, selector: #selector(fetchConversionRates), userInfo: nil, repeats: true)
+        
+        requestTimer = Timer.scheduledTimer(withTimeInterval: Constants.refreshInterval, repeats: true, block: { [weak self] _ in
+            self?.fetchConversionRates()
+        })
+        
     }
     
     
     // MARK: - Notification
     
     @objc func savedCurrenciesChanges(notification: NSNotification) {
-        print("Wasim notification:\(notification)")
         syncCurrencyPairsWithLocalDatabase()
     }
     
