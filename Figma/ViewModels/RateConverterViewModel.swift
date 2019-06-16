@@ -112,10 +112,13 @@ final class RateConverterViewModel {
     
     func fetchConversionRates() {
         guard !pairs.isEmpty else { print("Pairs are emplty!"); return }
+        
         networkService.fetchConvertionRates(with: pairs)  { [weak self] (dictionary, error) in
             guard let self = self else { return }
             if let error = error {
-                self.handleError?(error)
+                DispatchQueue.main.async { [weak self] in
+                    self?.handleError?(error)
+                }
                 self.updateSortedCurrenciesWithRate(with: self.savedCurrencyPairs)
             }
             
