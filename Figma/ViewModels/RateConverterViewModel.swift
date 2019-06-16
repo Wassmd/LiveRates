@@ -30,7 +30,14 @@ final class RateConverterViewModel {
     var handleError: ((Error) -> Void)?
     
     private var savedCurrencyPairs = [CurrencyPair]()
-    private(set) var sortedCurrenciesWithRate = [CurrencyPair]()
+    private var currenciesWithRate = [CurrencyPair]()
+
+
+    // MARK: - Public
+    
+    var sortedCurrenciesWithRate: [CurrencyPair] {
+        return currenciesWithRate
+    }
     
     private var pairs: [String] {
         let pairs = savedCurrencyPairs.map { "\($0.fromCurrencyCode)\($0.targetCurrencyCode)" }
@@ -134,7 +141,7 @@ final class RateConverterViewModel {
     }
     
     func deleteCurrencyPair(at indexPath: IndexPath) throws {
-        guard let currencyPair = sortedCurrenciesWithRate[safe: indexPath.row] else { return }
+        guard let currencyPair = currenciesWithRate[safe: indexPath.row] else { return }
         try currencyPairService.remove(currencyPair: currencyPair)
     }
     
@@ -167,14 +174,18 @@ final class RateConverterViewModel {
     }
     
     func updateSortedCurrenciesWithRate(with currencyPairs: [CurrencyPair]) {
-        queue.async(flags: .barrier) {
-            let shouldAddRowAtTop =  self.shouldAddRowAtTopWithAnimation(currencyPairs)
-            self.sortedCurrenciesWithRate = currencyPairs
+        queue.async(flags: .barrier) { [weak self] in
+            guard let self = self else { return }
             
-            if shouldAddRowAtTop {
-                self.addNewCurrencyOnTop?()
-            } else {
-                self.handleTableViewUpdate()
+            let shouldAddRowAtTop =  self.shouldAddRowAtTopWithAnimation(currencyPairs)
+            self.currenciesWithRate = currencyPairs
+            
+            DispatchQueue.main.async {
+                if shouldAddRowAtTop {
+                    self.addNewCurrencyOnTop?()
+                } else {
+                    self.handleTableViewUpdate()
+                }
             }
         }
     }
@@ -192,8 +203,8 @@ final class RateConverterViewModel {
     }
     
     private func shouldAddRowAtTopWithAnimation(_ currencyPairsWithRate: [CurrencyPair]) -> Bool {
-        return currencyPairsWithRate.count > sortedCurrenciesWithRate.count &&
-            sortedCurrenciesWithRate.count > 0 &&
+        return currencyPairsWithRate.count > currenciesWithRate.count &&
+            currenciesWithRate.count > 0 &&
         isNewCurrencyPairAdded
     }
     
@@ -205,7 +216,6 @@ final class RateConverterViewModel {
         requestTimer = Timer.scheduledTimer(withTimeInterval: Constants.refreshInterval, repeats: true, block: { [weak self] _ in
             self?.fetchConversionRates()
         })
-        
     }
     
     
