@@ -1,0 +1,35 @@
+PODS:
+  - Nimble (8.0.1)
+  - OHHTTPStubs (8.0.0):
+    - OHHTTPStubs/Default (= 8.0.0)
+  - OHHTTPStubs/Core (8.0.0)
+  - OHHTTPStubs/Default (8.0.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (8.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (8.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (8.0.0)
+  - OHHTTPStubs/Swift (8.0.0):
+    - OHHTTPStubs/Default
+
+DEPENDENCIES:
+  - Nimble (~> 8.0)
+  - OHHTTPStubs
+  - OHHTTPStubs/Swift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Nimble
+    - OHHTTPStubs
+
+SPEC CHECKSUMS:
+  Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
+  OHHTTPStubs: 9cbce6364bec557cc3439aa6bb7514670d780881
+
+PODFILE CHECKSUM: 9fefc7114224f3226efec9b79b3560ab360a7c96
+
+COCOAPODS: 1.5.3
