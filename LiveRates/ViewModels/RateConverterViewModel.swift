@@ -7,7 +7,7 @@ final class RateConverterViewModel {
     
     enum Constants {
         static let refreshInterval: TimeInterval = 1.0
-        static let domainLabel = "figma.synchronizedArray"
+        static let domainLabel = "liverates.synchronizedArray"
     }
     
     

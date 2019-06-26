@@ -1,11 +1,3 @@
-//
-//  FigmaTests.swift
-//  FigmaTests
-//
-//  Created by Mohammed Wasimuddin on 24.05.19.
-//  Copyright © 2019 Wasim. All rights reserved.
-//
-
 import XCTest
 @testable import LiveRates
 
