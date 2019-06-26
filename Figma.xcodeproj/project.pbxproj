@@ -573,6 +573,7 @@
 					};
 					5FDFC71622986FE2009B263D = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 5FDFC70222986FE0009B263D;
 					};
 				};
@@ -897,7 +898,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.wasim.FigmaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Figma.app/Figma";
 			};
@@ -1083,7 +1084,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.wasim.FigmaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Figma.app/Figma";
 			};
@@ -1106,7 +1107,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.wasim.FigmaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Figma.app/Figma";
 			};
