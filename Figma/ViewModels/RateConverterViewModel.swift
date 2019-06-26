@@ -36,7 +36,9 @@ final class RateConverterViewModel {
     // MARK: - Public
     
     var sortedCurrenciesWithRate: [CurrencyPair] {
-        return currenciesWithRate
+        return queue.sync {
+             self.currenciesWithRate
+        }
     }
     
     private var pairs: [String] {
