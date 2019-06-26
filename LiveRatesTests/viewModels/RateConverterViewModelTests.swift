@@ -1,7 +1,7 @@
 import Foundation
 import Nimble
 import XCTest
-@testable import Figma
+@testable import LiveRates
 
 class RateConverterViewModelTests: XCTestCase {
     

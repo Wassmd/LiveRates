@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Figma
+@testable import LiveRates
 
 class FigmaTests: XCTestCase {
 

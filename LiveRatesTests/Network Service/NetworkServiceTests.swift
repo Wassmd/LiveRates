@@ -4,7 +4,7 @@ import Nimble
 import XCTest
 import OHHTTPStubs
 
-@testable import Figma
+@testable import LiveRates
 
 class NetworkServiceTests: XCTestCase {
     

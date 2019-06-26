@@ -47,7 +47,6 @@
 		5FCA5D2C22A4197B00580962 /* RateConverterViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA5D2B22A4197B00580962 /* RateConverterViewModelTests.swift */; };
 		5FCA5D2F22A41BC300580962 /* NetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA5D2E22A41BC300580962 /* NetworkServiceMock.swift */; };
 		5FCA5D3122A41BD900580962 /* CurrencyPairServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA5D3022A41BD900580962 /* CurrencyPairServiceMock.swift */; };
-		5FCA5D3322A41BEC00580962 /* OnboardingStateMachineMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA5D3222A41BEC00580962 /* OnboardingStateMachineMock.swift */; };
 		5FCA5D3622A42F5300580962 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCA5D3522A42F5300580962 /* NetworkServiceTests.swift */; };
 		5FDFC70722986FE0009B263D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDFC70622986FE0009B263D /* AppDelegate.swift */; };
 		5FDFC70E22986FE2009B263D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FDFC70D22986FE2009B263D /* Assets.xcassets */; };
@@ -139,14 +138,13 @@
 		5FCA5D2B22A4197B00580962 /* RateConverterViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateConverterViewModelTests.swift; sourceTree = "<group>"; };
 		5FCA5D2E22A41BC300580962 /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
 		5FCA5D3022A41BD900580962 /* CurrencyPairServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPairServiceMock.swift; sourceTree = "<group>"; };
-		5FCA5D3222A41BEC00580962 /* OnboardingStateMachineMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStateMachineMock.swift; sourceTree = "<group>"; };
 		5FCA5D3522A42F5300580962 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
-		5FDFC70322986FE0009B263D /* Figma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Figma.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FDFC70322986FE0009B263D /* LiveRates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveRates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDFC70622986FE0009B263D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5FDFC70D22986FE2009B263D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5FDFC71022986FE2009B263D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5FDFC71222986FE2009B263D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5FDFC71722986FE2009B263D /* FigmaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FigmaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FDFC71722986FE2009B263D /* LiveRatesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiveRatesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FDFC71B22986FE2009B263D /* FigmaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigmaTests.swift; sourceTree = "<group>"; };
 		5FDFC71D22986FE2009B263D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FDFC727229870B7009B263D /* UIEdgeInsets+AllEdges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+AllEdges.swift"; sourceTree = "<group>"; };
@@ -267,7 +265,6 @@
 			children = (
 				5FCA5D2E22A41BC300580962 /* NetworkServiceMock.swift */,
 				5FCA5D3022A41BD900580962 /* CurrencyPairServiceMock.swift */,
-				5FCA5D3222A41BEC00580962 /* OnboardingStateMachineMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -283,8 +280,8 @@
 		5FDFC6FA22986FE0009B263D = {
 			isa = PBXGroup;
 			children = (
-				5FDFC70522986FE0009B263D /* Figma */,
-				5FDFC71A22986FE2009B263D /* FigmaTests */,
+				5FDFC70522986FE0009B263D /* LiveRates */,
+				5FDFC71A22986FE2009B263D /* LiveRatesTests */,
 				5FDFC70422986FE0009B263D /* Products */,
 				8DDD8884BA33FE3A0288D22A /* Pods */,
 				94A89CEDAAAC1595C38E4E29 /* Frameworks */,
@@ -294,13 +291,13 @@
 		5FDFC70422986FE0009B263D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5FDFC70322986FE0009B263D /* Figma.app */,
-				5FDFC71722986FE2009B263D /* FigmaTests.xctest */,
+				5FDFC70322986FE0009B263D /* LiveRates.app */,
+				5FDFC71722986FE2009B263D /* LiveRatesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5FDFC70522986FE0009B263D /* Figma */ = {
+		5FDFC70522986FE0009B263D /* LiveRates */ = {
 			isa = PBXGroup;
 			children = (
 				5FDFC74322987137009B263D /* Application */,
@@ -316,10 +313,10 @@
 				5FDFC726229870B7009B263D /* Extensions */,
 				5FDFC74C22987599009B263D /* Resources */,
 			);
-			path = Figma;
+			path = LiveRates;
 			sourceTree = "<group>";
 		};
-		5FDFC71A22986FE2009B263D /* FigmaTests */ = {
+		5FDFC71A22986FE2009B263D /* LiveRatesTests */ = {
 			isa = PBXGroup;
 			children = (
 				5F44B7FD22A448D9007C1B09 /* Resource */,
@@ -329,7 +326,7 @@
 				5FDFC71B22986FE2009B263D /* FigmaTests.swift */,
 				5FDFC71D22986FE2009B263D /* Info.plist */,
 			);
-			path = FigmaTests;
+			path = LiveRatesTests;
 			sourceTree = "<group>";
 		};
 		5FDFC726229870B7009B263D /* Extensions */ = {
@@ -520,9 +517,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5FDFC70222986FE0009B263D /* Figma */ = {
+		5FDFC70222986FE0009B263D /* LiveRates */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5FDFC72022986FE2009B263D /* Build configuration list for PBXNativeTarget "Figma" */;
+			buildConfigurationList = 5FDFC72022986FE2009B263D /* Build configuration list for PBXNativeTarget "LiveRates" */;
 			buildPhases = (
 				270022E677EC238DD009328C /* [CP] Check Pods Manifest.lock */,
 				5FDFC6FF22986FE0009B263D /* Sources */,
@@ -533,14 +530,14 @@
 			);
 			dependencies = (
 			);
-			name = Figma;
+			name = LiveRates;
 			productName = Figma;
-			productReference = 5FDFC70322986FE0009B263D /* Figma.app */;
+			productReference = 5FDFC70322986FE0009B263D /* LiveRates.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5FDFC71622986FE2009B263D /* FigmaTests */ = {
+		5FDFC71622986FE2009B263D /* LiveRatesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5FDFC72322986FE2009B263D /* Build configuration list for PBXNativeTarget "FigmaTests" */;
+			buildConfigurationList = 5FDFC72322986FE2009B263D /* Build configuration list for PBXNativeTarget "LiveRatesTests" */;
 			buildPhases = (
 				B9F1EE0CF1C3A4A7AE77549B /* [CP] Check Pods Manifest.lock */,
 				5FDFC71322986FE2009B263D /* Sources */,
@@ -553,9 +550,9 @@
 			dependencies = (
 				5FDFC71922986FE2009B263D /* PBXTargetDependency */,
 			);
-			name = FigmaTests;
+			name = LiveRatesTests;
 			productName = FigmaTests;
-			productReference = 5FDFC71722986FE2009B263D /* FigmaTests.xctest */;
+			productReference = 5FDFC71722986FE2009B263D /* LiveRatesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -578,7 +575,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5FDFC6FE22986FE0009B263D /* Build configuration list for PBXProject "Figma" */;
+			buildConfigurationList = 5FDFC6FE22986FE0009B263D /* Build configuration list for PBXProject "LiveRates" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -591,8 +588,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5FDFC70222986FE0009B263D /* Figma */,
-				5FDFC71622986FE2009B263D /* FigmaTests */,
+				5FDFC70222986FE0009B263D /* LiveRates */,
+				5FDFC71622986FE2009B263D /* LiveRatesTests */,
 			);
 		};
 /* End PBXProject section */
@@ -769,7 +766,6 @@
 				5FCA5D3122A41BD900580962 /* CurrencyPairServiceMock.swift in Sources */,
 				5FCA5D2F22A41BC300580962 /* NetworkServiceMock.swift in Sources */,
 				5FCA5D3622A42F5300580962 /* NetworkServiceTests.swift in Sources */,
-				5FCA5D3322A41BEC00580962 /* OnboardingStateMachineMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -778,7 +774,7 @@
 /* Begin PBXTargetDependency section */
 		5FDFC71922986FE2009B263D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5FDFC70222986FE0009B263D /* Figma */;
+			target = 5FDFC70222986FE0009B263D /* LiveRates */;
 			targetProxy = 5FDFC71822986FE2009B263D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -867,13 +863,13 @@
 					"$(inherited)",
 					"COCOAPODS=1",
 				);
-				INFOPLIST_FILE = Figma/Application/Info.plist;
+				INFOPLIST_FILE = LiveRates/Application/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.grandcentrix.Figma;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wasim.liverates;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "grandcentrix Enterprise Wildcard Development";
 				SWIFT_VERSION = 5.0;
@@ -889,18 +885,18 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = JCPY7FXGR4;
-				INFOPLIST_FILE = FigmaTests/Info.plist;
+				INFOPLIST_FILE = LiveRatesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.wasim.FigmaTests;
+				PRODUCT_BUNDLE_IDENTIFIER = net.wasim.LiveRatesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Figma.app/Figma";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LiveRates.app/LiveRates";
 			};
 			name = Test;
 		};
@@ -1031,13 +1027,13 @@
 					"$(inherited)",
 					"COCOAPODS=1",
 				);
-				INFOPLIST_FILE = Figma/Application/Info.plist;
+				INFOPLIST_FILE = LiveRates/Application/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.grandcentrix.Figma;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wasim.liverates;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "grandcentrix Enterprise Wildcard Development";
 				SWIFT_VERSION = 5.0;
@@ -1052,13 +1048,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = Figma/Application/Info.plist;
+				INFOPLIST_FILE = LiveRates/Application/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.grandcentrix.Figma;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wasim.liverates;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1075,18 +1071,18 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = JCPY7FXGR4;
-				INFOPLIST_FILE = FigmaTests/Info.plist;
+				INFOPLIST_FILE = LiveRatesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.wasim.FigmaTests;
+				PRODUCT_BUNDLE_IDENTIFIER = net.wasim.LiveRatesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Figma.app/Figma";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LiveRates.app/LiveRates";
 			};
 			name = Debug;
 		};
@@ -1098,25 +1094,25 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = FigmaTests/Info.plist;
+				INFOPLIST_FILE = LiveRatesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.wasim.FigmaTests;
+				PRODUCT_BUNDLE_IDENTIFIER = net.wasim.LiveRatesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Figma.app/Figma";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LiveRates.app/LiveRates";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5FDFC6FE22986FE0009B263D /* Build configuration list for PBXProject "Figma" */ = {
+		5FDFC6FE22986FE0009B263D /* Build configuration list for PBXProject "LiveRates" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FDFC71E22986FE2009B263D /* Debug */,
@@ -1126,7 +1122,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5FDFC72022986FE2009B263D /* Build configuration list for PBXNativeTarget "Figma" */ = {
+		5FDFC72022986FE2009B263D /* Build configuration list for PBXNativeTarget "LiveRates" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FDFC72122986FE2009B263D /* Debug */,
@@ -1136,7 +1132,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5FDFC72322986FE2009B263D /* Build configuration list for PBXNativeTarget "FigmaTests" */ = {
+		5FDFC72322986FE2009B263D /* Build configuration list for PBXNativeTarget "LiveRatesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FDFC72422986FE2009B263D /* Debug */,
